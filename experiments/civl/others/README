@@ -1,0 +1,28 @@
+
+Semi-barriers (sync by one way signal):
+sync1_no.c: 2 thread sync using one lock, ok
+sync1_yes.c: like above but wrong: t1 can set then unset, then t0 sets, both write.
+critsec3_no.c  : signal with busy wait loop using critical sections
+critsec3_yes.c : has race due to different critical section names
+atomic3_no.c   :  sync with busy wait loop using atomic
+atomic3_yes.c : races because the write is not protected by atomic
+
+Barriers:
+bar1_no.c: 2-thread flag barrier using busy-wait loops and critical, no race [inline]
+bar1_yes.c: wrong 2-thread flag barrier using busy-waits, race [inline]
+bar2_no.c: uses locks to create a barrier that is used once
+bar2_yes.c: like bar2_norace, but each thread uses its own lock, which doesn't work
+bar3_no.c: implements 2-thread reuseable barrier using 3 locks, no race [inline]
+bar3_yes.c: racy version of above, one synchronization commented out [inline]
+
+Diffusions:
+diffusion1_no.c: for loop: new values go into separately malloc objects, swapped
+diffusion1_yes.c: same as above, but swap is wrong so u1=u2 and race
+diffusion2_no.c: like diffusion1, but two parts of one malloced object used
+diffusion2_yes.c: like above, but mistake in starting point of second half
+
+Producer-consumer:
+critsec2_no.c: : single producer single consumer with critical sections
+critsec2_yes.c : has race due to different critical section names
+prodcons_no.c  : multiple producer, multiple consumer with critical sections
+prodcons_yes.c : races due to critical sections have different names

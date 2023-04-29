@@ -1,0 +1,21 @@
+// this is a work in progress
+flag state: used between t0 and t1
+  init:  up=false  lg:free   l0:t0   l1:free  c0=0; c1=0
+
+t0 raise:
+  acq lg
+  assert !up
+  up=true
+  c0=1-c0
+  acq l[c0]
+  rel lg
+  rel l[1-c0]
+  
+t1 lower:
+  acq l[c1]
+  acq lg
+  assert up
+  up=false
+  c1=1-c1
+  rel l[1-c1]
+  rel lg
