@@ -15,7 +15,7 @@ Please follow these steps:
  - Select the sc4drf virtual machine image
  - Follow the prompts to set up and start the virtual machine
  - The machine should log in automatically. If a username or password is ever required, use `vboxuser` as username and `changeme` as password.
- - Double-click the artifact folder on the Desktop
+ - Double-click the `sc4drf` folder on the Desktop
  - In the folder window that appears, right-click and select "Open in Terminal"
  - Follow the steps under "replication of experiments" below.
 
@@ -33,10 +33,11 @@ Most of the contents are available on https://github.com/verified-software-lab/s
 	     - `do-all.sh` script to run the experiments
          - `micro_benchmarks` folder with input files
 
-The virtual machine contains a clone of this repository, and
+The virtual machine contains a clone of this repository, and an `artifact` folder containing preinstalled software:
  - CIVL (source, documentation, executable, examples)
  - LLOV (the static analysis tool)
- - Modified scripts to run the experiments, with environment variables and locations adjusted to work in the virtual machine.
+
+The machine also has modified scripts inside the `sc4drf` folder to run the experiments, with environment variables and locations adjusted to work in the virtual machine.
 
 ## Replication of Experiments Reported in Paper
 
@@ -48,7 +49,7 @@ directory, and those for LLOV are in llov.
 filenames beginning with `DRB`.  As described in the paper, 68 of
 these 88 have been manually edited by us.  (The original unedited
 versions can be found in the llov directory.)  There are in addition
-20 programs which we wrote ourselves.  All 108 experiments should run by typing `make`.  The DRB files with `yes` in the filename
+20 programs which we wrote ourselves.  All 108 experiments should run by typing `make` inside the `sc4drf/experiments/civl` folder.  The DRB files with `yes` in the filename
 have a datarace; those with `no` in the filename do not have a
 datarace.  For the 20 additional files, `norace` in the filename
 indicates there is no race, and `race` indicates there is a race.
@@ -57,7 +58,7 @@ on all tests except DRB139, DRB014, and DRB015.  The output from our own run can
 
 **llov:** there are 88 programs from the DataRaceBench suite (unedited)
 and the 20 additional programs.  All 108 experiments should run by
-typing `./run-all.sh`.  For the DRB tests, LLOV obtains the correct result on
+typing `./run-all.sh` inside the `sc4drf/experiments/llov` folder.  For the DRB tests, LLOV obtains the correct result on
 all but DRB140, DRB052, DRB054, and DRB069.  For the 20 additional
 tests, LLOV produces the wrong answer on the following:
 
