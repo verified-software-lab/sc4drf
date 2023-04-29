@@ -33,7 +33,7 @@ Most of the contents are available on https://github.com/verified-software-lab/s
 	     - `do-all.sh` script to run the experiments
          - `micro_benchmarks` folder with input files
 
-The virtual machine contains a clone of this repository, and an `artifact` folder containing preinstalled software:
+The virtual machine contains a clone of this repository, and preinstalled software:
  - CIVL (source, documentation, executable, examples)
  - LLOV (the static analysis tool)
 
