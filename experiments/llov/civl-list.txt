@@ -35,9 +35,7 @@ DRB038-truedepseconddimension-var-yes.c
 DRB039-truedepsingleelement-orig-yes.c
 DRB040-truedepsingleelement-var-yes.c
 DRB041-3mm-parallel-no.c
-DRB042-3mm-tile-no.c
 DRB043-adi-parallel-no.c
-DRB044-adi-tile-no.c
 DRB045-doall1-orig-no.c
 DRB046-doall2-orig-no.c
 DRB047-doallchar-orig-no.c
@@ -48,9 +46,7 @@ DRB052-indirectaccesssharebase-orig-no.c
 DRB053-inneronly1-orig-no.c
 DRB054-inneronly2-orig-no.c
 DRB055-jacobi2d-parallel-no.c
-DRB056-jacobi2d-tile-no.c
 DRB057-jacobiinitialize-orig-no.c
-DRB058-jacobikernel-orig-no.c
 DRB059-lastprivate-orig-no.c
 DRB060-matrixmultiply-orig-no.c
 DRB061-matrixvector1-orig-no.c
@@ -67,14 +63,10 @@ DRB074-flush-orig-yes.c
 DRB075-getthreadnum-orig-yes.c
 DRB076-flush-orig-no.c
 DRB077-single-orig-no.c
-DRB085-threadprivate-orig-no.c
-DRB086-static-data-member-orig-yes.cpp
-DRB087-static-data-member2-orig-yes.cpp
 DRB088-dynamic-storage-orig-yes.c
 DRB089-dynamic-storage2-orig-yes.c
 DRB090-static-local-orig-yes.c
 DRB093-doall2-collapse-orig-no.c
-DRB094-doall2-ordered-orig-no.c
 DRB103-master-orig-no.c
 DRB104-nowait-barrier-orig-no.c
 DRB108-atomic-orig-no.c
@@ -92,5 +84,4 @@ DRB140-reduction-barrier-orig-yes.c
 DRB141-reduction-barrier-orig-no.c
 DRB169-missingsyncwrite-orig-yes.c
 DRB170-nestedloops-orig-no.c
-DRB171-threadprivate3-orig-no.c
 DRB172-critical2-orig-no.c
