@@ -49,7 +49,7 @@ directory, and those for LLOV are in llov.
 filenames beginning with `DRB`.  As described in the paper, 68 of
 these 88 have been manually edited by us.  (The original unedited
 versions can be found in the llov directory.)  There are in addition
-20 programs which we wrote ourselves.  All 108 experiments should run by typing `make` inside the `sc4drf/experiments/civl` folder.  The DRB files with `yes` in the filename
+20 programs which we wrote ourselves.  All 108 experiments should run by typing `make all` inside the `sc4drf/experiments/civl/dataracebench` and `sc4drf/experiments/civl/others` folders.  The DRB files with `yes` in the filename
 have a datarace; those with `no` in the filename do not have a
 datarace.  For the 20 additional files, `norace` in the filename
 indicates there is no race, and `race` indicates there is a race.
