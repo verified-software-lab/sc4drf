@@ -66,9 +66,6 @@ C_DRB046-doall2-orig-no:: DRB046-doall2-orig-no.c
 C_DRB051-getthreadnum-orig-no:: DRB051-getthreadnum-orig-no.c
 	$(VERIFY) $<
 
-C_DRB055-jacobi2d-parallel-no:: DRB055-jacobi2d-parallel-no.c
-	$(VERIFY) -inputN=10 $<
-
 C_DRB058-jacobikernel-orig-no:: DRB058-jacobikernel-orig-no.c
 	$(VERIFY) -inputBOUND=5 $<
 
