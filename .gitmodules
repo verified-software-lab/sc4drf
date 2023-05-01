@@ -1,3 +1,0 @@
-[submodule "origin_examples/dataracebench"]
-	path = origin_examples/dataracebench
-	url = https://github.com/LLNL/dataracebench.git
