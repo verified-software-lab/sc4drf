@@ -1,0 +1,69 @@
+// implementation of 2-thread barrier using locks only.
+// Verify with this command: civl verify bar.cvl
+// CIVL shows it is correct.
+typedef int lock_t;
+
+lock_t l0, l1, l2;
+int x = 1;
+
+void init(lock_t * l) {
+  *l = -1;
+}
+
+void release(int tid, lock_t * l) {
+  $assert(*l == tid);
+  *l = -1;
+}
+
+void acquire(int tid, lock_t * l) {
+  $assert(*l != tid);
+  $when (*l == -1) *l = tid;
+}
+
+void barrier_init() {
+  init(&l0);
+  init(&l1);
+  init(&l2);
+  acquire(0, &l0);
+  acquire(1, &l1);
+  acquire(0, &l2);
+}
+
+void barrier(int tid) {
+  if (tid == 0) {
+    release(0, &l0);
+    acquire(0, &l1);
+    release(0, &l2);
+    acquire(0, &l0);
+    release(0, &l1);
+    acquire(0, &l2);
+  } else if (tid == 1) {
+    acquire(1, &l0);
+    release(1, &l1);
+    acquire(1, &l2);
+    release(1, &l0);
+    acquire(1, &l1);
+    release(1, &l2);
+  }
+}
+
+void thread(int tid) {
+  while (1) {
+    $assert(x==1);
+    barrier(tid);
+    if (tid==0) x=0;
+    barrier(tid);
+    $assert(x==0);
+    barrier(tid);
+    if (tid==1) x=1;
+    barrier(tid);
+  }
+}
+
+int main() {
+  barrier_init();
+  $proc t0 = $spawn thread(0);
+  $proc t1 = $spawn thread(1);
+  $wait(t0);
+  $wait(t1);  
+}
