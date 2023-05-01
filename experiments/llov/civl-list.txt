@@ -47,6 +47,7 @@ DRB053-inneronly1-orig-no.c
 DRB054-inneronly2-orig-no.c
 DRB055-jacobi2d-parallel-no.c
 DRB057-jacobiinitialize-orig-no.c
+DRB058-jacobikernel-orig-no.c
 DRB059-lastprivate-orig-no.c
 DRB060-matrixmultiply-orig-no.c
 DRB061-matrixvector1-orig-no.c
