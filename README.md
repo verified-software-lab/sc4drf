@@ -71,21 +71,29 @@ been manually edited by us.  (The original unedited versions can be found in
 the llov directory.)  There are in addition 20 programs which we wrote
 ourselves.
 
-All 108 experiments should run by typing `make` inside the
-`sc4drf/experiments/civl/micro-benchmarks` and `sc4drf/experiments/civl/extra`
-folders.  Files with `yes` in the filename have a datarace; those with `no` in
-the filename do not have a datarace.  The paper reports that CIVL gets the
-correct result (race or no race) on all tests except DRB139, DRB014, and
-DRB015.  Additional information can be found in the README files in the
-results_m1mac directories.  The detailed CIVL output (file civl_out.txt) also
-reports total runtime for each test.
+All 108 experiments should run by executing the following inside the `sc4drf`
+repository folder:
+
+    (cd experiments/civl/micro-benchmarks && make)
+    (cd experiments/civl/extra && make)
+
+Files with `yes` in the filename have a datarace; those with `no` in the
+filename do not have a datarace.  The paper reports that CIVL gets the correct
+result (race or no race) on all tests except DRB139, DRB014, and DRB015.
+Additional information can be found in the README files in the results_m1mac
+directories.  The detailed CIVL output file `civl_out.txt` also reports total
+runtime for each test.
 
 **llov:** there are 88 programs from the DataRaceBench suite (unedited) and the
-20 additional programs.  All 108 experiments should run by typing `make` inside
-the `sc4drf/experiments/llov/micro-benchmarks` and
-`sc4drf/experiments/llov/extra` folders.  For the DRB tests, LLOV obtains the
-correct result on all but DRB140, DRB052, DRB054, and DRB069.  For the 20
-additional tests, LLOV produces the wrong answer on the following:
+20 additional programs.  All 108 experiments should run by typing the following
+inside the `sc4drf` repository folder:
+
+    (cd experiments/llov/micro-benchmarks && make)
+    (cd experiments/llov/extra && make)
+
+For the DRB tests, LLOV obtains the correct result on all but DRB140, DRB052,
+DRB054, and DRB069.  For the 20 additional tests, LLOV produces the wrong
+answer on the following:
 
  - sync1_norace.c
  - critsec3.c
