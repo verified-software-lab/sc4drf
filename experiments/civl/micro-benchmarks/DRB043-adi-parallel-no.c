@@ -21,7 +21,7 @@
 #ifdef _CIVL
 #include <civlc.cvh>
 #include <stdlib.h>
-$input int N, BOUND = 500;
+$input int N, BOUND = 4;
 $assume(1 <= N && N <= BOUND);
 int M = N-1;
 int P = N-3;

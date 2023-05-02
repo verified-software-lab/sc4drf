@@ -42,7 +42,7 @@ DRB023-sections1-orig-yes.c  (DRB023-sections1-orig-yes.c)
 civl verify -input_omp_thread_max=8 DRB023-sections1-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.18
+   time (s)            : 1.28
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 62
@@ -75,7 +75,7 @@ DRB051-getthreadnum-orig-no.c  (DRB051-getthreadnum-orig-no.c)
 civl verify -input_omp_thread_max=8 DRB051-getthreadnum-orig-no.c 
 
 === Stats ===
-   time (s)            : 1.52
+   time (s)            : 1.44
    memory (bytes)      : 272629760
    max process count   : 9
    states              : 848
@@ -86,58 +86,6 @@ civl verify -input_omp_thread_max=8 DRB051-getthreadnum-orig-no.c
    valid calls         : 14900
    provers             : cvc4, z3
    prover calls        : 0
-
-=== Result ===
-All properties marked with '+' hold on all executions.
- +  Dereference errors
- +  Functional equivalence
- +  Internal errors
- +  Library loading errors
- +  Other errors
- +  Assertion violations
- +  Communication errors
- +  Writes to constant variables
- +  Absolute deadlocks
- +  Division by zero
- +  Writes to $input variables
- +  Invalid casts
- +  Malloc errors
- +  Memory leaks
- +  Memory management errors
- +  Mpi usage errors
- +  Out of bounds
- +  Reads from $output variables
- +  Pointer errors
- +  Process leaks
- +  Sequence errors
- +  Termination
- +  Use of undefined values
- +  Union errors
-
-Checking DRB059-lastprivate-orig-no with nthreads<=8 ...
-CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
-x=0x=1x=2x=3x=4x=5x=6x=7x=8x=9x=10x=11x=12x=13x=14x=15x=16x=17x=18x=19x=20x=21x=22x=23x=24x=25x=26x=27x=28x=29x=30x=31x=32x=33x=34x=35x=36x=37x=38x=39x=40x=41x=42x=43x=44x=45x=46x=47x=48x=49x=50x=51x=52x=53x=54x=55x=56x=57x=58x=59x=60x=61x=62x=63x=64x=65x=66x=67x=68x=69x=70x=71x=72x=73x=74x=75x=76x=77x=78x=79x=80x=81x=82x=83x=84x=85x=86x=87x=88x=89x=90x=91x=92x=93x=94x=95x=96x=97x=98x=99x=1x=3x=5x=7x=9x=11x=13x=15x=17x=19x=21x=23x=25x=27x=29x=31x=33x=35x=37x=39x=41x=43x=45x=47x=49x=51x=53x=55x=57x=59x=61x=63x=65x=67x=69x=71x=73x=75x=77x=79x=81x=83x=85x=87x=89x=91x=93x=95x=97x=99x=2x=4x=5x=8x=10x=11x=14x=16x=17x=20x=22x=23x=26x=28x=29x=32x=34x=35x=38x=40x=41x=44x=46x=47x=50x=52x=53x=56x=58x=59x=62x=64x=65x=68x=70x=71x=74x=76x=77x=80x=82x=83x=86x=88x=89x=92x=94x=95x=98x=3x=6x=7x=10x=11x=15x=18x=19x=22x=23x=27x=30x=31x=34x=35x=39x=42x=43x=46x=47x=51x=54x=55x=58x=59x=63x=66x=67x=70x=71x=75x=78x=79x=82x=83x=87x=90x=91x=94x=95x=99x=4x=6x=7x=8x=9x=12x=13x=14x=18x=19x=24x=26x=27x=28x=2917s: mem=920Mb trans=519166 traceSteps=69697 explored=69521 saved=133430 prove=102
-x=33x=34x=36x=37x=38x=39x=44x=48x=49x=52x=53x=54x=56x=57x=58x=59x=64x=66x=67x=68x=69x=72x=73x=74x=78x=79x=84x=86x=87x=88x=89x=93x=94x=96x=97x=98x=99x=5x=9x=10x=11x=16x=17x=21x=22x=23x=28x=29x=35x=40x=41x=45x=46x=47x=52x=53x=57x=58x=59x=65x=69x=70x=71x=76x=77x=81x=82x=83x=88x=89x=95x=6x=8x=9x=10x=11x=12x=13x=16x=17x=18x=19x=20x=24x=25x=26x=27x=32x=33x=34x=40x=41x=48x=50x=51x=52x=53x=54x=55x=60x=61x=62x=66x=67x=68x=69x=75x=76x=78x=79x=80x=81x=8232s: mem=920Mb trans=1029272 traceSteps=139407 explored=139093 saved=263718 prove=102
-x=83x=90x=92x=93x=94x=95x=96x=97x=7x=12x=13x=14x=15x=20x=21x=22x=23x=30x=31x=36x=37x=38x=39x=45x=46x=47x=54x=55x=63x=68x=69x=70x=71x=78x=79x=85x=86x=87x=92x=93x=94x=95
-=== Source files ===
-DRB059-lastprivate-orig-no.c  (DRB059-lastprivate-orig-no.c)
-
-
-=== Command ===
-civl verify -input_omp_thread_max=8 DRB059-lastprivate-orig-no.c 
-
-=== Stats ===
-   time (s)            : 40.86
-   memory (bytes)      : 964689920
-   max process count   : 9
-   states              : 180887
-   states saved        : 341231
-   state matches       : 390
-   transitions         : 1336968
-   trace steps         : 181276
-   valid calls         : 2967346
-   provers             : cvc4, z3
-   prover calls        : 102
 
 === Result ===
 All properties marked with '+' hold on all executions.
@@ -177,7 +125,7 @@ DRB069-sectionslock1-orig-no.c  (DRB069-sectionslock1-orig-no.c)
 civl verify -input_omp_thread_max=8 DRB069-sectionslock1-orig-no.c 
 
 === Stats ===
-   time (s)            : 1.58
+   time (s)            : 1.52
    memory (bytes)      : 272629760
    max process count   : 9
    states              : 1495
@@ -260,7 +208,7 @@ DRB075-getthreadnum-orig-yes.c  (DRB075-getthreadnum-orig-yes.c)
 civl verify -input_omp_thread_max=8 DRB075-getthreadnum-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.17
+   time (s)            : 1.12
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 48
@@ -277,8 +225,8 @@ The program MAY NOT be correct.  See CIVLREP/DRB075-getthreadnum-orig-yes_log.tx
 Checking DRB076-flush-orig-no with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 sum=10
-17s: mem=776Mb trans=625201 traceSteps=55662 explored=53948 saved=109568 prove=0
-32s: mem=910Mb trans=1211929 traceSteps=107857 explored=104454 saved=211881 prove=0
+16s: mem=786Mb trans=646987 traceSteps=57600 explored=55819 saved=113377 prove=0
+31s: mem=920Mb trans=1267358 traceSteps=112790 explored=109224 saved=221548 prove=0
 
 === Source files ===
 DRB076-flush-orig-no.c  (DRB076-flush-orig-no.c)
@@ -288,8 +236,8 @@ DRB076-flush-orig-no.c  (DRB076-flush-orig-no.c)
 civl verify -input_omp_thread_max=8 DRB076-flush-orig-no.c 
 
 === Stats ===
-   time (s)            : 37.38
-   memory (bytes)      : 1088421888
+   time (s)            : 35.37
+   memory (bytes)      : 964689920
    max process count   : 11
    states              : 124144
    states saved        : 251830
@@ -339,7 +287,7 @@ DRB077-single-orig-no.c  (DRB077-single-orig-no.c)
 civl verify -input_omp_thread_max=8 DRB077-single-orig-no.c 
 
 === Stats ===
-   time (s)            : 1.61
+   time (s)            : 1.6
    memory (bytes)      : 272629760
    max process count   : 9
    states              : 1051
@@ -423,7 +371,7 @@ DRB088-dynamic-storage-orig-yes.c  (DRB088-dynamic-storage-orig-yes.c)
 civl verify -input_omp_thread_max=8 DRB088-dynamic-storage-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.35
+   time (s)            : 1.24
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 64
@@ -482,7 +430,7 @@ DRB089-dynamic-storage2-orig-yes.c  (DRB089-dynamic-storage2-orig-yes.c)
 civl verify -input_omp_thread_max=8 DRB089-dynamic-storage2-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.35
+   time (s)            : 1.2
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 64
@@ -574,7 +522,7 @@ DRB074-flush-orig-yes.c  (DRB074-flush-orig-yes.c)
 civl verify -input_omp_thread_max=8 DRB074-flush-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.82
+   time (s)            : 1.57
    memory (bytes)      : 272629760
    max process count   : 11
    states              : 782
@@ -607,7 +555,7 @@ DRB103-master-orig-no.c  (DRB103-master-orig-no.c)
 civl verify -input_omp_thread_max=8 DRB103-master-orig-no.c 
 
 === Stats ===
-   time (s)            : 1.53
+   time (s)            : 1.41
    memory (bytes)      : 272629760
    max process count   : 9
    states              : 840
@@ -665,7 +613,7 @@ DRB108-atomic-orig-no.c  (DRB108-atomic-orig-no.c)
 civl verify -input_omp_thread_max=8 DRB108-atomic-orig-no.c 
 
 === Stats ===
-   time (s)            : 8.5
+   time (s)            : 7.88
    memory (bytes)      : 685768704
    max process count   : 9
    states              : 34485
@@ -715,7 +663,7 @@ DRB120-barrier-orig-no.c  (DRB120-barrier-orig-no.c)
 civl verify -input_omp_thread_max=8 DRB120-barrier-orig-no.c 
 
 === Stats ===
-   time (s)            : 1.98
+   time (s)            : 1.81
    memory (bytes)      : 327155712
    max process count   : 9
    states              : 2586
@@ -763,7 +711,7 @@ CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 100 160
 120 160
 140 160
-17s: mem=920Mb trans=781429 traceSteps=69629 explored=67132 saved=135614 prove=0
+17s: mem=920Mb trans=844012 traceSteps=75173 explored=72478 saved=146486 prove=0
 
 === Source files ===
 DRB121-reduction-orig-no.c  (DRB121-reduction-orig-no.c)
@@ -773,7 +721,7 @@ DRB121-reduction-orig-no.c  (DRB121-reduction-orig-no.c)
 civl verify -input_omp_thread_max=8 DRB121-reduction-orig-no.c 
 
 === Stats ===
-   time (s)            : 24.1
+   time (s)            : 22.3
    memory (bytes)      : 964689920
    max process count   : 9
    states              : 103634
@@ -855,7 +803,7 @@ DRB124-master-orig-yes.c  (DRB124-master-orig-yes.c)
 civl verify -input_omp_thread_max=8 DRB124-master-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.3
+   time (s)            : 1.2
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 48
@@ -880,8 +828,8 @@ DRB125-single-orig-no.c  (DRB125-single-orig-no.c)
 civl verify -input_omp_thread_max=8 DRB125-single-orig-no.c 
 
 === Stats ===
-   time (s)            : 1.85
-   memory (bytes)      : 272629760
+   time (s)            : 1.71
+   memory (bytes)      : 327155712
    max process count   : 9
    states              : 1694
    states saved        : 3038
@@ -932,7 +880,7 @@ DRB126-firstprivatesections-orig-no.c  (DRB126-firstprivatesections-orig-no.c)
 civl verify -input_omp_thread_max=8 DRB126-firstprivatesections-orig-no.c 
 
 === Stats ===
-   time (s)            : 1.19
+   time (s)            : 1.1
    memory (bytes)      : 272629760
    max process count   : 2
    states              : 31
@@ -1001,7 +949,7 @@ DRB139-worksharingcritical-orig-no.c  (DRB139-worksharingcritical-orig-no.c)
 civl verify -input_omp_thread_max=8 DRB139-worksharingcritical-orig-no.c 
 
 === Stats ===
-   time (s)            : 1.17
+   time (s)            : 1.15
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 23
@@ -1060,7 +1008,7 @@ DRB140-reduction-barrier-orig-yes.c  (DRB140-reduction-barrier-orig-yes.c)
 civl verify -input_omp_thread_max=8 DRB140-reduction-barrier-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.39
+   time (s)            : 1.23
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 97
@@ -1093,7 +1041,7 @@ DRB141-reduction-barrier-orig-no.c  (DRB141-reduction-barrier-orig-no.c)
 civl verify -input_omp_thread_max=8 DRB141-reduction-barrier-orig-no.c 
 
 === Stats ===
-   time (s)            : 10.1
+   time (s)            : 9.5
    memory (bytes)      : 685768704
    max process count   : 9
    states              : 36338
@@ -1223,8 +1171,8 @@ DRB172-critical2-orig-no.c  (DRB172-critical2-orig-no.c)
 civl verify -input_omp_thread_max=8 DRB172-critical2-orig-no.c 
 
 === Stats ===
-   time (s)            : 9.53
-   memory (bytes)      : 847249408
+   time (s)            : 8.93
+   memory (bytes)      : 689963008
    max process count   : 9
    states              : 36512
    states saved        : 73228
@@ -1308,7 +1256,7 @@ DRB001-antidep1-orig-yes.c  (DRB001-antidep1-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB001-antidep1-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.52
+   time (s)            : 1.37
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 93
@@ -1371,7 +1319,7 @@ DRB002-antidep1-var-yes.c  (DRB002-antidep1-var-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB002-antidep1-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.64
+   time (s)            : 1.55
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 96
@@ -1431,7 +1379,7 @@ DRB003-antidep2-orig-yes.c  (DRB003-antidep2-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB003-antidep2-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.63
+   time (s)            : 1.49
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 293
@@ -1494,7 +1442,7 @@ DRB004-antidep2-var-yes.c  (DRB004-antidep2-var-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB004-antidep2-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.78
+   time (s)            : 1.66
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 296
@@ -1556,7 +1504,7 @@ DRB011-minusminus-orig-yes.c  (DRB011-minusminus-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB011-minusminus-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.75
+   time (s)            : 1.58
    memory (bytes)      : 272629760
    max process count   : 4
    states              : 160
@@ -1621,7 +1569,7 @@ DRB012-minusminus-var-yes.c  (DRB012-minusminus-var-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB012-minusminus-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.68
+   time (s)            : 1.53
    memory (bytes)      : 272629760
    max process count   : 4
    states              : 163
@@ -1680,7 +1628,7 @@ DRB013-nowait-orig-yes.c  (DRB013-nowait-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB013-nowait-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.55
+   time (s)            : 1.45
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 148
@@ -1734,7 +1682,7 @@ DRB014-outofbounds-orig-yes.c  (DRB014-outofbounds-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB014-outofbounds-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.2
+   time (s)            : 1.11
    memory (bytes)      : 272629760
    max process count   : 2
    states              : 18
@@ -1792,7 +1740,7 @@ DRB015-outofbounds-var-yes.c  (DRB015-outofbounds-var-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB015-outofbounds-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.43
+   time (s)            : 1.27
    memory (bytes)      : 272629760
    max process count   : 2
    states              : 41
@@ -1852,7 +1800,7 @@ DRB018-plusplus-orig-yes.c  (DRB018-plusplus-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB018-plusplus-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.6
+   time (s)            : 1.52
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 95
@@ -1916,7 +1864,7 @@ DRB019-plusplus-var-yes.c  (DRB019-plusplus-var-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB019-plusplus-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.69
+   time (s)            : 1.62
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 99
@@ -1979,7 +1927,7 @@ DRB020-privatemissing-var-yes.c  (DRB020-privatemissing-var-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB020-privatemissing-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.62
+   time (s)            : 1.55
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 98
@@ -2039,7 +1987,7 @@ DRB021-reductionmissing-orig-yes.c  (DRB021-reductionmissing-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB021-reductionmissing-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.6
+   time (s)            : 1.43
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 295
@@ -2103,7 +2051,7 @@ DRB022-reductionmissing-var-yes.c  (DRB022-reductionmissing-var-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB022-reductionmissing-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.86
+   time (s)            : 1.64
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 299
@@ -2163,7 +2111,7 @@ DRB028-privatemissing-orig-yes.c  (DRB028-privatemissing-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB028-privatemissing-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.6
+   time (s)            : 1.55
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 95
@@ -2223,7 +2171,7 @@ DRB029-truedep1-orig-yes.c  (DRB029-truedep1-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB029-truedep1-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.63
+   time (s)            : 1.5
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 93
@@ -2286,7 +2234,7 @@ DRB030-truedep1-var-yes.c  (DRB030-truedep1-var-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB030-truedep1-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.71
+   time (s)            : 1.6
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 96
@@ -2346,7 +2294,7 @@ DRB031-truedepfirstdimension-orig-yes.c  (DRB031-truedepfirstdimension-orig-yes.
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB031-truedepfirstdimension-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.71
+   time (s)            : 1.6
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 293
@@ -2409,7 +2357,7 @@ DRB032-truedepfirstdimension-var-yes.c  (DRB032-truedepfirstdimension-var-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB032-truedepfirstdimension-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.8
+   time (s)            : 1.59
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 296
@@ -2469,7 +2417,7 @@ DRB033-truedeplinear-orig-yes.c  (DRB033-truedeplinear-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB033-truedeplinear-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.6
+   time (s)            : 1.55
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 85
@@ -2532,7 +2480,7 @@ DRB034-truedeplinear-var-yes.c  (DRB034-truedeplinear-var-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB034-truedeplinear-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.67
+   time (s)            : 1.5
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 88
@@ -2594,7 +2542,7 @@ DRB037-truedepseconddimension-orig-yes.c  (DRB037-truedepseconddimension-orig-ye
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB037-truedepseconddimension-orig-yes.c 
 
 === Stats ===
-   time (s)            : 13.68
+   time (s)            : 13.11
    memory (bytes)      : 272629760
    max process count   : 9
    states              : 1205
@@ -2657,8 +2605,8 @@ DRB038-truedepseconddimension-var-yes.c  (DRB038-truedepseconddimension-var-yes.
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB038-truedepseconddimension-var-yes.c 
 
 === Stats ===
-   time (s)            : 2.03
-   memory (bytes)      : 272629760
+   time (s)            : 1.92
+   memory (bytes)      : 327155712
    max process count   : 9
    states              : 1206
    states saved        : 2100
@@ -2673,11 +2621,11 @@ civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB038-truedepseconddimension
 The program MAY NOT be correct.  See CIVLREP/DRB038-truedepseconddimension-var-yes_log.txt
 Checking DRB041-3mm-parallel-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
-18s: mem=974Mb trans=438105 traceSteps=59327 explored=58929 saved=104333 prove=12
-33s: mem=1220Mb trans=858004 traceSteps=112000 explored=111244 saved=196939 prove=12
-48s: mem=1220Mb trans=1174430 traceSteps=145912 explored=144923 saved=256571 prove=12
-63s: mem=1336Mb trans=1407673 traceSteps=168018 explored=166885 saved=295188 prove=12
-78s: mem=1336Mb trans=1592874 traceSteps=183265 explored=182025 saved=322007 prove=12
+17s: mem=910Mb trans=451457 traceSteps=61084 explored=60673 saved=107439 prove=12
+32s: mem=1038Mb trans=866147 traceSteps=112241 explored=111483 saved=197356 prove=12
+47s: mem=1162Mb trans=1200582 traceSteps=149227 explored=148220 saved=262275 prove=12
+62s: mem=1280Mb trans=1413499 traceSteps=168038 explored=166905 saved=295218 prove=12
+77s: mem=1280Mb trans=1638501 traceSteps=188205 explored=186917 saved=330651 prove=12
 
 === Source files ===
 DRB041-3mm-parallel-no.c  (DRB041-3mm-parallel-no.c)
@@ -2687,8 +2635,8 @@ DRB041-3mm-parallel-no.c  (DRB041-3mm-parallel-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB041-3mm-parallel-no.c 
 
 === Stats ===
-   time (s)            : 82.47
-   memory (bytes)      : 1400897536
+   time (s)            : 80.37
+   memory (bytes)      : 1342177280
    max process count   : 9
    states              : 194605
    states saved        : 344211
@@ -2737,7 +2685,7 @@ DRB047-doallchar-orig-no.c  (DRB047-doallchar-orig-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB047-doallchar-orig-no.c 
 
 === Stats ===
-   time (s)            : 2.29
+   time (s)            : 2.16
    memory (bytes)      : 327155712
    max process count   : 9
    states              : 1815
@@ -2787,7 +2735,7 @@ DRB048-firstprivate-orig-no.c  (DRB048-firstprivate-orig-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB048-firstprivate-orig-no.c 
 
 === Stats ===
-   time (s)            : 4.0
+   time (s)            : 3.86
    memory (bytes)      : 473956352
    max process count   : 9
    states              : 10070
@@ -2837,7 +2785,7 @@ DRB050-functionparameter-orig-no.c  (DRB050-functionparameter-orig-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB050-functionparameter-orig-no.c 
 
 === Stats ===
-   time (s)            : 4.13
+   time (s)            : 3.82
    memory (bytes)      : 473956352
    max process count   : 9
    states              : 10070
@@ -2887,8 +2835,8 @@ DRB052-indirectaccesssharebase-orig-no.c  (DRB052-indirectaccesssharebase-orig-n
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB052-indirectaccesssharebase-orig-no.c 
 
 === Stats ===
-   time (s)            : 3.14
-   memory (bytes)      : 339738624
+   time (s)            : 2.86
+   memory (bytes)      : 327155712
    max process count   : 9
    states              : 7303
    states saved        : 9679
@@ -2937,8 +2885,8 @@ DRB053-inneronly1-orig-no.c  (DRB053-inneronly1-orig-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB053-inneronly1-orig-no.c 
 
 === Stats ===
-   time (s)            : 4.29
-   memory (bytes)      : 490733568
+   time (s)            : 3.98
+   memory (bytes)      : 497025024
    max process count   : 9
    states              : 9860
    states saved        : 16963
@@ -2987,8 +2935,8 @@ DRB054-inneronly2-orig-no.c  (DRB054-inneronly2-orig-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB054-inneronly2-orig-no.c 
 
 === Stats ===
-   time (s)            : 12.14
-   memory (bytes)      : 1031798784
+   time (s)            : 11.65
+   memory (bytes)      : 998244352
    max process count   : 9
    states              : 48824
    states saved        : 84358
@@ -3037,8 +2985,8 @@ DRB057-jacobiinitialize-orig-no.c  (DRB057-jacobiinitialize-orig-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB057-jacobiinitialize-orig-no.c 
 
 === Stats ===
-   time (s)            : 12.94
-   memory (bytes)      : 343932928
+   time (s)            : 12.65
+   memory (bytes)      : 333447168
    max process count   : 9
    states              : 9106
    states saved        : 15936
@@ -3046,6 +2994,56 @@ civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB057-jacobiinitialize-orig-
    transitions         : 82758
    trace steps         : 9168
    valid calls         : 199857
+   provers             : cvc4, z3
+   prover calls        : 12
+
+=== Result ===
+All properties marked with '+' hold on all executions.
+ +  Dereference errors
+ +  Functional equivalence
+ +  Internal errors
+ +  Library loading errors
+ +  Other errors
+ +  Assertion violations
+ +  Communication errors
+ +  Writes to constant variables
+ +  Absolute deadlocks
+ +  Division by zero
+ +  Writes to $input variables
+ +  Invalid casts
+ +  Malloc errors
+ +  Memory leaks
+ +  Memory management errors
+ +  Mpi usage errors
+ +  Out of bounds
+ +  Reads from $output variables
+ +  Pointer errors
+ +  Process leaks
+ +  Sequence errors
+ +  Termination
+ +  Use of undefined values
+ +  Union errors
+
+Checking DRB059-lastprivate-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+x=0x=1x=2x=3x=4x=5x=6x=7x=8x=9x=1x=3x=5x=7x=9x=2x=4x=5x=8x=3x=6x=7x=4x=6x=7x=8x=9x=5x=9x=6x=8x=9x=7
+=== Source files ===
+DRB059-lastprivate-orig-no.c  (DRB059-lastprivate-orig-no.c)
+
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB059-lastprivate-orig-no.c 
+
+=== Stats ===
+   time (s)            : 4.1
+   memory (bytes)      : 473956352
+   max process count   : 9
+   states              : 10933
+   states saved        : 19790
+   state matches       : 47
+   transitions         : 77639
+   trace steps         : 10979
+   valid calls         : 193377
    provers             : cvc4, z3
    prover calls        : 12
 
@@ -3087,8 +3085,8 @@ DRB060-matrixmultiply-orig-no.c  (DRB060-matrixmultiply-orig-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB060-matrixmultiply-orig-no.c 
 
 === Stats ===
-   time (s)            : 13.38
-   memory (bytes)      : 704643072
+   time (s)            : 12.86
+   memory (bytes)      : 685768704
    max process count   : 9
    states              : 10069
    states saved        : 17653
@@ -3137,7 +3135,7 @@ DRB061-matrixvector1-orig-no.c  (DRB061-matrixvector1-orig-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB061-matrixvector1-orig-no.c 
 
 === Stats ===
-   time (s)            : 5.5
+   time (s)            : 5.08
    memory (bytes)      : 473956352
    max process count   : 9
    states              : 10069
@@ -3187,7 +3185,7 @@ DRB063-outeronly1-orig-no.c  (DRB063-outeronly1-orig-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB063-outeronly1-orig-no.c 
 
 === Stats ===
-   time (s)            : 5.48
+   time (s)            : 4.96
    memory (bytes)      : 473956352
    max process count   : 9
    states              : 10069
@@ -3237,7 +3235,7 @@ DRB064-outeronly2-orig-no.c  (DRB064-outeronly2-orig-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB064-outeronly2-orig-no.c 
 
 === Stats ===
-   time (s)            : 2.04
+   time (s)            : 1.76
    memory (bytes)      : 272629760
    max process count   : 9
    states              : 1095
@@ -3288,10 +3286,10 @@ PI=(1258801354553712/400472125058915)
 PI=(1466009848053965824/466452100431764525)
 PI=(72640890590065993744/23114744042267150325)
 PI=(2828092472189664178265408/899971068750144634608625)
-17s: mem=786Mb trans=934922 traceSteps=85760 explored=82736 saved=165259 prove=13
-32s: mem=920Mb trans=1881602 traceSteps=170346 explored=164280 saved=330186 prove=13
-47s: mem=920Mb trans=2794643 traceSteps=251571 explored=242645 saved=489061 prove=13
-62s: mem=1274Mb trans=3699758 traceSteps=332227 explored=320468 saved=646764 prove=13
+16s: mem=786Mb trans=959553 traceSteps=87980 explored=84885 saved=169605 prove=13
+31s: mem=920Mb trans=1920414 traceSteps=173781 explored=167600 saved=336941 prove=13
+46s: mem=1078Mb trans=2850911 traceSteps=256558 explored=247439 saved=498798 prove=13
+61s: mem=1274Mb trans=3777273 traceSteps=339093 explored=327088 saved=660169 prove=13
 
 === Source files ===
 DRB065-pireduction-orig-no.c  (DRB065-pireduction-orig-no.c)
@@ -3301,7 +3299,7 @@ DRB065-pireduction-orig-no.c  (DRB065-pireduction-orig-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB065-pireduction-orig-no.c 
 
 === Stats ===
-   time (s)            : 67.35
+   time (s)            : 65.84
    memory (bytes)      : 1335885824
    max process count   : 9
    states              : 353251
@@ -3351,7 +3349,7 @@ DRB066-pointernoaliasing-orig-no.c  (DRB066-pointernoaliasing-orig-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB066-pointernoaliasing-orig-no.c 
 
 === Stats ===
-   time (s)            : 4.66
+   time (s)            : 4.43
    memory (bytes)      : 473956352
    max process count   : 9
    states              : 10111
@@ -3401,8 +3399,8 @@ DRB067-restrictpointer1-orig-no.c  (DRB067-restrictpointer1-orig-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB067-restrictpointer1-orig-no.c 
 
 === Stats ===
-   time (s)            : 4.93
-   memory (bytes)      : 473956352
+   time (s)            : 4.22
+   memory (bytes)      : 478150656
    max process count   : 9
    states              : 10112
    states saved        : 17717
@@ -3451,7 +3449,7 @@ DRB068-restrictpointer2-orig-no.c  (DRB068-restrictpointer2-orig-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB068-restrictpointer2-orig-no.c 
 
 === Stats ===
-   time (s)            : 5.2
+   time (s)            : 4.72
    memory (bytes)      : 570425344
    max process count   : 9
    states              : 10230
@@ -3536,7 +3534,7 @@ DRB090-static-local-orig-yes.c  (DRB090-static-local-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB090-static-local-orig-yes.c 
 
 === Stats ===
-   time (s)            : 2.17
+   time (s)            : 1.91
    memory (bytes)      : 272629760
    max process count   : 9
    states              : 1198
@@ -3561,8 +3559,8 @@ DRB093-doall2-collapse-orig-no.c  (DRB093-doall2-collapse-orig-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB093-doall2-collapse-orig-no.c 
 
 === Stats ===
-   time (s)            : 7.03
-   memory (bytes)      : 473956352
+   time (s)            : 6.32
+   memory (bytes)      : 570425344
    max process count   : 9
    states              : 12709
    states saved        : 20293
@@ -3604,14 +3602,14 @@ Checking DRB104-nowait-barrier-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 error = 16
 error = 16
-17s: mem=786Mb trans=666832 traceSteps=68248 explored=65725 saved=132449 prove=34
+error = 16
+16s: mem=786Mb trans=737281 traceSteps=75764 explored=72963 saved=146813 prove=34
 error = 16
 error = 16
+32s: mem=1048Mb trans=1510395 traceSteps=154890 explored=149157 saved=300408 prove=34
 error = 16
-32s: mem=1048Mb trans=1384153 traceSteps=141794 explored=136545 saved=275090 prove=34
 error = 16
-error = 16
-47s: mem=1278Mb trans=2105825 traceSteps=215692 explored=207700 saved=418492 prove=34
+47s: mem=1430Mb trans=2277871 traceSteps=233114 explored=224476 saved=452504 prove=34
 error = 16
 
 === Source files ===
@@ -3622,8 +3620,8 @@ DRB104-nowait-barrier-orig-no.c  (DRB104-nowait-barrier-orig-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB104-nowait-barrier-orig-no.c 
 
 === Stats ===
-   time (s)            : 59.41
-   memory (bytes)      : 1753219072
+   time (s)            : 54.9
+   memory (bytes)      : 1677721600
    max process count   : 9
    states              : 269086
    states saved        : 542632
@@ -3664,12 +3662,12 @@ All properties marked with '+' hold on all executions.
 Checking DRB110-ordered-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 x=100
-17s: mem=786Mb trans=981024 traceSteps=102747 explored=72696 saved=168189 prove=0
-32s: mem=786Mb trans=1945711 traceSteps=206741 explored=142843 saved=336703 prove=0
-47s: mem=1020Mb trans=2866835 traceSteps=306370 explored=210257 saved=498832 prove=0
-62s: mem=1174Mb trans=3736583 traceSteps=401543 explored=272549 saved=651706 prove=0
-77s: mem=1384Mb trans=4613975 traceSteps=497446 explored=335195 saved=805601 prove=0
-92s: mem=1384Mb trans=5495003 traceSteps=593942 explored=397988 saved=960173 prove=0
+17s: mem=786Mb trans=1055695 traceSteps=110740 explored=78072 saved=181073 prove=0
+32s: mem=786Mb trans=2074687 traceSteps=220555 explored=152180 saved=359216 prove=0
+47s: mem=1050Mb trans=3034598 traceSteps=324512 explored=222489 saved=528445 prove=0
+62s: mem=1244Mb trans=3973364 traceSteps=427254 explored=289554 saved=693530 prove=0
+77s: mem=1244Mb trans=4913593 traceSteps=530289 explored=356532 saved=858146 prove=0
+92s: mem=1244Mb trans=5854583 traceSteps=632629 explored=423927 saved=1023291 prove=0
 
 === Source files ===
 DRB110-ordered-orig-no.c  (DRB110-ordered-orig-no.c)
@@ -3679,8 +3677,8 @@ DRB110-ordered-orig-no.c  (DRB110-ordered-orig-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB110-ordered-orig-no.c 
 
 === Stats ===
-   time (s)            : 101.01
-   memory (bytes)      : 1451229184
+   time (s)            : 94.58
+   memory (bytes)      : 1304428544
    max process count   : 9
    states              : 438853
    states saved        : 1060658
@@ -3764,7 +3762,7 @@ DRB111-linearmissing-orig-yes.c  (DRB111-linearmissing-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB111-linearmissing-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.55
+   time (s)            : 1.44
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 115
@@ -3789,7 +3787,7 @@ DRB113-default-orig-no.c  (DRB113-default-orig-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB113-default-orig-no.c 
 
 === Stats ===
-   time (s)            : 11.7
+   time (s)            : 10.64
    memory (bytes)      : 570425344
    max process count   : 9
    states              : 20639
@@ -3874,8 +3872,8 @@ DRB169-missingsyncwrite-orig-yes.c  (DRB169-missingsyncwrite-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB169-missingsyncwrite-orig-yes.c 
 
 === Stats ===
-   time (s)            : 3.16
-   memory (bytes)      : 329252864
+   time (s)            : 2.7
+   memory (bytes)      : 396361728
    max process count   : 3
    states              : 2312
    states saved        : 2357
@@ -3899,8 +3897,8 @@ DRB170-nestedloops-orig-no.c  (DRB170-nestedloops-orig-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB170-nestedloops-orig-no.c 
 
 === Stats ===
-   time (s)            : 7.86
-   memory (bytes)      : 824180736
+   time (s)            : 6.91
+   memory (bytes)      : 696254464
    max process count   : 9
    states              : 10070
    states saved        : 17655
@@ -3994,7 +3992,7 @@ DRB005-indirectaccess1-orig-yes.c  (DRB005-indirectaccess1-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB005-indirectaccess1-orig-yes.c 
 
 === Stats ===
-   time (s)            : 2.46
+   time (s)            : 2.26
    memory (bytes)      : 327155712
    max process count   : 3
    states              : 3731
@@ -4064,7 +4062,7 @@ DRB006-indirectaccess2-orig-yes.c  (DRB006-indirectaccess2-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB006-indirectaccess2-orig-yes.c 
 
 === Stats ===
-   time (s)            : 2.43
+   time (s)            : 2.25
    memory (bytes)      : 327155712
    max process count   : 3
    states              : 3731
@@ -4134,7 +4132,7 @@ DRB007-indirectaccess3-orig-yes.c  (DRB007-indirectaccess3-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB007-indirectaccess3-orig-yes.c 
 
 === Stats ===
-   time (s)            : 2.64
+   time (s)            : 2.13
    memory (bytes)      : 327155712
    max process count   : 3
    states              : 3638
@@ -4204,7 +4202,7 @@ DRB008-indirectaccess4-orig-yes.c  (DRB008-indirectaccess4-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB008-indirectaccess4-orig-yes.c 
 
 === Stats ===
-   time (s)            : 2.43
+   time (s)            : 2.06
    memory (bytes)      : 327155712
    max process count   : 3
    states              : 3549
@@ -4263,7 +4261,7 @@ DRB009-lastprivatemissing-orig-yes.c  (DRB009-lastprivatemissing-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB009-lastprivatemissing-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.55
+   time (s)            : 1.26
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 334
@@ -4326,7 +4324,7 @@ DRB010-lastprivatemissing-var-yes.c  (DRB010-lastprivatemissing-var-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB010-lastprivatemissing-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.86
+   time (s)            : 1.58
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 338
@@ -4385,7 +4383,7 @@ DRB016-outputdep-orig-yes.c  (DRB016-outputdep-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB016-outputdep-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.55
+   time (s)            : 1.28
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 334
@@ -4458,7 +4456,7 @@ DRB017-outputdep-var-yes.c  (DRB017-outputdep-var-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB017-outputdep-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.82
+   time (s)            : 1.65
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 338
@@ -4527,7 +4525,7 @@ DRB035-truedepscalar-orig-yes.c  (DRB035-truedepscalar-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB035-truedepscalar-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.78
+   time (s)            : 1.45
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 335
@@ -4590,7 +4588,7 @@ DRB036-truedepscalar-var-yes.c  (DRB036-truedepscalar-var-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB036-truedepscalar-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.81
+   time (s)            : 1.57
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 329
@@ -4659,7 +4657,7 @@ DRB039-truedepsingleelement-orig-yes.c  (DRB039-truedepsingleelement-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB039-truedepsingleelement-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.64
+   time (s)            : 1.56
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 335
@@ -4722,7 +4720,7 @@ DRB040-truedepsingleelement-var-yes.c  (DRB040-truedepsingleelement-var-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB040-truedepsingleelement-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.85
+   time (s)            : 1.62
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 329
@@ -4747,7 +4745,7 @@ DRB045-doall1-orig-no.c  (DRB045-doall1-orig-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB045-doall1-orig-no.c 
 
 === Stats ===
-   time (s)            : 4.12
+   time (s)            : 3.7
    memory (bytes)      : 394264576
    max process count   : 9
    states              : 10069
@@ -4797,7 +4795,7 @@ DRB046-doall2-orig-no.c  (DRB046-doall2-orig-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB046-doall2-orig-no.c 
 
 === Stats ===
-   time (s)            : 5.55
+   time (s)            : 5.1
    memory (bytes)      : 473956352
    max process count   : 9
    states              : 10069
@@ -4838,10 +4836,10 @@ All properties marked with '+' hold on all executions.
 
 Checking DRB055-jacobi2d-parallel-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
-17s: mem=944Mb trans=465430 traceSteps=65248 explored=64814 saved=114417 prove=12
-32s: mem=1072Mb trans=938468 traceSteps=130503 explored=129632 saved=228776 prove=12
-47s: mem=1194Mb trans=1361728 traceSteps=188323 explored=187068 saved=329646 prove=12
-62s: mem=1194Mb trans=1736908 traceSteps=238045 explored=236456 saved=416614 prove=12
+17s: mem=924Mb trans=495793 traceSteps=69363 explored=68901 saved=121697 prove=12
+32s: mem=924Mb trans=984369 traceSteps=136650 explored=135735 saved=239638 prove=12
+47s: mem=1052Mb trans=1422736 traceSteps=196317 explored=195006 saved=343734 prove=12
+62s: mem=1174Mb trans=1821310 traceSteps=248886 explored=247222 saved=435694 prove=12
 
 === Source files ===
 DRB055-jacobi2d-parallel-no.c  (DRB055-jacobi2d-parallel-no.c)
@@ -4851,8 +4849,8 @@ DRB055-jacobi2d-parallel-no.c  (DRB055-jacobi2d-parallel-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB055-jacobi2d-parallel-no.c 
 
 === Stats ===
-   time (s)            : 69.67
-   memory (bytes)      : 1251999744
+   time (s)            : 65.64
+   memory (bytes)      : 1231028224
    max process count   : 9
    states              : 261149
    states saved        : 460269
@@ -4935,7 +4933,7 @@ DRB073-doall2-orig-yes.c  (DRB073-doall2-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB073-doall2-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.64
+   time (s)            : 1.42
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 324
@@ -5004,7 +5002,7 @@ DRB109-orderedmissing-orig-yes.c  (DRB109-orderedmissing-orig-yes.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB109-orderedmissing-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.5
+   time (s)            : 1.28
    memory (bytes)      : 272629760
    max process count   : 3
    states              : 334
@@ -5020,14 +5018,14 @@ civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB109-orderedmissing-orig-ye
 The program MAY NOT be correct.  See CIVLREP/DRB109-orderedmissing-orig-yes_log.txt
 Checking DRB043-adi-parallel-no with nthreads<=8, BOUND=4 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
-17s: mem=1036Mb trans=416908 traceSteps=57839 explored=57453 saved=101454 prove=6
-32s: mem=1160Mb trans=829055 traceSteps=113956 explored=113189 saved=199800 prove=6
-47s: mem=1160Mb trans=916871 traceSteps=126044 explored=125205 saved=220632 prove=6
-62s: mem=1160Mb trans=922738 traceSteps=126849 explored=126004 saved=222046 prove=6
-77s: mem=1160Mb trans=929144 traceSteps=127649 explored=126798 saved=223445 prove=6
-92s: mem=1160Mb trans=941132 traceSteps=129250 explored=128388 saved=226246 prove=6
-107s: mem=1160Mb trans=957437 traceSteps=131390 explored=130513 saved=229995 prove=6
-122s: mem=1160Mb trans=992560 traceSteps=135984 explored=135076 saved=238048 prove=6
+17s: mem=894Mb trans=467533 traceSteps=64735 explored=64301 saved=113604 prove=6
+32s: mem=1024Mb trans=910936 traceSteps=125055 explored=124216 saved=219153 prove=6
+47s: mem=1024Mb trans=917102 traceSteps=126083 explored=125243 saved=220697 prove=6
+62s: mem=1024Mb trans=924574 traceSteps=127098 explored=126251 saved=222475 prove=6
+77s: mem=1024Mb trans=932530 traceSteps=128113 explored=127259 saved=224253 prove=6
+92s: mem=1024Mb trans=946276 traceSteps=129894 explored=129028 saved=227380 prove=6
+107s: mem=1024Mb trans=967434 traceSteps=132724 explored=131838 saved=232335 prove=6
+122s: mem=1024Mb trans=1077697 traceSteps=147226 explored=146241 saved=257744 prove=6
 
 === Source files ===
 DRB043-adi-parallel-no.c  (DRB043-adi-parallel-no.c)
@@ -5037,8 +5035,8 @@ DRB043-adi-parallel-no.c  (DRB043-adi-parallel-no.c)
 civl verify -input_omp_thread_max=8 -inputBOUND=4 DRB043-adi-parallel-no.c 
 
 === Stats ===
-   time (s)            : 136.51
-   memory (bytes)      : 1340080128
+   time (s)            : 128.18
+   memory (bytes)      : 1203765248
    max process count   : 9
    states              : 169368
    states saved        : 298576
@@ -5127,8 +5125,8 @@ DRB058-jacobikernel-orig-no.c  (DRB058-jacobikernel-orig-no.c)
 civl verify -input_omp_thread_max=4 -inputMSIZE_B=5 -inputNITER_B=5 DRB058-jacobikernel-orig-no.c 
 
 === Stats ===
-   time (s)            : 16.53
-   memory (bytes)      : 859832320
+   time (s)            : 14.96
+   memory (bytes)      : 847249408
    max process count   : 5
    states              : 81687
    states saved        : 165103
@@ -5168,16 +5166,16 @@ All properties marked with '+' hold on all executions.
 
 Checking DRB062-matrixvector2-orig-no with nthreads<=4, BOUND=5 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
-16s: mem=260Mb trans=12391 traceSteps=1409 explored=1382 saved=2541 prove=7
-31s: mem=260Mb trans=25997 traceSteps=2803 explored=2740 saved=5138 prove=7
-46s: mem=260Mb trans=39710 traceSteps=4237 explored=4134 saved=7772 prove=7
-61s: mem=260Mb trans=52985 traceSteps=5631 explored=5494 saved=10340 prove=7
-76s: mem=260Mb trans=66134 traceSteps=7076 explored=6907 saved=12970 prove=7
-91s: mem=260Mb trans=79871 traceSteps=8475 explored=8266 saved=15558 prove=7
-106s: mem=260Mb trans=93579 traceSteps=9874 explored=9627 saved=18165 prove=7
-121s: mem=260Mb trans=106615 traceSteps=11281 explored=10999 saved=20741 prove=7
-137s: mem=260Mb trans=120556 traceSteps=12693 explored=12373 saved=23379 prove=7
-152s: mem=260Mb trans=135480 traceSteps=14107 explored=13738 saved=26062 prove=7
+16s: mem=260Mb trans=12964 traceSteps=1480 explored=1453 saved=2672 prove=7
+31s: mem=260Mb trans=27459 traceSteps=2928 explored=2860 saved=5380 prove=7
+46s: mem=260Mb trans=41135 traceSteps=4415 explored=4310 saved=8085 prove=7
+61s: mem=260Mb trans=54782 traceSteps=5815 explored=5674 saved=10690 prove=7
+76s: mem=260Mb trans=68368 traceSteps=7267 explored=7089 saved=13338 prove=7
+91s: mem=260Mb trans=81926 traceSteps=8695 explored=8480 saved=15961 prove=7
+106s: mem=260Mb trans=96395 traceSteps=10121 explored=9862 saved=18637 prove=7
+121s: mem=260Mb trans=109143 traceSteps=11543 explored=11254 saved=21225 prove=7
+136s: mem=260Mb trans=123716 traceSteps=12967 explored=12634 saved=23907 prove=7
+151s: mem=260Mb trans=137946 traceSteps=14382 explored=14008 saved=26568 prove=7
 
 === Source files ===
 DRB062-matrixvector2-orig-no.c  (DRB062-matrixvector2-orig-no.c)
@@ -5187,7 +5185,7 @@ DRB062-matrixvector2-orig-no.c  (DRB062-matrixvector2-orig-no.c)
 civl verify -input_omp_thread_max=4 -inputBOUND=5 DRB062-matrixvector2-orig-no.c 
 
 === Stats ===
-   time (s)            : 157.24
+   time (s)            : 154.2
    memory (bytes)      : 272629760
    max process count   : 5
    states              : 14304

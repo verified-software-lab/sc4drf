@@ -17,7 +17,7 @@
 
 #ifdef _CIVL
 #include <civlc.cvh>
-$input int N, BOUND = 8;
+$input int N, BOUND = 10;
 $assume(1 <= N && N <= BOUND);
 #else
 #define N 8

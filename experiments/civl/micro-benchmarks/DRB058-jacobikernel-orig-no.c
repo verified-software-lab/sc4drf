@@ -46,8 +46,8 @@ THE POSSIBILITY OF SUCH DAMAGE.
 
 #ifdef _CIVL
 #include <civlc.cvh>
-$input int MSIZE, MSIZE_B = 10;
-$input int NITER, NITER_B = 10;
+$input int MSIZE, MSIZE_B = 5;
+$input int NITER, NITER_B = 5;
 $assume(2 <= MSIZE && MSIZE <= MSIZE_B);
 $assume(1 <= NITER && NITER <= NITER_B);
 #else

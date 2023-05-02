@@ -17,10 +17,9 @@ CHECK_Y = $(LOG) | grep "Data-race detected"; \
 CHECK_N = $(LOG) | grep "All properties .* hold"; \
   if [ $$? -eq 0 ]; then echo "PASS"; else echo "FAIL"; fi
 
-# This group takes no parameters
+# 20 programs: this group takes no parameters
 GROUP1 = DRB023-sections1-orig-yes \
 DRB051-getthreadnum-orig-no \
-DRB059-lastprivate-orig-no \
 DRB069-sectionslock1-orig-no \
 DRB075-getthreadnum-orig-yes \
 DRB076-flush-orig-no \
@@ -43,7 +42,7 @@ DRB172-critical2-orig-no
 GROUP1_Y = $(filter %yes,$(GROUP1))
 GROUP1_N = $(filter %no,$(GROUP1))
 
-# This group takes a bound on input parameter...
+# 68 programs: This group takes a bound on input parameter...
 GROUP2 = DRB001-antidep1-orig-yes \
 DRB002-antidep1-var-yes \
 DRB003-antidep2-orig-yes \
@@ -75,6 +74,7 @@ DRB052-indirectaccesssharebase-orig-no \
 DRB053-inneronly1-orig-no \
 DRB054-inneronly2-orig-no \
 DRB057-jacobiinitialize-orig-no \
+DRB059-lastprivate-orig-no \
 DRB060-matrixmultiply-orig-no \
 DRB061-matrixvector1-orig-no \
 DRB063-outeronly1-orig-no \
