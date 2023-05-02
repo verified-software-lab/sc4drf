@@ -25,13 +25,19 @@ Most of the contents are available on https://github.com/verified-software-lab/s
 
  - README (this file)
  - experiments
-	 - civl
-		 -  Makefile
-           - input files used in experiments
-           - out (results of running experiments)
-     - llov
-	     - `do-all.sh` script to run the experiments
-         - `micro_benchmarks` folder with input files
+   - civl
+     - micro-benchmarks
+       - 88 DataRaceBench input files used in experiments
+       - Makefile
+       - results_m1mac (results of running experiments on M1 MacBook Pro)
+     - extra
+       - the 20 extra problems
+       - Makefile
+       - results_m1mac
+   - llov
+     - micro-benchmarks
+     - extra
+
 
 The virtual machine contains a clone of this repository, and preinstalled software:
  - CIVL (source, documentation, executable, examples)
@@ -45,16 +51,21 @@ Section 3.4 "Evaluation" describes the experiments.  Two tools were
 used: CIVL and LLOV.  The artifacts for CIVL are in the civl
 directory, and those for LLOV are in llov.
 
-**civl:** there are 88 programs from the DataRaceBench suite.  All have
-filenames beginning with `DRB`.  As described in the paper, 68 of
+**civl:** there are 88 programs from the DataRaceBench suite.  All
+have filenames beginning with `DRB`.  As described in the paper, 68 of
 these 88 have been manually edited by us.  (The original unedited
 versions can be found in the llov directory.)  There are in addition
-20 programs which we wrote ourselves.  All 108 experiments should run by typing `make all` inside the `sc4drf/experiments/civl/dataracebench` and `sc4drf/experiments/civl/others` folders.  The DRB files with `yes` in the filename
-have a datarace; those with `no` in the filename do not have a
-datarace.  For the 20 additional files, `norace` in the filename
-indicates there is no race, and `race` indicates there is a race.
-The paper reports that CIVL gets the correct result (race or no race)
-on all tests except DRB139, DRB014, and DRB015.  The output from our own run can be found in subdirectory `out`.
+20 programs which we wrote ourselves.
+
+All 108 experiments should run by typing `make` inside the
+`sc4drf/experiments/civl/micro-benchmarks` and
+`sc4drf/experiments/civl/extra` folders.  Files with `yes` in the
+filename have a datarace; those with `no` in the filename do not have
+a datarace.  The paper reports that CIVL gets the correct result (race
+or no race) on all tests except DRB139, DRB014, and DRB015.
+Additional information can be found in the README files in the
+results_m1mac directories.  The detailed CIVL output (file
+civl_out.txt) also reports total runtime for each test.
 
 **llov:** there are 88 programs from the DataRaceBench suite (unedited)
 and the 20 additional programs.  All 108 experiments should run by
@@ -82,13 +93,18 @@ and fails on the following:
 
 ## Reusability
 
-The CIVL model checker can be used in any Unix-like system with a Java 17 JDK.  It requires the automated theorem provers CVC4 and Z3 be installed and in the user's PATH. All of these are available with common package managers. CIVL itself is a (modular) Java
-program and can be run from the command line using the JAR file or
-using the class files directly.  Type `which civl` and examine the
-simple civl script to see how to invoke CIVL.  Downloads and
-documentations are also available at http://vsl.cis.udel.edu/civl.
+The CIVL model checker can be used in any Unix-like system with a Java
+17 JDK.  It requires the automated theorem provers CVC4 and Z3 be
+installed and in the user's PATH. All of these are available with
+common package managers. CIVL itself is a (modular) Java program and
+can be run from the command line using the JAR file or using the class
+files directly.  Type `which civl` and examine the simple civl script
+to see how to invoke CIVL.  Downloads and documentations are also
+available at http://vsl.cis.udel.edu/civl.
 
-**OpenMP support.** as described in the paper, CIVL does not support the entire OpenMP API.  Programs using the following OpenMP features are supported:
+**OpenMP support.** as described in the paper, CIVL does not support
+  the entire OpenMP API.  Programs using the following OpenMP features
+  are supported:
 
 **constructs**:
  - parallel
@@ -110,3 +126,17 @@ documentations are also available at http://vsl.cis.udel.edu/civl.
  - omp_set_lock
  - omp_unset_lock
  - omp_get_wtime
+
+To run CIVL on a C/OpenMP program, execute:
+
+  civl verify -input_omp_thread_max=N filename.c
+
+where N is the upper bound on the default number of OpenMP threads to
+be used for an OpenMP parallel region.  Programs can also be
+instrumented to specify parameters and ranges; see
+sc4drf/experiments/civl/micro-benchmarks/DRB001-antidep1-orig-yes.c
+for an example.  To specify a particular value VAL for an input
+variable VAR, add -input_VAR=VAL to the command line after "verify", e.g.,
+
+  civl verify -input_omp_thread_max=5 -inputBOUND=10 filename.c
+
