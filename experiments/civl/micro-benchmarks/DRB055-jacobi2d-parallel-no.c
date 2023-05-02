@@ -19,7 +19,7 @@
 #ifdef _CIVL
 #include <civlc.cvh>
 $input int N, BOUND = 500;
-$assume(1 <= N && N <= BOUND);
+$assume(3 <= N && N <= BOUND);
 int M = N-2;
 int P = N-3;
 #else

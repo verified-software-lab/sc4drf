@@ -47,7 +47,7 @@ THE POSSIBILITY OF SUCH DAMAGE.
 #ifdef _CIVL
 #include <civlc.cvh>
 $input int N, BOUND = 200;
-$assume(1 <= N && N <= BOUND);
+$assume(1 < N && N <= BOUND);
 #else
 #define N 200
 #endif  // _CIVL

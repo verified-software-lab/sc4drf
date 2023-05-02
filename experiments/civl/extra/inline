@@ -1,2 +1,0 @@
-#!/bin/bash
-sed 's/\#include/__include__/g' $1 | cpp -P | sed 's/__NL__/\n/g' | sed 's/__pragma__/\#pragma/g' | sed 's/__include__/\#include/g' >$2

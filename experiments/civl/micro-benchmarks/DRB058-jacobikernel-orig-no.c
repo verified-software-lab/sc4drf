@@ -46,10 +46,12 @@ THE POSSIBILITY OF SUCH DAMAGE.
 
 #ifdef _CIVL
 #include <civlc.cvh>
-$input int N, BOUND = 200;
-$assume(1 <= N && N <= BOUND);
+$input int MSIZE, MSIZE_B = 10;
+$input int NITER, NITER_B = 10;
+$assume(2 <= MSIZE && MSIZE <= MSIZE_B);
+$assume(1 <= NITER && NITER <= NITER_B);
 #else
-#define N 200
+#define MSIZE 200
 #endif  // _CIVL
 
 /*
@@ -59,8 +61,7 @@ combined with private() and reduction().
 #include <stdio.h>
 #include <math.h>
 
-#define MSIZE 200
-int n=N, m=N, mits=N;
+int n=MSIZE, m=MSIZE, mits=NITER;
 double tol=0.0000000001, relax = 1.0, alpha = 0.0543;
 double u[MSIZE][MSIZE], f[MSIZE][MSIZE], uold[MSIZE][MSIZE];
 double dx, dy;
