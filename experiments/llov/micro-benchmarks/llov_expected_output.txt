@@ -1,0 +1,1083 @@
+Checking DRB023-sections1-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB023-sections1-orig-yes.c:58:7
+Sink : DRB023-sections1-orig-yes.c:60:7
+==============
+57 : #pragma omp section
+[0m[0;1;31m58 :     i = 1;    
+[0m59 : #pragma omp section
+[0m[0;1;31m60 :     i = 2;    
+[0m61 :   }
+[0m==============
+
+Checking DRB051-getthreadnum-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+
+Checking DRB059-lastprivate-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB059-lastprivate-orig-no.c:59
+DRB059-lastprivate-orig-no.c:59
+
+Checking DRB069-sectionslock1-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB069-sectionslock1-orig-no.c:69:9
+Sink : DRB069-sectionslock1-orig-no.c:69:9
+==============
+68 :       omp_set_lock(&lck);
+[0m[0;1;31m69 :       i += 2;    
+[0m70 :       omp_unset_lock(&lck);
+
+Checking DRB075-getthreadnum-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB075-getthreadnum-orig-yes.c:60:18
+Sink : DRB075-getthreadnum-orig-yes.c:64:33
+==============
+59 :     if ( omp_get_thread_num()==0 ) {
+[0m[0;1;31m60 :       numThreads = omp_get_num_threads();
+[0m61 :     }
+[0m62 :     else
+[0m63 :     {
+[0m[0;1;31m64 :       printf("numThreads=%d\n", numThreads);
+[0m65 :     }
+[0m==============
+
+Checking DRB076-flush-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+
+Checking DRB077-single-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+
+Checking DRB088-dynamic-storage-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB088-dynamic-storage-orig-yes.c:63:14
+Sink : DRB088-dynamic-storage-orig-yes.c:63:14
+
+Checking DRB089-dynamic-storage2-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB089-dynamic-storage2-orig-yes.c:73:15
+Sink : DRB089-dynamic-storage2-orig-yes.c:73:15
+==============
+72 :   {
+[0m[0;1;31m73 :     (*counter)++; 
+[0m74 :   }
+[0m==============
+
+Checking DRB074-flush-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB074-flush-orig-yes.c:60:6
+Sink : DRB074-flush-orig-yes.c:71:11
+==============
+59 : #pragma omp critical
+[0m[0;1;31m60 :   *q = 1;
+[0m61 : #pragma omp flush
+[0m62 : }
+[0m63 : 
+[0m64 : int main()
+[0m65 : { 
+[0m66 :   int i=0, sum=0; 
+[0m67 :   
+[0m68 :   #pragma omp parallel reduction(+:sum) num_threads(10) 
+[0m69 :   {
+[0m70 :      f1(&i);
+[0m[0;1;31m71 :      sum+=i;
+[0m72 :   }
+[0m==============
+
+Checking DRB103-master-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+
+Checking DRB108-atomic-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+
+Checking DRB120-barrier-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+
+Checking DRB121-reduction-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB121-reduction-orig-no.c:30
+DRB121-reduction-orig-no.c:30
+
+Checking DRB124-master-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB124-master-orig-yes.c:33:12
+Sink : DRB124-master-orig-yes.c:36:13
+==============
+32 :     {
+[0m[0;1;31m33 :       init = 10;
+[0m34 :     }
+[0m35 : 
+[0m[0;1;31m36 :     local = init;
+[0m37 :   }
+[0m==============
+
+Checking DRB125-single-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+
+Checking DRB126-firstprivatesections-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+
+Checking DRB139-worksharingcritical-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+
+Checking DRB140-reduction-barrier-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB140-reduction-barrier-orig-yes.c:27
+DRB140-reduction-barrier-orig-yes.c:27
+
+Checking DRB141-reduction-barrier-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB141-reduction-barrier-orig-no.c:30
+DRB141-reduction-barrier-orig-no.c:30
+
+Checking DRB172-critical2-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB172-critical2-orig-no.c:27
+DRB172-critical2-orig-no.c:27
+
+Checking DRB001-antidep1-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+
+Checking DRB002-antidep1-var-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+
+Checking DRB003-antidep2-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB003-antidep2-orig-yes.c:67:18
+Sink : DRB003-antidep2-orig-yes.c:67:15
+==============
+66 :     for (j = 0; j < len ; j += 1) {
+[0m[0;1;31m67 :       a[i][j] += a[i + 1][j];
+[0m68 :     }
+[0m==============
+
+Checking DRB004-antidep2-var-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB004-antidep2-var-yes.c:70:18
+Sink : DRB004-antidep2-var-yes.c:70:15
+==============
+69 :     for (j = 0; j < len ; j += 1) {
+[0m[0;1;31m70 :       a[i][j] += a[i + 1][j];
+[0m71 :     }
+[0m==============
+
+Checking DRB011-minusminus-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+
+Checking DRB012-minusminus-var-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+
+Checking DRB013-nowait-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB013-nowait-orig-yes.c:70
+DRB013-nowait-orig-yes.c:70
+Data Race detected.
+Source : DRB013-nowait-orig-yes.c:72:12
+Sink : DRB013-nowait-orig-yes.c:75:13
+==============
+71 :     for(i = 0; i < len; i++)
+[0m[0;1;31m72 :       a[i] = b + a[i]*5;
+[0m73 : 
+[0m74 : #pragma omp single
+[0m[0;1;31m75 :     error = a[9] + 1;
+[0m76 :   }
+[0m==============
+
+Checking DRB014-outofbounds-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB014-outofbounds-orig-yes.c:75:14
+Sink : DRB014-outofbounds-orig-yes.c:75:15
+==============
+74 :     for (j=0;j<m;j++) // Note there will be out of bound access
+[0m[0;1;31m75 :       b[i][j]=b[i][j-1];
+[0m76 : 
+[0m==============
+
+Checking DRB015-outofbounds-var-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB015-outofbounds-var-yes.c:80:14
+Sink : DRB015-outofbounds-var-yes.c:80:15
+==============
+79 :     for (j=0;j<m;j++) // Note there will be out of bound access
+[0m[0;1;31m80 :       b[i][j]=b[i][j-1];
+[0m81 : 
+[0m==============
+
+Checking DRB018-plusplus-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB018-plusplus-orig-yes.c:72:18
+Sink : DRB018-plusplus-orig-yes.c:72:18
+==============
+71 :   {
+[0m[0;1;31m72 :     output[outLen++] = input[i] ;
+[0m73 :   }  
+[0m==============
+Data Race detected.
+Source : DRB018-plusplus-orig-yes.c:72:18
+Sink : DRB018-plusplus-orig-yes.c:72:18
+
+Checking DRB019-plusplus-var-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB019-plusplus-var-yes.c:72:18
+Sink : DRB019-plusplus-var-yes.c:72:18
+==============
+71 :   for (i=0; i<inLen; ++i) {
+[0m[0;1;31m72 :     output[outLen++] = input[i] ;
+[0m73 :   }  
+[0m==============
+Data Race detected.
+Source : DRB019-plusplus-var-yes.c:72:18
+Sink : DRB019-plusplus-var-yes.c:72:18
+
+Checking DRB020-privatemissing-var-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB020-privatemissing-var-yes.c:65:10
+Sink : DRB020-privatemissing-var-yes.c:66:10
+==============
+64 :   {
+[0m[0;1;31m65 :     tmp =a[i]+i;
+[0m[0;1;31m66 :     a[i] = tmp;
+[0m67 :   }
+[0m==============
+Data Race detected.
+Source : DRB020-privatemissing-var-yes.c:66:12
+Sink : DRB020-privatemissing-var-yes.c:65:9
+
+Checking DRB021-reductionmissing-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB021-reductionmissing-orig-yes.c:70:11
+Sink : DRB021-reductionmissing-orig-yes.c:70:13
+==============
+69 :       temp = u[i][j];
+[0m[0;1;31m70 :       sum = sum + temp * temp;
+[0m71 :     }
+[0m==============
+Data Race detected.
+Source : DRB021-reductionmissing-orig-yes.c:70:11
+Sink : DRB021-reductionmissing-orig-yes.c:70:11
+
+Checking DRB022-reductionmissing-var-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB022-reductionmissing-var-yes.c:72:11
+Sink : DRB022-reductionmissing-var-yes.c:72:13
+==============
+71 :       temp = u[i][j];
+[0m[0;1;31m72 :       sum = sum + temp * temp;
+[0m73 :     }
+[0m==============
+Data Race detected.
+Source : DRB022-reductionmissing-var-yes.c:72:11
+Sink : DRB022-reductionmissing-var-yes.c:72:11
+
+Checking DRB028-privatemissing-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB028-privatemissing-orig-yes.c:65:10
+Sink : DRB028-privatemissing-orig-yes.c:66:10
+==============
+64 :   {
+[0m[0;1;31m65 :     tmp =a[i]+i;
+[0m[0;1;31m66 :     a[i] = tmp;
+[0m67 :   }
+[0m==============
+Data Race detected.
+Source : DRB028-privatemissing-orig-yes.c:66:12
+Sink : DRB028-privatemissing-orig-yes.c:65:9
+
+Checking DRB029-truedep1-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+
+Checking DRB030-truedep1-var-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+
+Checking DRB031-truedepfirstdimension-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB031-truedepfirstdimension-orig-yes.c:66:14
+Sink : DRB031-truedepfirstdimension-orig-yes.c:66:15
+==============
+65 :     for (j=1;j<m;j++)
+[0m[0;1;31m66 :       b[i][j]=b[i-1][j-1];
+[0m67 : 
+[0m==============
+
+Checking DRB032-truedepfirstdimension-var-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB032-truedepfirstdimension-var-yes.c:69:14
+Sink : DRB032-truedepfirstdimension-var-yes.c:69:15
+==============
+68 :     for (j=1;j<m;j++)
+[0m[0;1;31m69 :       b[i][j]=b[i-1][j-1];
+[0m70 : 
+[0m==============
+
+Checking DRB033-truedeplinear-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+
+Checking DRB034-truedeplinear-var-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+
+Checking DRB037-truedepseconddimension-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB037-truedepseconddimension-orig-yes.c:63:14
+Sink : DRB037-truedepseconddimension-orig-yes.c:63:15
+==============
+62 :     for (j=1;j<m;j++)
+[0m[0;1;31m63 :       b[i][j]=b[i][j-1];
+[0m64 : 
+[0m==============
+
+Checking DRB038-truedepseconddimension-var-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB038-truedepseconddimension-var-yes.c:65:14
+Sink : DRB038-truedepseconddimension-var-yes.c:65:15
+==============
+64 :     for (j=1;j<m;j++)
+[0m[0;1;31m65 :       b[i][j]=b[i][j-1];
+[0m66 : 
+[0m==============
+
+Checking DRB041-3mm-parallel-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:95
+DRB041-3mm-parallel-no.c:95
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:126
+DRB041-3mm-parallel-no.c:126
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:146
+DRB041-3mm-parallel-no.c:146
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:161
+DRB041-3mm-parallel-no.c:161
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:185
+DRB041-3mm-parallel-no.c:185
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:197
+DRB041-3mm-parallel-no.c:197
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:209
+DRB041-3mm-parallel-no.c:209
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:224
+DRB041-3mm-parallel-no.c:224
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:232
+DRB041-3mm-parallel-no.c:232
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:240
+DRB041-3mm-parallel-no.c:240
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:264
+DRB041-3mm-parallel-no.c:264
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:276
+DRB041-3mm-parallel-no.c:276
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:291
+DRB041-3mm-parallel-no.c:291
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:299
+DRB041-3mm-parallel-no.c:299
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:314
+DRB041-3mm-parallel-no.c:314
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:322
+DRB041-3mm-parallel-no.c:322
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:330
+DRB041-3mm-parallel-no.c:330
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:361
+DRB041-3mm-parallel-no.c:361
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:376
+DRB041-3mm-parallel-no.c:376
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:388
+DRB041-3mm-parallel-no.c:388
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:396
+DRB041-3mm-parallel-no.c:396
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:411
+DRB041-3mm-parallel-no.c:411
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:419
+DRB041-3mm-parallel-no.c:419
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:427
+DRB041-3mm-parallel-no.c:427
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:442
+DRB041-3mm-parallel-no.c:442
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:450
+DRB041-3mm-parallel-no.c:450
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:458
+DRB041-3mm-parallel-no.c:458
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:473
+DRB041-3mm-parallel-no.c:473
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:481
+DRB041-3mm-parallel-no.c:481
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:489
+DRB041-3mm-parallel-no.c:489
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:497
+DRB041-3mm-parallel-no.c:497
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:505
+DRB041-3mm-parallel-no.c:505
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:543
+DRB041-3mm-parallel-no.c:543
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:550
+DRB041-3mm-parallel-no.c:550
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:558
+DRB041-3mm-parallel-no.c:558
+Region is Data Race Free.
+DRB041-3mm-parallel-no.c:564
+DRB041-3mm-parallel-no.c:564
+
+Checking DRB047-doallchar-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB047-doallchar-orig-no.c:57
+DRB047-doallchar-orig-no.c:57
+
+Checking DRB048-firstprivate-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB048-firstprivate-orig-no.c:54
+DRB048-firstprivate-orig-no.c:54
+
+Checking DRB050-functionparameter-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB050-functionparameter-orig-no.c:53
+DRB050-functionparameter-orig-no.c:53
+
+Checking DRB052-indirectaccesssharebase-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB052-indirectaccesssharebase-orig-no.c:119:13
+Sink : DRB052-indirectaccesssharebase-orig-no.c:119:13
+==============
+118 :     int idx = indexSet[i];
+[0m[0;1;31m119 :     xa1[idx]+= 1.0;
+[0m120 :     xa2[idx]+= 3.0;
+[0m==============
+Data Race detected.
+Source : DRB052-indirectaccesssharebase-orig-no.c:120:13
+Sink : DRB052-indirectaccesssharebase-orig-no.c:120:13
+
+Checking DRB053-inneronly1-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB053-inneronly1-orig-no.c:60
+DRB053-inneronly1-orig-no.c:60
+
+Checking DRB054-inneronly2-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB054-inneronly2-orig-no.c:64:14
+Sink : DRB054-inneronly2-orig-no.c:64:15
+==============
+63 :     for (j=1;j<m;j++)
+[0m[0;1;31m64 :       b[i][j]=b[i-1][j-1];
+[0m65 :   return 0;
+[0m==============
+Data Race detected.
+Source : DRB054-inneronly2-orig-no.c:64:15
+Sink : DRB054-inneronly2-orig-no.c:64:14
+
+Checking DRB057-jacobiinitialize-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB057-jacobiinitialize-orig-no.c:68
+DRB057-jacobiinitialize-orig-no.c:68
+
+Checking DRB060-matrixmultiply-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB060-matrixmultiply-orig-no.c:59
+DRB060-matrixmultiply-orig-no.c:59
+
+Checking DRB061-matrixvector1-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB061-matrixvector1-orig-no.c:56
+DRB061-matrixvector1-orig-no.c:56
+
+Checking DRB063-outeronly1-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB063-outeronly1-orig-no.c:57
+DRB063-outeronly1-orig-no.c:57
+
+Checking DRB064-outeronly2-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB064-outeronly2-orig-no.c:59
+DRB064-outeronly2-orig-no.c:59
+
+Checking DRB065-pireduction-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB065-pireduction-orig-no.c:61
+DRB065-pireduction-orig-no.c:61
+
+Checking DRB066-pointernoaliasing-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB066-pointernoaliasing-orig-no.c:56
+DRB066-pointernoaliasing-orig-no.c:56
+
+Checking DRB067-restrictpointer1-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB067-restrictpointer1-orig-no.c:61
+DRB067-restrictpointer1-orig-no.c:61
+
+Checking DRB068-restrictpointer2-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB068-restrictpointer2-orig-no.c:61
+DRB068-restrictpointer2-orig-no.c:61
+
+Checking DRB090-static-local-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB090-static-local-orig-yes.c:73:13
+Sink : DRB090-static-local-orig-yes.c:74:12
+==============
+72 :     {
+[0m[0;1;31m73 :       tmp = a[i]+i;
+[0m[0;1;31m74 :       a[i] = tmp;
+[0m75 :     }
+[0m==============
+Data Race detected.
+Source : DRB090-static-local-orig-yes.c:74:14
+Sink : DRB090-static-local-orig-yes.c:73:11
+
+Checking DRB093-doall2-collapse-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB093-doall2-collapse-orig-no.c:56
+DRB093-doall2-collapse-orig-no.c:56
+
+Checking DRB104-nowait-barrier-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB104-nowait-barrier-orig-no.c:66
+DRB104-nowait-barrier-orig-no.c:66
+
+Checking DRB110-ordered-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+
+Checking DRB111-linearmissing-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB111-linearmissing-orig-yes.c:67:7
+Sink : DRB111-linearmissing-orig-yes.c:68:6
+==============
+66 :   {
+[0m[0;1;31m67 :     c[j]+=a[i]*b[i];
+[0m[0;1;31m68 :     j++;
+[0m69 :   }
+[0m==============
+Data Race detected.
+Source : DRB111-linearmissing-orig-yes.c:67:9
+Sink : DRB111-linearmissing-orig-yes.c:67:9
+
+Checking DRB113-default-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB113-default-orig-no.c:58
+DRB113-default-orig-no.c:58
+Region is Data Race Free.
+DRB113-default-orig-no.c:63
+DRB113-default-orig-no.c:63
+
+Checking DRB169-missingsyncwrite-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB169-missingsyncwrite-orig-yes.c:38:15
+Sink : DRB169-missingsyncwrite-orig-yes.c:38:15
+==============
+37 :       for (k = 0; k < N; k++) {
+[0m[0;1;31m38 :         r1[k] = r[i][j-1][k] + r[i][j+1][k] + r[i-1][j][k] + r[i+1][j][k];
+[0m39 :       }
+[0m==============
+
+Checking DRB170-nestedloops-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB170-nestedloops-orig-no.c:26
+DRB170-nestedloops-orig-no.c:26
+
+Checking DRB005-indirectaccess1-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB005-indirectaccess1-orig-yes.c:128:13
+Sink : DRB005-indirectaccess1-orig-yes.c:128:13
+==============
+127 :     int idx = indexSet[i];
+[0m[0;1;31m128 :     xa1[idx]+= 1.0 + i;
+[0m129 :     xa2[idx]+= 3.0 + i;
+[0m==============
+Data Race detected.
+Source : DRB005-indirectaccess1-orig-yes.c:129:13
+Sink : DRB005-indirectaccess1-orig-yes.c:129:13
+
+Checking DRB006-indirectaccess2-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB006-indirectaccess2-orig-yes.c:128:13
+Sink : DRB006-indirectaccess2-orig-yes.c:128:13
+==============
+127 :     int idx = indexSet[i];
+[0m[0;1;31m128 :     xa1[idx]+= 1.0;
+[0m129 :     xa2[idx]+= 3.0;
+[0m==============
+Data Race detected.
+Source : DRB006-indirectaccess2-orig-yes.c:129:13
+Sink : DRB006-indirectaccess2-orig-yes.c:129:13
+
+Checking DRB007-indirectaccess3-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB007-indirectaccess3-orig-yes.c:128:13
+Sink : DRB007-indirectaccess3-orig-yes.c:128:13
+==============
+127 :     int idx = indexSet[i];
+[0m[0;1;31m128 :     xa1[idx]+= 1.0;
+[0m129 :     xa2[idx]+= 3.0;
+[0m==============
+Data Race detected.
+Source : DRB007-indirectaccess3-orig-yes.c:129:13
+Sink : DRB007-indirectaccess3-orig-yes.c:129:13
+
+Checking DRB008-indirectaccess4-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB008-indirectaccess4-orig-yes.c:128:13
+Sink : DRB008-indirectaccess4-orig-yes.c:128:13
+==============
+127 :     int idx = indexSet[i];
+[0m[0;1;31m128 :     xa1[idx]+= 1.0;
+[0m129 :     xa2[idx]+= 3.0;
+[0m==============
+Data Race detected.
+Source : DRB008-indirectaccess4-orig-yes.c:129:13
+Sink : DRB008-indirectaccess4-orig-yes.c:129:13
+
+Checking DRB009-lastprivatemissing-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB009-lastprivatemissing-orig-yes.c:59:6
+Sink : DRB009-lastprivatemissing-orig-yes.c:59:6
+==============
+58 :   for (i=0;i<len;i++)
+[0m[0;1;31m59 :     x=i;
+[0m60 : 
+[0m==============
+
+Checking DRB010-lastprivatemissing-var-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB010-lastprivatemissing-var-yes.c:63:6
+Sink : DRB010-lastprivatemissing-var-yes.c:63:6
+==============
+62 :   for (i=0;i<len;i++)
+[0m[0;1;31m63 :     x=i;
+[0m64 :   printf("x=%d",x);
+[0m==============
+
+Checking DRB016-outputdep-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB016-outputdep-orig-yes.c:74:6
+Sink : DRB016-outputdep-orig-yes.c:73:12
+==============
+72 :   {
+[0m[0;1;31m73 :     a[i] = x;
+[0m[0;1;31m74 :     x=i;
+[0m75 :   }
+[0m==============
+Data Race detected.
+Source : DRB016-outputdep-orig-yes.c:73:12
+Sink : DRB016-outputdep-orig-yes.c:74:6
+
+Checking DRB017-outputdep-var-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB017-outputdep-var-yes.c:72:6
+Sink : DRB017-outputdep-var-yes.c:71:12
+==============
+70 :   {
+[0m[0;1;31m71 :     a[i] = x;
+[0m[0;1;31m72 :     x=i;
+[0m73 :   }
+[0m==============
+Data Race detected.
+Source : DRB017-outputdep-var-yes.c:71:12
+Sink : DRB017-outputdep-var-yes.c:72:6
+
+Checking DRB035-truedepscalar-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB035-truedepscalar-orig-yes.c:66:12
+Sink : DRB035-truedepscalar-orig-yes.c:67:9
+==============
+65 :   { 
+[0m[0;1;31m66 :     a[i] = tmp;
+[0m[0;1;31m67 :     tmp =a[i]+i;
+[0m68 :   }
+[0m==============
+Data Race detected.
+Source : DRB035-truedepscalar-orig-yes.c:67:9
+Sink : DRB035-truedepscalar-orig-yes.c:66:12
+
+Checking DRB036-truedepscalar-var-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB036-truedepscalar-var-yes.c:66:12
+Sink : DRB036-truedepscalar-var-yes.c:67:9
+==============
+65 :   { 
+[0m[0;1;31m66 :     a[i] = tmp;
+[0m[0;1;31m67 :     tmp =a[i]+i;
+[0m68 :   }     
+[0m==============
+Data Race detected.
+Source : DRB036-truedepscalar-var-yes.c:67:9
+Sink : DRB036-truedepscalar-var-yes.c:66:12
+
+Checking DRB039-truedepsingleelement-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB039-truedepsingleelement-orig-yes.c:62:9
+Sink : DRB039-truedepsingleelement-orig-yes.c:62:15
+==============
+61 :   for (i=0;i<len;i++)
+[0m[0;1;31m62 :     a[i]=a[i]+a[0];
+[0m63 : 
+[0m==============
+Data Race detected.
+Source : DRB039-truedepsingleelement-orig-yes.c:62:15
+Sink : DRB039-truedepsingleelement-orig-yes.c:62:9
+
+Checking DRB040-truedepsingleelement-var-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB040-truedepsingleelement-var-yes.c:63:9
+Sink : DRB040-truedepsingleelement-var-yes.c:63:15
+==============
+62 :   for (i=0;i<len;i++)
+[0m[0;1;31m63 :     a[i]=a[i]+a[0];
+[0m64 : 
+[0m==============
+Data Race detected.
+Source : DRB040-truedepsingleelement-var-yes.c:63:15
+Sink : DRB040-truedepsingleelement-var-yes.c:63:9
+
+Checking DRB045-doall1-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB045-doall1-orig-no.c:54
+DRB045-doall1-orig-no.c:54
+
+Checking DRB046-doall2-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB046-doall2-orig-no.c:58
+DRB046-doall2-orig-no.c:58
+
+Checking DRB055-jacobi2d-parallel-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB055-jacobi2d-parallel-no.c:28
+DRB055-jacobi2d-parallel-no.c:28
+Region is Data Race Free.
+DRB055-jacobi2d-parallel-no.c:78
+DRB055-jacobi2d-parallel-no.c:78
+
+Checking DRB073-doall2-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB073-doall2-orig-yes.c:61:11
+Sink : DRB073-doall2-orig-yes.c:61:11
+==============
+60 :   for (i=0;i<100;i++)
+[0m[0;1;31m61 :     for (j=0;j<100;j++)
+[0m62 :       a[i][j]=a[i][j]+1;
+[0m==============
+Data Race detected.
+Source : DRB073-doall2-orig-yes.c:61:11
+Sink : DRB073-doall2-orig-yes.c:61:14
+
+Checking DRB109-orderedmissing-orig-yes ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Data Race detected.
+Source : DRB109-orderedmissing-orig-yes.c:56:6
+Sink : DRB109-orderedmissing-orig-yes.c:56:6
+==============
+55 :   for (int i = 0; i < 100; ++i) {
+[0m[0;1;31m56 :     x++;
+[0m57 :   }
+[0m==============
+Data Race detected.
+Source : DRB109-orderedmissing-orig-yes.c:56:6
+Sink : DRB109-orderedmissing-orig-yes.c:56:6
+
+Checking DRB043-adi-parallel-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB043-adi-parallel-no.c:29
+DRB043-adi-parallel-no.c:29
+Region is Data Race Free.
+DRB043-adi-parallel-no.c:70
+DRB043-adi-parallel-no.c:70
+Region is Data Race Free.
+DRB043-adi-parallel-no.c:82
+DRB043-adi-parallel-no.c:82
+Region is Data Race Free.
+DRB043-adi-parallel-no.c:86
+DRB043-adi-parallel-no.c:86
+Region is Data Race Free.
+DRB043-adi-parallel-no.c:98
+DRB043-adi-parallel-no.c:98
+
+Checking DRB058-jacobikernel-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB058-jacobikernel-orig-no.c:109
+DRB058-jacobikernel-orig-no.c:109
+Region is Data Race Free.
+DRB058-jacobikernel-orig-no.c:113
+DRB058-jacobikernel-orig-no.c:113
+
+Checking DRB062-matrixvector2-orig-no ...
+Region is Data Race Free.
+utilities/polybench.c:93
+utilities/polybench.c:93
+Region is Data Race Free.
+DRB062-matrixvector2-orig-no.c:59
+DRB062-matrixvector2-orig-no.c:59
+

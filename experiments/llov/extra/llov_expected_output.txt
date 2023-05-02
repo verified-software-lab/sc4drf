@@ -1,0 +1,192 @@
+Checking atomic3_no ...
+Data Race detected.
+Source : atomic3_no.c:8:8
+Sink : atomic3_no.c:8:8
+==============
+7 :     {
+[0m[0;1;31m8 :       x=1;
+[0m9 : #pragma omp atomic write seq_cst
+[0m==============
+Data Race detected.
+Source : atomic3_no.c:8:8
+Sink : atomic3_no.c:19:8
+
+Checking atomic3_yes ...
+Data Race detected.
+Source : atomic3_yes.c:9:8
+Sink : atomic3_yes.c:9:8
+==============
+8 :     {
+[0m[0;1;31m9 :       x=1;
+[0m10 :       s=1;
+[0m==============
+Data Race detected.
+Source : atomic3_yes.c:9:8
+Sink : atomic3_yes.c:19:8
+
+Checking bar1_no ...
+Data Race detected.
+Source : bar1_no.c:60:22
+Sink : bar1_no.c:60:22
+==============
+59 :       mybarrier(tid);
+[0m[0;1;31m60 :       if (tid == 1) x=1;
+[0m61 :       mybarrier(tid);
+[0m==============
+Data Race detected.
+Source : bar1_no.c:52:58
+Sink : bar1_no.c:60:22
+
+Checking bar1_yes ...
+Data Race detected.
+Source : bar1_yes.c:55:22
+Sink : bar1_yes.c:55:22
+==============
+54 :       mybarrier(tid);
+[0m[0;1;31m55 :       if (tid == 0) x=0;
+[0m56 :       mybarrier(tid);
+[0m==============
+Data Race detected.
+Source : bar1_yes.c:55:22
+Sink : bar1_yes.c:60:22
+
+Checking bar2_no ...
+Data Race detected.
+Source : bar2_no.c:17:20
+Sink : bar2_no.c:25:20
+==============
+16 : #pragma omp barrier
+[0m[0;1;31m17 :     if (tid == 0) x=0;
+[0m18 :     if (tid == 0) {
+[0m19 :       omp_unset_lock(&l0);
+[0m20 :       omp_set_lock(&l1);
+[0m21 :     } else if (tid == 1) {
+[0m22 :       omp_set_lock(&l0);
+[0m23 :       omp_unset_lock(&l1);
+[0m24 :     }
+[0m[0;1;31m25 :     if (tid == 1) x=1;
+[0m26 : #pragma omp barrier
+[0m==============
+
+Checking bar2_yes ...
+Data Race detected.
+Source : bar2_yes.c:19:20
+Sink : bar2_yes.c:27:20
+==============
+18 : #pragma omp barrier
+[0m[0;1;31m19 :     if (tid == 0) x=0;
+[0m20 :     if (tid == 0) {
+[0m21 :       omp_unset_lock(&l0);
+[0m22 :       omp_set_lock(&l0);
+[0m23 :     } else if (tid == 1) {
+[0m24 :       omp_unset_lock(&l1);
+[0m25 :       omp_set_lock(&l1);
+[0m26 :     }
+[0m[0;1;31m27 :     if (tid == 1) x=1;
+[0m28 : #pragma omp barrier
+[0m==============
+
+Checking bar3_no ...
+Data Race detected.
+Source : bar3_no.c:73:22
+Sink : bar3_no.c:73:22
+==============
+72 :       barrier_wait(tid);
+[0m[0;1;31m73 :       if (tid == 1) x=1;
+[0m74 :       barrier_wait(tid);
+[0m==============
+Data Race detected.
+Source : bar3_no.c:65:58
+Sink : bar3_no.c:73:22
+
+Checking bar3_yes ...
+Data Race detected.
+Source : bar3_yes.c:69:22
+Sink : bar3_yes.c:69:22
+==============
+68 :       barrier_wait(tid);
+[0m[0;1;31m69 :       if (tid == 0) x=0;
+[0m70 :       barrier_wait(tid);
+[0m==============
+Data Race detected.
+Source : bar3_yes.c:69:22
+Sink : bar3_yes.c:74:22
+
+Checking critsec2_no ...
+
+Checking critsec2_yes ...
+
+Checking critsec3_no ...
+Data Race detected.
+Source : critsec3_no.c:8:8
+Sink : critsec3_no.c:8:8
+==============
+7 :     {
+[0m[0;1;31m8 :       x=1;
+[0m9 : #pragma omp critical
+[0m==============
+Data Race detected.
+Source : critsec3_no.c:8:8
+Sink : critsec3_no.c:23:8
+
+Checking critsec3_yes ...
+Data Race detected.
+Source : critsec3_yes.c:8:8
+Sink : critsec3_yes.c:8:8
+==============
+7 :     {
+[0m[0;1;31m8 :       x=1;
+[0m9 : #pragma omp critical (A)
+[0m==============
+Data Race detected.
+Source : critsec3_yes.c:8:8
+Sink : critsec3_yes.c:23:8
+
+Checking diffusion1_no ...
+Region is Data Race Free.
+diffusion1_no.c:15
+diffusion1_no.c:15
+
+Checking diffusion1_yes ...
+Region is Data Race Free.
+diffusion1_yes.c:15
+diffusion1_yes.c:15
+
+Checking diffusion2_no ...
+
+Checking diffusion2_yes ...
+
+Checking prodcons_no ...
+
+Checking prodcons_yes ...
+
+Checking sync1_no ...
+Data Race detected.
+Source : sync1_no.c:16:8
+Sink : sync1_no.c:21:8
+==============
+15 :     if (tid == 0) {
+[0m[0;1;31m16 :       x=0;
+[0m17 :       omp_unset_lock(&l);
+[0m18 :     } else if (tid == 1) {
+[0m19 :       omp_set_lock(&l);
+[0m20 :       omp_unset_lock(&l);
+[0m[0;1;31m21 :       x=1;
+[0m22 :     }
+[0m==============
+
+Checking sync1_yes ...
+Data Race detected.
+Source : sync1_yes.c:17:8
+Sink : sync1_yes.c:22:8
+==============
+16 :       omp_set_lock(&l);
+[0m[0;1;31m17 :       x=0;
+[0m18 :       omp_unset_lock(&l);
+[0m19 :     } else if (tid == 1) {
+[0m20 :       omp_set_lock(&l);
+[0m21 :       omp_unset_lock(&l);
+[0m[0;1;31m22 :       x=1;
+[0m23 :     }
+[0m==============
+
