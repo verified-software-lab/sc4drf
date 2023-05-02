@@ -1,10 +1,10 @@
-Checking DRB023-sections1-orig-yes with nthreads<=5 ...
+Checking DRB023-sections1-orig-yes with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 i=2
 Data-race detected: {i} written by thread 1 intersects {i} written by thread 0
 
 
-Violation 0 encountered at depth 30:
+Violation 0 encountered at depth 33:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:381.4-383.43
     $assert($mem_no_intersect(cur_mw, tmp_mw, &out_s0, &out_s1), 
@@ -17,7 +17,7 @@ Assertion: $sef$16
  -> false
 
 Input:
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -39,48 +39,51 @@ DRB023-sections1-orig-yes.c  (DRB023-sections1-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 DRB023-sections1-orig-yes.c 
+civl verify -input_omp_thread_max=8 DRB023-sections1-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.11
+   time (s)            : 1.18
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 59
-   states saved        : 94
+   states              : 62
+   states saved        : 97
    state matches       : 0
-   transitions         : 398
-   trace steps         : 58
+   transitions         : 404
+   trace steps         : 61
    valid calls         : 613
    provers             : cvc4, z3
    prover calls        : 2
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB023-sections1-orig-yes_log.txt
-Checking DRB051-getthreadnum-orig-no with nthreads<=5 ...
+Checking DRB051-getthreadnum-orig-no with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 numThreads=1
 numThreads=2
 numThreads=3
 numThreads=4
 numThreads=5
+numThreads=6
+numThreads=7
+numThreads=8
 
 === Source files ===
 DRB051-getthreadnum-orig-no.c  (DRB051-getthreadnum-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 DRB051-getthreadnum-orig-no.c 
+civl verify -input_omp_thread_max=8 DRB051-getthreadnum-orig-no.c 
 
 === Stats ===
-   time (s)            : 1.24
+   time (s)            : 1.52
    memory (bytes)      : 272629760
-   max process count   : 6
-   states              : 339
-   states saved        : 611
-   state matches       : 4
-   transitions         : 1983
-   trace steps         : 342
-   valid calls         : 5145
+   max process count   : 9
+   states              : 848
+   states saved        : 1554
+   state matches       : 7
+   transitions         : 5368
+   trace steps         : 854
+   valid calls         : 14900
    provers             : cvc4, z3
    prover calls        : 0
 
@@ -111,27 +114,28 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB059-lastprivate-orig-no with nthreads<=5 ...
+Checking DRB059-lastprivate-orig-no with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
-x=0x=1x=2x=3x=4x=5x=6x=7x=8x=9x=10x=11x=12x=13x=14x=15x=16x=17x=18x=19x=20x=21x=22x=23x=24x=25x=26x=27x=28x=29x=30x=31x=32x=33x=34x=35x=36x=37x=38x=39x=40x=41x=42x=43x=44x=45x=46x=47x=48x=49x=50x=51x=52x=53x=54x=55x=56x=57x=58x=59x=60x=61x=62x=63x=64x=65x=66x=67x=68x=69x=70x=71x=72x=73x=74x=75x=76x=77x=78x=79x=80x=81x=82x=83x=84x=85x=86x=87x=88x=89x=90x=91x=92x=93x=94x=95x=96x=97x=98x=99x=1x=3x=5x=7x=9x=11x=13x=15x=17x=19x=21x=23x=25x=27x=29x=31x=33x=35x=37x=39x=41x=43x=45x=47x=49x=51x=53x=55x=57x=59x=61x=63x=65x=67x=69x=71x=73x=75x=77x=79x=81x=83x=85x=87x=89x=91x=93x=95x=97x=99x=2x=4x=5x=8x=10x=11x=14x=16x=17x=20x=22x=23x=26x=28x=29x=32x=34x=35x=38x=40x=41x=44x=46x=47x=50x=52x=53x=56x=58x=59x=62x=64x=65x=68x=70x=71x=74x=76x=77x=80x=82x=83x=86x=88x=89x=92x=94x=95x=98x=3x=6x=7x=10x=11x=15x=18x=19x=22x=23x=27x=30x=31x=34x=35x=39x=42x=43x=46x=47x=51x=54x=55x=58x=59x=63x=66x=67x=70x=71x=75x=78x=79x=82x=83x=87x=90x=91x=94x=95x=99x=4x=6x=7x=8x=9x=12x=13x=14x=18x=19x=24x=26x=27x=28x=29x=33x=34x=36x=37x=38x=39x=4416s: mem=936Mb trans=544616 traceSteps=73192 explored=73007 saved=139977 prove=102
-x=48x=49x=52x=53x=54x=56x=57x=58x=59x=64x=66x=67x=68x=69x=72x=73x=74x=78x=79x=84x=86x=87x=88x=89x=93x=94x=96x=97x=98x=99
+x=0x=1x=2x=3x=4x=5x=6x=7x=8x=9x=10x=11x=12x=13x=14x=15x=16x=17x=18x=19x=20x=21x=22x=23x=24x=25x=26x=27x=28x=29x=30x=31x=32x=33x=34x=35x=36x=37x=38x=39x=40x=41x=42x=43x=44x=45x=46x=47x=48x=49x=50x=51x=52x=53x=54x=55x=56x=57x=58x=59x=60x=61x=62x=63x=64x=65x=66x=67x=68x=69x=70x=71x=72x=73x=74x=75x=76x=77x=78x=79x=80x=81x=82x=83x=84x=85x=86x=87x=88x=89x=90x=91x=92x=93x=94x=95x=96x=97x=98x=99x=1x=3x=5x=7x=9x=11x=13x=15x=17x=19x=21x=23x=25x=27x=29x=31x=33x=35x=37x=39x=41x=43x=45x=47x=49x=51x=53x=55x=57x=59x=61x=63x=65x=67x=69x=71x=73x=75x=77x=79x=81x=83x=85x=87x=89x=91x=93x=95x=97x=99x=2x=4x=5x=8x=10x=11x=14x=16x=17x=20x=22x=23x=26x=28x=29x=32x=34x=35x=38x=40x=41x=44x=46x=47x=50x=52x=53x=56x=58x=59x=62x=64x=65x=68x=70x=71x=74x=76x=77x=80x=82x=83x=86x=88x=89x=92x=94x=95x=98x=3x=6x=7x=10x=11x=15x=18x=19x=22x=23x=27x=30x=31x=34x=35x=39x=42x=43x=46x=47x=51x=54x=55x=58x=59x=63x=66x=67x=70x=71x=75x=78x=79x=82x=83x=87x=90x=91x=94x=95x=99x=4x=6x=7x=8x=9x=12x=13x=14x=18x=19x=24x=26x=27x=28x=2917s: mem=920Mb trans=519166 traceSteps=69697 explored=69521 saved=133430 prove=102
+x=33x=34x=36x=37x=38x=39x=44x=48x=49x=52x=53x=54x=56x=57x=58x=59x=64x=66x=67x=68x=69x=72x=73x=74x=78x=79x=84x=86x=87x=88x=89x=93x=94x=96x=97x=98x=99x=5x=9x=10x=11x=16x=17x=21x=22x=23x=28x=29x=35x=40x=41x=45x=46x=47x=52x=53x=57x=58x=59x=65x=69x=70x=71x=76x=77x=81x=82x=83x=88x=89x=95x=6x=8x=9x=10x=11x=12x=13x=16x=17x=18x=19x=20x=24x=25x=26x=27x=32x=33x=34x=40x=41x=48x=50x=51x=52x=53x=54x=55x=60x=61x=62x=66x=67x=68x=69x=75x=76x=78x=79x=80x=81x=8232s: mem=920Mb trans=1029272 traceSteps=139407 explored=139093 saved=263718 prove=102
+x=83x=90x=92x=93x=94x=95x=96x=97x=7x=12x=13x=14x=15x=20x=21x=22x=23x=30x=31x=36x=37x=38x=39x=45x=46x=47x=54x=55x=63x=68x=69x=70x=71x=78x=79x=85x=86x=87x=92x=93x=94x=95
 === Source files ===
 DRB059-lastprivate-orig-no.c  (DRB059-lastprivate-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 DRB059-lastprivate-orig-no.c 
+civl verify -input_omp_thread_max=8 DRB059-lastprivate-orig-no.c 
 
 === Stats ===
-   time (s)            : 18.8
-   memory (bytes)      : 981467136
-   max process count   : 6
-   states              : 87627
-   states saved        : 167841
-   state matches       : 208
-   transitions         : 652371
-   trace steps         : 87834
-   valid calls         : 1331799
+   time (s)            : 40.86
+   memory (bytes)      : 964689920
+   max process count   : 9
+   states              : 180887
+   states saved        : 341231
+   state matches       : 390
+   transitions         : 1336968
+   trace steps         : 181276
+   valid calls         : 2967346
    provers             : cvc4, z3
    prover calls        : 102
 
@@ -162,7 +166,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB069-sectionslock1-orig-no with nthreads<=5 ...
+Checking DRB069-sectionslock1-orig-no with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -170,18 +174,18 @@ DRB069-sectionslock1-orig-no.c  (DRB069-sectionslock1-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 DRB069-sectionslock1-orig-no.c 
+civl verify -input_omp_thread_max=8 DRB069-sectionslock1-orig-no.c 
 
 === Stats ===
-   time (s)            : 1.31
+   time (s)            : 1.58
    memory (bytes)      : 272629760
-   max process count   : 6
-   states              : 610
-   states saved        : 1107
-   state matches       : 8
-   transitions         : 5113
-   trace steps         : 617
-   valid calls         : 9276
+   max process count   : 9
+   states              : 1495
+   states saved        : 2702
+   state matches       : 14
+   transitions         : 12392
+   trace steps         : 1508
+   valid calls         : 23806
    provers             : cvc4, z3
    prover calls        : 0
 
@@ -212,13 +216,13 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB075-getthreadnum-orig-yes with nthreads<=5 ...
+Checking DRB075-getthreadnum-orig-yes with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 numThreads=2
 Data-race detected: {numThreads} read by thread 1 intersects {numThreads} written by thread 0
 
 
-Violation 0 encountered at depth 21:
+Violation 0 encountered at depth 24:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -231,7 +235,7 @@ Assertion: $sef$13
  -> false
 
 Input:
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -253,39 +257,39 @@ DRB075-getthreadnum-orig-yes.c  (DRB075-getthreadnum-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 DRB075-getthreadnum-orig-yes.c 
+civl verify -input_omp_thread_max=8 DRB075-getthreadnum-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.11
+   time (s)            : 1.17
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 45
-   states saved        : 75
+   states              : 48
+   states saved        : 78
    state matches       : 0
-   transitions         : 266
-   trace steps         : 44
+   transitions         : 272
+   trace steps         : 47
    valid calls         : 497
    provers             : cvc4, z3
    prover calls        : 2
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB075-getthreadnum-orig-yes_log.txt
-Checking DRB076-flush-orig-no with nthreads<=5 ...
+Checking DRB076-flush-orig-no with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 sum=10
-16s: mem=786Mb trans=658194 traceSteps=58594 explored=56787 saved=115326 prove=0
-31s: mem=920Mb trans=1279321 traceSteps=113853 explored=110252 saved=223632 prove=0
+17s: mem=776Mb trans=625201 traceSteps=55662 explored=53948 saved=109568 prove=0
+32s: mem=910Mb trans=1211929 traceSteps=107857 explored=104454 saved=211881 prove=0
 
 === Source files ===
 DRB076-flush-orig-no.c  (DRB076-flush-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 DRB076-flush-orig-no.c 
+civl verify -input_omp_thread_max=8 DRB076-flush-orig-no.c 
 
 === Stats ===
-   time (s)            : 35.01
-   memory (bytes)      : 964689920
+   time (s)            : 37.38
+   memory (bytes)      : 1088421888
    max process count   : 11
    states              : 124144
    states saved        : 251830
@@ -323,7 +327,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB077-single-orig-no with nthreads<=5 ...
+Checking DRB077-single-orig-no with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 count= 1
 
@@ -332,18 +336,18 @@ DRB077-single-orig-no.c  (DRB077-single-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 DRB077-single-orig-no.c 
+civl verify -input_omp_thread_max=8 DRB077-single-orig-no.c 
 
 === Stats ===
-   time (s)            : 1.23
+   time (s)            : 1.61
    memory (bytes)      : 272629760
-   max process count   : 6
-   states              : 403
-   states saved        : 719
-   state matches       : 4
-   transitions         : 2690
-   trace steps         : 406
-   valid calls         : 5917
+   max process count   : 9
+   states              : 1051
+   states saved        : 1876
+   state matches       : 7
+   transitions         : 7236
+   trace steps         : 1057
+   valid calls         : 17165
    provers             : cvc4, z3
    prover calls        : 0
 
@@ -374,13 +378,13 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB088-dynamic-storage-orig-yes with nthreads<=5 ...
+Checking DRB088-dynamic-storage-orig-yes with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 1 
 Data-race detected: {Dyscope0_malloc_0[0]} read by thread 1 intersects {Dyscope0_malloc_0[0]} written by thread 0
 
 
-Violation 0 encountered at depth 26:
+Violation 0 encountered at depth 29:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -393,7 +397,7 @@ Assertion: $sef$13
  -> false
 
 Input:
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
   0<=(SIZEOF_INT-1)
@@ -416,30 +420,30 @@ DRB088-dynamic-storage-orig-yes.c  (DRB088-dynamic-storage-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 DRB088-dynamic-storage-orig-yes.c 
+civl verify -input_omp_thread_max=8 DRB088-dynamic-storage-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.19
+   time (s)            : 1.35
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 61
-   states saved        : 92
+   states              : 64
+   states saved        : 95
    state matches       : 0
-   transitions         : 287
-   trace steps         : 60
+   transitions         : 293
+   trace steps         : 63
    valid calls         : 583
    provers             : cvc4, z3
    prover calls        : 2
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB088-dynamic-storage-orig-yes_log.txt
-Checking DRB089-dynamic-storage2-orig-yes with nthreads<=5 ...
+Checking DRB089-dynamic-storage2-orig-yes with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 1 
 Data-race detected: {Dyscope0_malloc_0[0]} read by thread 1 intersects {Dyscope0_malloc_0[0]} written by thread 0
 
 
-Violation 0 encountered at depth 26:
+Violation 0 encountered at depth 29:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -452,7 +456,7 @@ Assertion: $sef$13
  -> false
 
 Input:
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
   0<=(SIZEOF_INT-1)
@@ -475,24 +479,24 @@ DRB089-dynamic-storage2-orig-yes.c  (DRB089-dynamic-storage2-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 DRB089-dynamic-storage2-orig-yes.c 
+civl verify -input_omp_thread_max=8 DRB089-dynamic-storage2-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.25
+   time (s)            : 1.35
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 61
-   states saved        : 92
+   states              : 64
+   states saved        : 95
    state matches       : 0
-   transitions         : 281
-   trace steps         : 60
+   transitions         : 287
+   trace steps         : 63
    valid calls         : 583
    provers             : cvc4, z3
    prover calls        : 2
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB089-dynamic-storage2-orig-yes_log.txt
-Checking DRB074-flush-orig-yes with nthreads<=5 ...
+Checking DRB074-flush-orig-yes with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 sum=10
 Data-race detected: {i} read by thread 0 intersects {i} written by thread 1
@@ -511,7 +515,7 @@ Assertion: $sef$10
  -> false
 
 Input:
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -567,10 +571,10 @@ DRB074-flush-orig-yes.c  (DRB074-flush-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 DRB074-flush-orig-yes.c 
+civl verify -input_omp_thread_max=8 DRB074-flush-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.58
+   time (s)            : 1.82
    memory (bytes)      : 272629760
    max process count   : 11
    states              : 782
@@ -584,31 +588,34 @@ civl verify -input_omp_thread_max=5 DRB074-flush-orig-yes.c
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB074-flush-orig-yes_log.txt
-Checking DRB103-master-orig-no with nthreads<=5 ...
+Checking DRB103-master-orig-no with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 Number of Threads requested = 1
 Number of Threads requested = 2
 Number of Threads requested = 3
 Number of Threads requested = 4
 Number of Threads requested = 5
+Number of Threads requested = 6
+Number of Threads requested = 7
+Number of Threads requested = 8
 
 === Source files ===
 DRB103-master-orig-no.c  (DRB103-master-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 DRB103-master-orig-no.c 
+civl verify -input_omp_thread_max=8 DRB103-master-orig-no.c 
 
 === Stats ===
-   time (s)            : 1.25
+   time (s)            : 1.53
    memory (bytes)      : 272629760
-   max process count   : 6
-   states              : 334
-   states saved        : 601
-   state matches       : 4
-   transitions         : 1967
-   trace steps         : 337
-   valid calls         : 5150
+   max process count   : 9
+   states              : 840
+   states saved        : 1538
+   state matches       : 7
+   transitions         : 5331
+   trace steps         : 846
+   valid calls         : 14908
    provers             : cvc4, z3
    prover calls        : 0
 
@@ -639,31 +646,34 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB108-atomic-orig-no with nthreads<=5 ...
+Checking DRB108-atomic-orig-no with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 a=1
 a=2
 a=3
 a=4
 a=5
+a=6
+a=7
+a=8
 
 === Source files ===
 DRB108-atomic-orig-no.c  (DRB108-atomic-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 DRB108-atomic-orig-no.c 
+civl verify -input_omp_thread_max=8 DRB108-atomic-orig-no.c 
 
 === Stats ===
-   time (s)            : 1.79
-   memory (bytes)      : 272629760
-   max process count   : 6
-   states              : 1999
-   states saved        : 3976
-   state matches       : 76
-   transitions         : 22319
-   trace steps         : 2074
-   valid calls         : 36647
+   time (s)            : 8.5
+   memory (bytes)      : 685768704
+   max process count   : 9
+   states              : 34485
+   states saved        : 69871
+   state matches       : 1298
+   transitions         : 398833
+   trace steps         : 35782
+   valid calls         : 636745
    provers             : cvc4, z3
    prover calls        : 0
 
@@ -694,7 +704,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB120-barrier-orig-no with nthreads<=5 ...
+Checking DRB120-barrier-orig-no with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -702,18 +712,18 @@ DRB120-barrier-orig-no.c  (DRB120-barrier-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 DRB120-barrier-orig-no.c 
+civl verify -input_omp_thread_max=8 DRB120-barrier-orig-no.c 
 
 === Stats ===
-   time (s)            : 1.49
-   memory (bytes)      : 272629760
-   max process count   : 6
-   states              : 967
-   states saved        : 1716
-   state matches       : 4
-   transitions         : 6100
-   trace steps         : 970
-   valid calls         : 15195
+   time (s)            : 1.98
+   memory (bytes)      : 327155712
+   max process count   : 9
+   states              : 2586
+   states saved        : 4613
+   state matches       : 7
+   transitions         : 17110
+   trace steps         : 2592
+   valid calls         : 46090
    provers             : cvc4, z3
    prover calls        : 0
 
@@ -744,30 +754,34 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB121-reduction-orig-no with nthreads<=5 ...
+Checking DRB121-reduction-orig-no with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
-20 100
-40 100
-60 100
-80 100
+20 160
+40 160
+60 160
+80 160
+100 160
+120 160
+140 160
+17s: mem=920Mb trans=781429 traceSteps=69629 explored=67132 saved=135614 prove=0
 
 === Source files ===
 DRB121-reduction-orig-no.c  (DRB121-reduction-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 DRB121-reduction-orig-no.c 
+civl verify -input_omp_thread_max=8 DRB121-reduction-orig-no.c 
 
 === Stats ===
-   time (s)            : 2.93
-   memory (bytes)      : 394264576
-   max process count   : 6
-   states              : 6024
-   states saved        : 11909
-   state matches       : 220
-   transitions         : 68297
-   trace steps         : 6243
-   valid calls         : 112765
+   time (s)            : 24.1
+   memory (bytes)      : 964689920
+   max process count   : 9
+   states              : 103634
+   states saved        : 209746
+   state matches       : 3880
+   transitions         : 1209179
+   trace steps         : 107513
+   valid calls         : 1945645
    provers             : cvc4, z3
    prover calls        : 0
 
@@ -798,12 +812,12 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB124-master-orig-yes with nthreads<=5 ...
+Checking DRB124-master-orig-yes with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 Data-race detected: {init} read by thread 1 intersects {init} written by thread 0
 
 
-Violation 0 encountered at depth 21:
+Violation 0 encountered at depth 24:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -816,7 +830,7 @@ Assertion: $sef$13
  -> false
 
 Input:
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -838,24 +852,24 @@ DRB124-master-orig-yes.c  (DRB124-master-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 DRB124-master-orig-yes.c 
+civl verify -input_omp_thread_max=8 DRB124-master-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.2
+   time (s)            : 1.3
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 45
-   states saved        : 75
+   states              : 48
+   states saved        : 78
    state matches       : 0
-   transitions         : 264
-   trace steps         : 44
+   transitions         : 270
+   trace steps         : 47
    valid calls         : 494
    provers             : cvc4, z3
    prover calls        : 2
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB124-master-orig-yes_log.txt
-Checking DRB125-single-orig-no with nthreads<=5 ...
+Checking DRB125-single-orig-no with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -863,18 +877,18 @@ DRB125-single-orig-no.c  (DRB125-single-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 DRB125-single-orig-no.c 
+civl verify -input_omp_thread_max=8 DRB125-single-orig-no.c 
 
 === Stats ===
-   time (s)            : 1.44
+   time (s)            : 1.85
    memory (bytes)      : 272629760
-   max process count   : 6
-   states              : 642
-   states saved        : 1142
-   state matches       : 4
-   transitions         : 4037
-   trace steps         : 645
-   valid calls         : 10165
+   max process count   : 9
+   states              : 1694
+   states saved        : 3038
+   state matches       : 7
+   transitions         : 11233
+   trace steps         : 1700
+   valid calls         : 30487
    provers             : cvc4, z3
    prover calls        : 0
 
@@ -905,7 +919,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB126-firstprivatesections-orig-no with nthreads<=5 ...
+Checking DRB126-firstprivatesections-orig-no with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 1
 2
@@ -915,10 +929,10 @@ DRB126-firstprivatesections-orig-no.c  (DRB126-firstprivatesections-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 DRB126-firstprivatesections-orig-no.c 
+civl verify -input_omp_thread_max=8 DRB126-firstprivatesections-orig-no.c 
 
 === Stats ===
-   time (s)            : 1.14
+   time (s)            : 1.19
    memory (bytes)      : 272629760
    max process count   : 2
    states              : 31
@@ -957,10 +971,10 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB139-worksharingcritical-orig-no with nthreads<=5 ...
+Checking DRB139-worksharingcritical-orig-no with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
-Violation 0 encountered at depth 20:
+Violation 0 encountered at depth 23:
 CIVL execution violation (property violated: DEADLOCK, certainty: PROVEABLE)
 at OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB139-worksharingcritical-orig-no.c:24.10 "1" before DRB139-worksharingcritical-orig-no.c:36.12 "i"
 A deadlock is possible:
@@ -984,30 +998,30 @@ DRB139-worksharingcritical-orig-no.c  (DRB139-worksharingcritical-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 DRB139-worksharingcritical-orig-no.c 
+civl verify -input_omp_thread_max=8 DRB139-worksharingcritical-orig-no.c 
 
 === Stats ===
-   time (s)            : 1.14
+   time (s)            : 1.17
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 20
-   states saved        : 30
+   states              : 23
+   states saved        : 33
    state matches       : 0
-   transitions         : 169
-   trace steps         : 19
+   transitions         : 184
+   trace steps         : 22
    valid calls         : 181
    provers             : cvc4, z3
    prover calls        : 0
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB139-worksharingcritical-orig-no_log.txt
-Checking DRB140-reduction-barrier-orig-yes with nthreads<=5 ...
+Checking DRB140-reduction-barrier-orig-yes with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 Sum is 45
 Data-race detected: {a} written by thread 1 intersects {a} written by thread 0
 
 
-Violation 0 encountered at depth 40:
+Violation 0 encountered at depth 43:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_atomic_execution_lock_release] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:354.4-356.43
     $assert($mem_no_intersect(cur_mw, tmp_mw, &out_s0, &out_s1), 
@@ -1020,7 +1034,7 @@ Assertion: $sef$14
  -> false
 
 Input:
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -1043,25 +1057,28 @@ DRB140-reduction-barrier-orig-yes.c  (DRB140-reduction-barrier-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 DRB140-reduction-barrier-orig-yes.c 
+civl verify -input_omp_thread_max=8 DRB140-reduction-barrier-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.19
+   time (s)            : 1.39
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 94
-   states saved        : 146
+   states              : 97
+   states saved        : 149
    state matches       : 0
-   transitions         : 661
-   trace steps         : 93
+   transitions         : 667
+   trace steps         : 96
    valid calls         : 1023
    provers             : cvc4, z3
    prover calls        : 2
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB140-reduction-barrier-orig-yes_log.txt
-Checking DRB141-reduction-barrier-orig-no with nthreads<=5 ...
+Checking DRB141-reduction-barrier-orig-no with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+Sum is 45
+Sum is 45
+Sum is 45
 Sum is 45
 Sum is 45
 Sum is 45
@@ -1073,18 +1090,18 @@ DRB141-reduction-barrier-orig-no.c  (DRB141-reduction-barrier-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 DRB141-reduction-barrier-orig-no.c 
+civl verify -input_omp_thread_max=8 DRB141-reduction-barrier-orig-no.c 
 
 === Stats ===
-   time (s)            : 2.08
-   memory (bytes)      : 327155712
-   max process count   : 6
-   states              : 2691
-   states saved        : 5160
-   state matches       : 76
-   transitions         : 26933
-   trace steps         : 2766
-   valid calls         : 47873
+   time (s)            : 10.1
+   memory (bytes)      : 685768704
+   max process count   : 9
+   states              : 36338
+   states saved        : 73081
+   state matches       : 1298
+   transitions         : 414658
+   trace steps         : 37635
+   valid calls         : 679618
    provers             : cvc4, z3
    prover calls        : 0
 
@@ -1115,7 +1132,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB172-critical2-orig-no with nthreads<=5 ...
+Checking DRB172-critical2-orig-no with nthreads<=8 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 0 0
 1 2
@@ -1167,24 +1184,54 @@ CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 7 14
 8 16
 9 22
+0 0
+1 2
+2 4
+3 6
+4 8
+5 10
+6 12
+7 14
+8 16
+9 23
+0 0
+1 2
+2 4
+3 6
+4 8
+5 10
+6 12
+7 14
+8 16
+9 24
+0 0
+1 2
+2 4
+3 6
+4 8
+5 10
+6 12
+7 14
+8 16
+9 25
 
 === Source files ===
 DRB172-critical2-orig-no.c  (DRB172-critical2-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 DRB172-critical2-orig-no.c 
+civl verify -input_omp_thread_max=8 DRB172-critical2-orig-no.c 
 
 === Stats ===
-   time (s)            : 2.11
-   memory (bytes)      : 327155712
-   max process count   : 6
-   states              : 2823
-   states saved        : 5283
-   state matches       : 76
-   transitions         : 26778
-   trace steps         : 2898
-   valid calls         : 48598
+   time (s)            : 9.53
+   memory (bytes)      : 847249408
+   max process count   : 9
+   states              : 36512
+   states saved        : 73228
+   state matches       : 1298
+   transitions         : 411172
+   trace steps         : 37809
+   valid calls         : 680742
    provers             : cvc4, z3
    prover calls        : 0
 
@@ -1215,13 +1262,13 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB001-antidep1-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB001-antidep1-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 a[5]=7
 Data-race detected: {a[2], a[4], a[6], a[8]} read by thread 1 intersects {a[2], a[4], a[6], a[8], a[0]} written by thread 0
 
 
-Violation 0 encountered at depth 56:
+Violation 0 encountered at depth 59:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -1236,7 +1283,7 @@ Assertion: $sef$14
 Input:
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -1258,29 +1305,29 @@ DRB001-antidep1-orig-yes.c  (DRB001-antidep1-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB001-antidep1-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB001-antidep1-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.39
+   time (s)            : 1.52
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 90
-   states saved        : 135
+   states              : 93
+   states saved        : 138
    state matches       : 0
-   transitions         : 444
-   trace steps         : 89
+   transitions         : 450
+   trace steps         : 92
    valid calls         : 861
    provers             : cvc4, z3
    prover calls        : 44
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB001-antidep1-orig-yes_log.txt
-Checking DRB002-antidep1-var-yes with nthreads<=5, BOUND=10 ...
+Checking DRB002-antidep1-var-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 Data-race detected: {a[2], a[4], a[6], a[8]} read by thread 1 intersects {a[2], a[4], a[6], a[8], a[0]} written by thread 0
 
 
-Violation 0 encountered at depth 60:
+Violation 0 encountered at depth 63:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -1297,7 +1344,7 @@ Input:
   _civl_argv=X__civl_argv
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 10)
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
@@ -1321,30 +1368,30 @@ DRB002-antidep1-var-yes.c  (DRB002-antidep1-var-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB002-antidep1-var-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB002-antidep1-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.59
+   time (s)            : 1.64
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 93
-   states saved        : 140
+   states              : 96
+   states saved        : 143
    state matches       : 0
-   transitions         : 456
-   trace steps         : 92
+   transitions         : 462
+   trace steps         : 95
    valid calls         : 869
    provers             : cvc4, z3
    prover calls        : 48
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB002-antidep1-var-yes_log.txt
-Checking DRB003-antidep2-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB003-antidep2-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 a[5][5]=1
 Data-race detected: {a[1 .. 9][0 .. 10]} read by thread 1 intersects {a[2][0 .. 10], a[4][0 .. 10], a[6][0 .. 10], a[8][0 .. 10], a[0][0 .. 10]} written by thread 0
 
 
-Violation 0 encountered at depth 256:
+Violation 0 encountered at depth 259:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -1359,7 +1406,7 @@ Assertion: $sef$14
 Input:
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -1381,29 +1428,29 @@ DRB003-antidep2-orig-yes.c  (DRB003-antidep2-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB003-antidep2-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB003-antidep2-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.52
+   time (s)            : 1.63
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 290
-   states saved        : 335
+   states              : 293
+   states saved        : 338
    state matches       : 0
-   transitions         : 1202
-   trace steps         : 289
+   transitions         : 1208
+   trace steps         : 292
    valid calls         : 4571
    provers             : cvc4, z3
    prover calls        : 44
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB003-antidep2-orig-yes_log.txt
-Checking DRB004-antidep2-var-yes with nthreads<=5, BOUND=10 ...
+Checking DRB004-antidep2-var-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 Data-race detected: {a[1 .. 9][0 .. 10]} read by thread 1 intersects {a[2][0 .. 10], a[4][0 .. 10], a[6][0 .. 10], a[8][0 .. 10], a[0][0 .. 10]} written by thread 0
 
 
-Violation 0 encountered at depth 260:
+Violation 0 encountered at depth 263:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -1420,7 +1467,7 @@ Input:
   _civl_argv=X__civl_argv
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 10)
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
@@ -1444,30 +1491,30 @@ DRB004-antidep2-var-yes.c  (DRB004-antidep2-var-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB004-antidep2-var-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB004-antidep2-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.67
+   time (s)            : 1.78
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 293
-   states saved        : 340
+   states              : 296
+   states saved        : 343
    state matches       : 0
-   transitions         : 1214
-   trace steps         : 292
+   transitions         : 1220
+   trace steps         : 295
    valid calls         : 4576
    provers             : cvc4, z3
    prover calls        : 48
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB004-antidep2-var-yes_log.txt
-Checking DRB011-minusminus-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB011-minusminus-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 numNodes2 = -5
 Data-race detected: {numNodes2} read by thread 1 intersects {numNodes2} written by thread 0
 
 
-Violation 0 encountered at depth 65:
+Violation 0 encountered at depth 68:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -1482,7 +1529,7 @@ Assertion: $sef$14
 Input:
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -1506,29 +1553,29 @@ DRB011-minusminus-orig-yes.c  (DRB011-minusminus-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB011-minusminus-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB011-minusminus-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.56
+   time (s)            : 1.75
    memory (bytes)      : 272629760
    max process count   : 4
-   states              : 157
-   states saved        : 240
+   states              : 160
+   states saved        : 243
    state matches       : 1
-   transitions         : 851
-   trace steps         : 157
+   transitions         : 857
+   trace steps         : 160
    valid calls         : 1675
    provers             : cvc4, z3
    prover calls        : 44
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB011-minusminus-orig-yes_log.txt
-Checking DRB012-minusminus-var-yes with nthreads<=5, BOUND=10 ...
+Checking DRB012-minusminus-var-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 Data-race detected: {numNodes2} read by thread 1 intersects {numNodes2} written by thread 0
 
 
-Violation 0 encountered at depth 69:
+Violation 0 encountered at depth 72:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -1545,7 +1592,7 @@ Input:
   _civl_argv=X__civl_argv
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 10)
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
@@ -1571,30 +1618,30 @@ DRB012-minusminus-var-yes.c  (DRB012-minusminus-var-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB012-minusminus-var-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB012-minusminus-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.59
+   time (s)            : 1.68
    memory (bytes)      : 272629760
    max process count   : 4
-   states              : 160
-   states saved        : 245
+   states              : 163
+   states saved        : 248
    state matches       : 1
-   transitions         : 865
-   trace steps         : 160
+   transitions         : 871
+   trace steps         : 163
    valid calls         : 1686
    provers             : cvc4, z3
    prover calls        : 48
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB012-minusminus-var-yes_log.txt
-Checking DRB013-nowait-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB013-nowait-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 error = 51
 Data-race detected: {a[9]} read by thread 0 intersects {a[1], a[3], a[5], a[7], a[9]} written by thread 1
 
 
-Violation 0 encountered at depth 59:
+Violation 0 encountered at depth 62:
 CIVL execution violation in p1 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -1609,7 +1656,7 @@ Assertion: $sef$14
 Input:
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -1630,27 +1677,27 @@ DRB013-nowait-orig-yes.c  (DRB013-nowait-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB013-nowait-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB013-nowait-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.46
+   time (s)            : 1.55
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 145
-   states saved        : 235
+   states              : 148
+   states saved        : 238
    state matches       : 1
-   transitions         : 878
-   trace steps         : 145
+   transitions         : 884
+   trace steps         : 148
    valid calls         : 1603
    provers             : cvc4, z3
    prover calls        : 44
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB013-nowait-orig-yes_log.txt
-Checking DRB014-outofbounds-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB014-outofbounds-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
-Violation 0 encountered at depth 15:
+Violation 0 encountered at depth 18:
 CIVL execution violation in p1 (property violated: OUT_OF_BOUNDS, certainty: PROVEABLE)
 at DRB014-outofbounds-orig-yes.c:83.19-21
       b[i][j]=b[i][j-1];
@@ -1667,7 +1714,7 @@ Index value: -1
 Input:
   N=1
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -1684,27 +1731,27 @@ DRB014-outofbounds-orig-yes.c  (DRB014-outofbounds-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB014-outofbounds-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB014-outofbounds-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.13
+   time (s)            : 1.2
    memory (bytes)      : 272629760
    max process count   : 2
-   states              : 15
-   states saved        : 21
+   states              : 18
+   states saved        : 24
    state matches       : 0
-   transitions         : 88
-   trace steps         : 14
+   transitions         : 94
+   trace steps         : 17
    valid calls         : 111
    provers             : cvc4, z3
    prover calls        : 14
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB014-outofbounds-orig-yes_log.txt
-Checking DRB015-outofbounds-var-yes with nthreads<=5, BOUND=10 ...
+Checking DRB015-outofbounds-var-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
-Violation 0 encountered at depth 19:
+Violation 0 encountered at depth 22:
 CIVL execution violation in p1 (property violated: OUT_OF_BOUNDS, certainty: PROVEABLE)
 at DRB015-outofbounds-var-yes.c:93.19-21
       b[i][j]=b[i][j-1];
@@ -1723,7 +1770,7 @@ Input:
   _civl_argv=X__civl_argv
   N=2
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 2)
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
@@ -1742,30 +1789,30 @@ DRB015-outofbounds-var-yes.c  (DRB015-outofbounds-var-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB015-outofbounds-var-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB015-outofbounds-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.24
+   time (s)            : 1.43
    memory (bytes)      : 272629760
    max process count   : 2
-   states              : 38
-   states saved        : 61
+   states              : 41
+   states saved        : 64
    state matches       : 0
-   transitions         : 183
-   trace steps         : 37
+   transitions         : 189
+   trace steps         : 40
    valid calls         : 343
    provers             : cvc4, z3
    prover calls        : 17
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB015-outofbounds-var-yes_log.txt
-Checking DRB018-plusplus-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB018-plusplus-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 output[5]=5
 Data-race detected: {outLen} read by thread 1 intersects {outLen} written by thread 0
 
 
-Violation 0 encountered at depth 57:
+Violation 0 encountered at depth 60:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -1780,7 +1827,7 @@ Assertion: $sef$15
 Input:
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -1802,30 +1849,30 @@ DRB018-plusplus-orig-yes.c  (DRB018-plusplus-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB018-plusplus-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB018-plusplus-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.51
+   time (s)            : 1.6
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 92
-   states saved        : 157
+   states              : 95
+   states saved        : 160
    state matches       : 0
-   transitions         : 490
-   trace steps         : 91
+   transitions         : 496
+   trace steps         : 94
    valid calls         : 874
    provers             : cvc4, z3
    prover calls        : 44
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB018-plusplus-orig-yes_log.txt
-Checking DRB019-plusplus-var-yes with nthreads<=5, BOUND=10 ...
+Checking DRB019-plusplus-var-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 output[0]=0
 Data-race detected: {outLen} read by thread 1 intersects {outLen} written by thread 0
 
 
-Violation 0 encountered at depth 61:
+Violation 0 encountered at depth 64:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -1842,7 +1889,7 @@ Input:
   _civl_argv=X__civl_argv
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 10)
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
@@ -1866,29 +1913,29 @@ DRB019-plusplus-var-yes.c  (DRB019-plusplus-var-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB019-plusplus-var-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB019-plusplus-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.64
+   time (s)            : 1.69
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 96
-   states saved        : 164
+   states              : 99
+   states saved        : 167
    state matches       : 0
-   transitions         : 503
-   trace steps         : 95
+   transitions         : 509
+   trace steps         : 98
    valid calls         : 885
    provers             : cvc4, z3
    prover calls        : 48
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB019-plusplus-var-yes_log.txt
-Checking DRB020-privatemissing-var-yes with nthreads<=5, BOUND=10 ...
+Checking DRB020-privatemissing-var-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 Data-race detected: {tmp} read by thread 1 intersects {tmp} written by thread 0
 
 
-Violation 0 encountered at depth 61:
+Violation 0 encountered at depth 64:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -1905,7 +1952,7 @@ Input:
   _civl_argv=X__civl_argv
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 10)
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
@@ -1929,30 +1976,30 @@ DRB020-privatemissing-var-yes.c  (DRB020-privatemissing-var-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB020-privatemissing-var-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB020-privatemissing-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.6
+   time (s)            : 1.62
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 95
-   states saved        : 142
+   states              : 98
+   states saved        : 145
    state matches       : 0
-   transitions         : 480
-   trace steps         : 94
+   transitions         : 486
+   trace steps         : 97
    valid calls         : 882
    provers             : cvc4, z3
    prover calls        : 48
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB020-privatemissing-var-yes_log.txt
-Checking DRB021-reductionmissing-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB021-reductionmissing-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 sum = 25
 Data-race detected: {sum} read by thread 1 intersects {sum} written by thread 0
 
 
-Violation 0 encountered at depth 257:
+Violation 0 encountered at depth 260:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -1967,7 +2014,7 @@ Assertion: $sef$14
 Input:
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -1989,30 +2036,30 @@ DRB021-reductionmissing-orig-yes.c  (DRB021-reductionmissing-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB021-reductionmissing-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB021-reductionmissing-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.47
+   time (s)            : 1.6
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 292
-   states saved        : 337
+   states              : 295
+   states saved        : 340
    state matches       : 0
-   transitions         : 1469
-   trace steps         : 291
+   transitions         : 1475
+   trace steps         : 294
    valid calls         : 2526
    provers             : cvc4, z3
    prover calls        : 44
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB021-reductionmissing-orig-yes_log.txt
-Checking DRB022-reductionmissing-var-yes with nthreads<=5, BOUND=10 ...
+Checking DRB022-reductionmissing-var-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 sum = 25
 Data-race detected: {sum} read by thread 1 intersects {sum} written by thread 0
 
 
-Violation 0 encountered at depth 261:
+Violation 0 encountered at depth 264:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -2029,7 +2076,7 @@ Input:
   _civl_argv=X__civl_argv
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 10)
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
@@ -2053,30 +2100,30 @@ DRB022-reductionmissing-var-yes.c  (DRB022-reductionmissing-var-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB022-reductionmissing-var-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB022-reductionmissing-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.7
+   time (s)            : 1.86
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 296
-   states saved        : 344
+   states              : 299
+   states saved        : 347
    state matches       : 0
-   transitions         : 1482
-   trace steps         : 295
+   transitions         : 1488
+   trace steps         : 298
    valid calls         : 2539
    provers             : cvc4, z3
    prover calls        : 48
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB022-reductionmissing-var-yes_log.txt
-Checking DRB028-privatemissing-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB028-privatemissing-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 a[5]=10
 Data-race detected: {tmp} read by thread 1 intersects {tmp} written by thread 0
 
 
-Violation 0 encountered at depth 57:
+Violation 0 encountered at depth 60:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -2091,7 +2138,7 @@ Assertion: $sef$14
 Input:
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -2113,30 +2160,30 @@ DRB028-privatemissing-orig-yes.c  (DRB028-privatemissing-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB028-privatemissing-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB028-privatemissing-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.57
+   time (s)            : 1.6
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 92
-   states saved        : 137
+   states              : 95
+   states saved        : 140
    state matches       : 0
-   transitions         : 468
-   trace steps         : 91
+   transitions         : 474
+   trace steps         : 94
    valid calls         : 874
    provers             : cvc4, z3
    prover calls        : 44
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB028-privatemissing-orig-yes_log.txt
-Checking DRB029-truedep1-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB029-truedep1-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 a[5]=5
 Data-race detected: {a[1], a[3], a[5], a[7]} read by thread 1 intersects {a[1], a[3], a[5], a[7], a[9]} written by thread 0
 
 
-Violation 0 encountered at depth 56:
+Violation 0 encountered at depth 59:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -2151,7 +2198,7 @@ Assertion: $sef$14
 Input:
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -2173,29 +2220,29 @@ DRB029-truedep1-orig-yes.c  (DRB029-truedep1-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB029-truedep1-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB029-truedep1-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.5
+   time (s)            : 1.63
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 90
-   states saved        : 135
+   states              : 93
+   states saved        : 138
    state matches       : 0
-   transitions         : 444
-   trace steps         : 89
+   transitions         : 450
+   trace steps         : 92
    valid calls         : 861
    provers             : cvc4, z3
    prover calls        : 44
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB029-truedep1-orig-yes_log.txt
-Checking DRB030-truedep1-var-yes with nthreads<=5, BOUND=10 ...
+Checking DRB030-truedep1-var-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 Data-race detected: {a[1], a[3], a[5], a[7]} read by thread 1 intersects {a[1], a[3], a[5], a[7], a[9]} written by thread 0
 
 
-Violation 0 encountered at depth 60:
+Violation 0 encountered at depth 63:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -2212,7 +2259,7 @@ Input:
   _civl_argv=X__civl_argv
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 10)
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
@@ -2236,30 +2283,30 @@ DRB030-truedep1-var-yes.c  (DRB030-truedep1-var-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB030-truedep1-var-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB030-truedep1-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.6
+   time (s)            : 1.71
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 93
-   states saved        : 140
+   states              : 96
+   states saved        : 143
    state matches       : 0
-   transitions         : 456
-   trace steps         : 92
+   transitions         : 462
+   trace steps         : 95
    valid calls         : 869
    provers             : cvc4, z3
    prover calls        : 48
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB030-truedep1-var-yes_log.txt
-Checking DRB031-truedepfirstdimension-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB031-truedepfirstdimension-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 b[5][5]=(1/2)
 Data-race detected: {b[1][0 .. 9], b[3][0 .. 9], b[5][0 .. 9], b[7][0 .. 9]} read by thread 1 intersects {b[1][1 .. 10], b[3][1 .. 10], b[5][1 .. 10], b[7][1 .. 10], b[9][1 .. 10]} written by thread 0
 
 
-Violation 0 encountered at depth 256:
+Violation 0 encountered at depth 259:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -2274,7 +2321,7 @@ Assertion: $sef$14
 Input:
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -2296,29 +2343,29 @@ DRB031-truedepfirstdimension-orig-yes.c  (DRB031-truedepfirstdimension-orig-yes.
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB031-truedepfirstdimension-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB031-truedepfirstdimension-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.6
+   time (s)            : 1.71
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 290
-   states saved        : 335
+   states              : 293
+   states saved        : 338
    state matches       : 0
-   transitions         : 1149
-   trace steps         : 289
+   transitions         : 1155
+   trace steps         : 292
    valid calls         : 3275
    provers             : cvc4, z3
    prover calls        : 44
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB031-truedepfirstdimension-orig-yes_log.txt
-Checking DRB032-truedepfirstdimension-var-yes with nthreads<=5, BOUND=10 ...
+Checking DRB032-truedepfirstdimension-var-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 Data-race detected: {b[1][0 .. 9], b[3][0 .. 9], b[5][0 .. 9], b[7][0 .. 9]} read by thread 1 intersects {b[1][1 .. 10], b[3][1 .. 10], b[5][1 .. 10], b[7][1 .. 10], b[9][1 .. 10]} written by thread 0
 
 
-Violation 0 encountered at depth 260:
+Violation 0 encountered at depth 263:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -2335,7 +2382,7 @@ Input:
   _civl_argv=X__civl_argv
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 10)
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
@@ -2359,30 +2406,30 @@ DRB032-truedepfirstdimension-var-yes.c  (DRB032-truedepfirstdimension-var-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB032-truedepfirstdimension-var-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB032-truedepfirstdimension-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.58
+   time (s)            : 1.8
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 293
-   states saved        : 340
+   states              : 296
+   states saved        : 343
    state matches       : 0
-   transitions         : 1162
-   trace steps         : 292
+   transitions         : 1168
+   trace steps         : 295
    valid calls         : 3280
    provers             : cvc4, z3
    prover calls        : 48
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB032-truedepfirstdimension-var-yes_log.txt
-Checking DRB033-truedeplinear-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB033-truedeplinear-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 a[5]=3
 Data-race detected: {a[1], a[3]} read by thread 1 intersects {a[1], a[5], a[9]} written by thread 0
 
 
-Violation 0 encountered at depth 52:
+Violation 0 encountered at depth 55:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -2397,7 +2444,7 @@ Assertion: $sef$14
 Input:
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -2419,29 +2466,29 @@ DRB033-truedeplinear-orig-yes.c  (DRB033-truedeplinear-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB033-truedeplinear-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB033-truedeplinear-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.49
+   time (s)            : 1.6
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 82
-   states saved        : 127
+   states              : 85
+   states saved        : 130
    state matches       : 0
-   transitions         : 427
-   trace steps         : 81
+   transitions         : 433
+   trace steps         : 84
    valid calls         : 812
    provers             : cvc4, z3
    prover calls        : 44
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB033-truedeplinear-orig-yes_log.txt
-Checking DRB034-truedeplinear-var-yes with nthreads<=5, BOUND=10 ...
+Checking DRB034-truedeplinear-var-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 Data-race detected: {a[1], a[3]} read by thread 1 intersects {a[1], a[5], a[9]} written by thread 0
 
 
-Violation 0 encountered at depth 56:
+Violation 0 encountered at depth 59:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -2458,7 +2505,7 @@ Input:
   _civl_argv=X__civl_argv
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 10)
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
@@ -2482,24 +2529,24 @@ DRB034-truedeplinear-var-yes.c  (DRB034-truedeplinear-var-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB034-truedeplinear-var-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB034-truedeplinear-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.57
+   time (s)            : 1.67
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 85
-   states saved        : 132
+   states              : 88
+   states saved        : 135
    state matches       : 0
-   transitions         : 440
-   trace steps         : 84
+   transitions         : 446
+   trace steps         : 87
    valid calls         : 820
    provers             : cvc4, z3
    prover calls        : 48
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB034-truedeplinear-var-yes_log.txt
-Checking DRB037-truedepseconddimension-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB037-truedepseconddimension-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 b[0][0]=0
 b[1][1]=0
@@ -2507,7 +2554,7 @@ b[1][1]=0
 Data-race detected: {b[2][1]} read by thread 1 intersects {b[2][1]} written by thread 0
 
 
-Violation 0 encountered at depth 99:
+Violation 0 encountered at depth 108:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -2522,7 +2569,7 @@ Assertion: $sef$14
 Input:
   N=3
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -2544,29 +2591,29 @@ DRB037-truedepseconddimension-orig-yes.c  (DRB037-truedepseconddimension-orig-ye
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB037-truedepseconddimension-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB037-truedepseconddimension-orig-yes.c 
 
 === Stats ===
-   time (s)            : 6.68
+   time (s)            : 13.68
    memory (bytes)      : 272629760
-   max process count   : 6
-   states              : 566
-   states saved        : 969
-   state matches       : 4
-   transitions         : 3643
-   trace steps         : 569
-   valid calls         : 8347
+   max process count   : 9
+   states              : 1205
+   states saved        : 2096
+   state matches       : 7
+   transitions         : 8318
+   trace steps         : 1211
+   valid calls         : 20598
    provers             : cvc4, z3
    prover calls        : 14
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB037-truedepseconddimension-orig-yes_log.txt
-Checking DRB038-truedepseconddimension-var-yes with nthreads<=5, BOUND=10 ...
+Checking DRB038-truedepseconddimension-var-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 Data-race detected: {b[2][1]} read by thread 1 intersects {b[2][1]} written by thread 0
 
 
-Violation 0 encountered at depth 103:
+Violation 0 encountered at depth 112:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -2583,7 +2630,7 @@ Input:
   _civl_argv=X__civl_argv
   N=3
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 3)
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
@@ -2607,45 +2654,48 @@ DRB038-truedepseconddimension-var-yes.c  (DRB038-truedepseconddimension-var-yes.
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB038-truedepseconddimension-var-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB038-truedepseconddimension-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.57
+   time (s)            : 2.03
    memory (bytes)      : 272629760
-   max process count   : 6
-   states              : 567
-   states saved        : 973
-   state matches       : 4
-   transitions         : 3656
-   trace steps         : 570
-   valid calls         : 8336
+   max process count   : 9
+   states              : 1206
+   states saved        : 2100
+   state matches       : 7
+   transitions         : 8331
+   trace steps         : 1212
+   valid calls         : 20587
    provers             : cvc4, z3
    prover calls        : 19
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB038-truedepseconddimension-var-yes_log.txt
-Checking DRB041-3mm-parallel-no with nthreads<=5, BOUND=10 ...
+Checking DRB041-3mm-parallel-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
-17s: mem=1024Mb trans=404689 traceSteps=50789 explored=50286 saved=88651 prove=12
-32s: mem=1024Mb trans=590331 traceSteps=65420 explored=64772 saved=114056 prove=12
+18s: mem=974Mb trans=438105 traceSteps=59327 explored=58929 saved=104333 prove=12
+33s: mem=1220Mb trans=858004 traceSteps=112000 explored=111244 saved=196939 prove=12
+48s: mem=1220Mb trans=1174430 traceSteps=145912 explored=144923 saved=256571 prove=12
+63s: mem=1336Mb trans=1407673 traceSteps=168018 explored=166885 saved=295188 prove=12
+78s: mem=1336Mb trans=1592874 traceSteps=183265 explored=182025 saved=322007 prove=12
 
 === Source files ===
 DRB041-3mm-parallel-no.c  (DRB041-3mm-parallel-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB041-3mm-parallel-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB041-3mm-parallel-no.c 
 
 === Stats ===
-   time (s)            : 41.04
-   memory (bytes)      : 1073741824
-   max process count   : 6
-   states              : 74839
-   states saved        : 131833
-   state matches       : 760
-   transitions         : 712723
-   trace steps         : 75598
-   valid calls         : 3249089
+   time (s)            : 82.47
+   memory (bytes)      : 1400897536
+   max process count   : 9
+   states              : 194605
+   states saved        : 344211
+   state matches       : 1330
+   transitions         : 1710302
+   trace steps         : 195934
+   valid calls         : 6784285
    provers             : cvc4, z3
    prover calls        : 12
 
@@ -2676,7 +2726,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB047-doallchar-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB047-doallchar-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -2684,18 +2734,18 @@ DRB047-doallchar-orig-no.c  (DRB047-doallchar-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB047-doallchar-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB047-doallchar-orig-no.c 
 
 === Stats ===
-   time (s)            : 1.68
+   time (s)            : 2.29
    memory (bytes)      : 327155712
-   max process count   : 6
-   states              : 888
-   states saved        : 1189
-   state matches       : 4
-   transitions         : 3767
-   trace steps         : 891
-   valid calls         : 9812
+   max process count   : 9
+   states              : 1815
+   states saved        : 2604
+   state matches       : 7
+   transitions         : 9021
+   trace steps         : 1821
+   valid calls         : 24082
    provers             : cvc4, z3
    prover calls        : 0
 
@@ -2726,7 +2776,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB048-firstprivate-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB048-firstprivate-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -2734,18 +2784,18 @@ DRB048-firstprivate-orig-no.c  (DRB048-firstprivate-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB048-firstprivate-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB048-firstprivate-orig-no.c 
 
 === Stats ===
-   time (s)            : 2.25
-   memory (bytes)      : 327155712
-   max process count   : 6
-   states              : 3824
-   states saved        : 6637
-   state matches       : 40
-   transitions         : 25627
-   trace steps         : 3863
-   valid calls         : 64547
+   time (s)            : 4.0
+   memory (bytes)      : 473956352
+   max process count   : 9
+   states              : 10070
+   states saved        : 17655
+   state matches       : 70
+   transitions         : 71147
+   trace steps         : 10139
+   valid calls         : 186673
    provers             : cvc4, z3
    prover calls        : 12
 
@@ -2776,7 +2826,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB050-functionparameter-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB050-functionparameter-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -2784,18 +2834,18 @@ DRB050-functionparameter-orig-no.c  (DRB050-functionparameter-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB050-functionparameter-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB050-functionparameter-orig-no.c 
 
 === Stats ===
-   time (s)            : 2.2
-   memory (bytes)      : 327155712
-   max process count   : 6
-   states              : 3824
-   states saved        : 6912
-   state matches       : 40
-   transitions         : 25793
-   trace steps         : 3863
-   valid calls         : 64549
+   time (s)            : 4.13
+   memory (bytes)      : 473956352
+   max process count   : 9
+   states              : 10070
+   states saved        : 18095
+   state matches       : 70
+   transitions         : 71292
+   trace steps         : 10139
+   valid calls         : 186675
    provers             : cvc4, z3
    prover calls        : 12
 
@@ -2826,7 +2876,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB052-indirectaccesssharebase-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB052-indirectaccesssharebase-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -2834,18 +2884,18 @@ DRB052-indirectaccesssharebase-orig-no.c  (DRB052-indirectaccesssharebase-orig-n
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB052-indirectaccesssharebase-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB052-indirectaccesssharebase-orig-no.c 
 
 === Stats ===
-   time (s)            : 2.36
-   memory (bytes)      : 327155712
-   max process count   : 6
-   states              : 6646
-   states saved        : 8504
-   state matches       : 4
-   transitions         : 12186
-   trace steps         : 6649
-   valid calls         : 54439
+   time (s)            : 3.14
+   memory (bytes)      : 339738624
+   max process count   : 9
+   states              : 7303
+   states saved        : 9679
+   state matches       : 7
+   transitions         : 16960
+   trace steps         : 7309
+   valid calls         : 68031
    provers             : cvc4, z3
    prover calls        : 0
 
@@ -2876,7 +2926,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB053-inneronly1-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB053-inneronly1-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -2884,18 +2934,18 @@ DRB053-inneronly1-orig-no.c  (DRB053-inneronly1-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB053-inneronly1-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB053-inneronly1-orig-no.c 
 
 === Stats ===
-   time (s)            : 2.33
-   memory (bytes)      : 327155712
-   max process count   : 6
-   states              : 3947
-   states saved        : 6658
-   state matches       : 36
-   transitions         : 25690
-   trace steps         : 3982
-   valid calls         : 66436
+   time (s)            : 4.29
+   memory (bytes)      : 490733568
+   max process count   : 9
+   states              : 9860
+   states saved        : 16963
+   state matches       : 63
+   transitions         : 68089
+   trace steps         : 9922
+   valid calls         : 181474
    provers             : cvc4, z3
    prover calls        : 0
 
@@ -2926,7 +2976,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB054-inneronly2-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB054-inneronly2-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -2934,18 +2984,18 @@ DRB054-inneronly2-orig-no.c  (DRB054-inneronly2-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB054-inneronly2-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB054-inneronly2-orig-no.c 
 
 === Stats ===
-   time (s)            : 5.28
-   memory (bytes)      : 589299712
-   max process count   : 6
-   states              : 19754
-   states saved        : 33328
-   state matches       : 180
-   transitions         : 127549
-   trace steps         : 19933
-   valid calls         : 310153
+   time (s)            : 12.14
+   memory (bytes)      : 1031798784
+   max process count   : 9
+   states              : 48824
+   states saved        : 84358
+   state matches       : 315
+   transitions         : 338554
+   trace steps         : 49138
+   valid calls         : 870808
    provers             : cvc4, z3
    prover calls        : 42
 
@@ -2976,7 +3026,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB057-jacobiinitialize-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB057-jacobiinitialize-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -2984,18 +3034,18 @@ DRB057-jacobiinitialize-orig-no.c  (DRB057-jacobiinitialize-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB057-jacobiinitialize-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB057-jacobiinitialize-orig-no.c 
 
 === Stats ===
-   time (s)            : 6.03
-   memory (bytes)      : 333447168
-   max process count   : 6
-   states              : 3469
-   states saved        : 6003
-   state matches       : 36
-   transitions         : 34839
-   trace steps         : 3504
-   valid calls         : 77997
+   time (s)            : 12.94
+   memory (bytes)      : 343932928
+   max process count   : 9
+   states              : 9106
+   states saved        : 15936
+   state matches       : 63
+   transitions         : 82758
+   trace steps         : 9168
+   valid calls         : 199857
    provers             : cvc4, z3
    prover calls        : 12
 
@@ -3026,7 +3076,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB060-matrixmultiply-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB060-matrixmultiply-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -3034,18 +3084,18 @@ DRB060-matrixmultiply-orig-no.c  (DRB060-matrixmultiply-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB060-matrixmultiply-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB060-matrixmultiply-orig-no.c 
 
 === Stats ===
-   time (s)            : 7.52
-   memory (bytes)      : 685768704
-   max process count   : 6
-   states              : 3823
-   states saved        : 6635
-   state matches       : 40
-   transitions         : 78869
-   trace steps         : 3862
-   valid calls         : 423995
+   time (s)            : 13.38
+   memory (bytes)      : 704643072
+   max process count   : 9
+   states              : 10069
+   states saved        : 17653
+   state matches       : 70
+   transitions         : 156213
+   trace steps         : 10138
+   valid calls         : 761791
    provers             : cvc4, z3
    prover calls        : 12
 
@@ -3076,7 +3126,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB061-matrixvector1-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB061-matrixvector1-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -3084,18 +3134,18 @@ DRB061-matrixvector1-orig-no.c  (DRB061-matrixvector1-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB061-matrixvector1-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB061-matrixvector1-orig-no.c 
 
 === Stats ===
-   time (s)            : 2.88
-   memory (bytes)      : 327155712
-   max process count   : 6
-   states              : 3823
-   states saved        : 6910
-   state matches       : 40
-   transitions         : 32119
-   trace steps         : 3862
-   valid calls         : 79145
+   time (s)            : 5.5
+   memory (bytes)      : 473956352
+   max process count   : 9
+   states              : 10069
+   states saved        : 18093
+   state matches       : 70
+   transitions         : 81413
+   trace steps         : 10138
+   valid calls         : 210031
    provers             : cvc4, z3
    prover calls        : 12
 
@@ -3126,7 +3176,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB063-outeronly1-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB063-outeronly1-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -3134,18 +3184,18 @@ DRB063-outeronly1-orig-no.c  (DRB063-outeronly1-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB063-outeronly1-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB063-outeronly1-orig-no.c 
 
 === Stats ===
-   time (s)            : 2.79
-   memory (bytes)      : 327155712
-   max process count   : 6
-   states              : 3823
-   states saved        : 6635
-   state matches       : 40
-   transitions         : 30744
-   trace steps         : 3862
-   valid calls         : 80795
+   time (s)            : 5.48
+   memory (bytes)      : 473956352
+   max process count   : 9
+   states              : 10069
+   states saved        : 17653
+   state matches       : 70
+   transitions         : 79213
+   trace steps         : 10138
+   valid calls         : 212671
    provers             : cvc4, z3
    prover calls        : 12
 
@@ -3176,7 +3226,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB064-outeronly2-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB064-outeronly2-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -3184,18 +3234,18 @@ DRB064-outeronly2-orig-no.c  (DRB064-outeronly2-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB064-outeronly2-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB064-outeronly2-orig-no.c 
 
 === Stats ===
-   time (s)            : 1.4
+   time (s)            : 2.04
    memory (bytes)      : 272629760
-   max process count   : 6
-   states              : 438
-   states saved        : 739
-   state matches       : 4
-   transitions         : 4275
-   trace steps         : 441
-   valid calls         : 11881
+   max process count   : 9
+   states              : 1095
+   states saved        : 1884
+   state matches       : 7
+   transitions         : 9832
+   trace steps         : 1101
+   valid calls         : 27363
    provers             : cvc4, z3
    prover calls        : 0
 
@@ -3226,7 +3276,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB065-pireduction-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB065-pireduction-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 PI=(16/5)
 PI=(1344/425)
@@ -3238,24 +3288,28 @@ PI=(1258801354553712/400472125058915)
 PI=(1466009848053965824/466452100431764525)
 PI=(72640890590065993744/23114744042267150325)
 PI=(2828092472189664178265408/899971068750144634608625)
+17s: mem=786Mb trans=934922 traceSteps=85760 explored=82736 saved=165259 prove=13
+32s: mem=920Mb trans=1881602 traceSteps=170346 explored=164280 saved=330186 prove=13
+47s: mem=920Mb trans=2794643 traceSteps=251571 explored=242645 saved=489061 prove=13
+62s: mem=1274Mb trans=3699758 traceSteps=332227 explored=320468 saved=646764 prove=13
 
 === Source files ===
 DRB065-pireduction-orig-no.c  (DRB065-pireduction-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB065-pireduction-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB065-pireduction-orig-no.c 
 
 === Stats ===
-   time (s)            : 5.4
-   memory (bytes)      : 570425344
-   max process count   : 6
-   states              : 22985
-   states saved        : 44858
-   state matches       : 760
-   transitions         : 245332
-   trace steps         : 23744
-   valid calls         : 425051
+   time (s)            : 67.35
+   memory (bytes)      : 1335885824
+   max process count   : 9
+   states              : 353251
+   states saved        : 713206
+   state matches       : 12980
+   transitions         : 4082207
+   trace steps         : 366230
+   valid calls         : 6634842
    provers             : cvc4, z3
    prover calls        : 13
 
@@ -3286,7 +3340,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB066-pointernoaliasing-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB066-pointernoaliasing-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -3294,18 +3348,18 @@ DRB066-pointernoaliasing-orig-no.c  (DRB066-pointernoaliasing-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB066-pointernoaliasing-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB066-pointernoaliasing-orig-no.c 
 
 === Stats ===
-   time (s)            : 2.58
-   memory (bytes)      : 327155712
-   max process count   : 6
-   states              : 3865
-   states saved        : 6698
-   state matches       : 40
-   transitions         : 25775
-   trace steps         : 3904
-   valid calls         : 65337
+   time (s)            : 4.66
+   memory (bytes)      : 473956352
+   max process count   : 9
+   states              : 10111
+   states saved        : 17716
+   state matches       : 70
+   transitions         : 71214
+   trace steps         : 10180
+   valid calls         : 187853
    provers             : cvc4, z3
    prover calls        : 12
 
@@ -3336,7 +3390,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB067-restrictpointer1-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB067-restrictpointer1-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -3344,18 +3398,18 @@ DRB067-restrictpointer1-orig-no.c  (DRB067-restrictpointer1-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB067-restrictpointer1-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB067-restrictpointer1-orig-no.c 
 
 === Stats ===
-   time (s)            : 2.61
-   memory (bytes)      : 327155712
-   max process count   : 6
-   states              : 3866
-   states saved        : 6699
-   state matches       : 40
-   transitions         : 25925
-   trace steps         : 3905
-   valid calls         : 65337
+   time (s)            : 4.93
+   memory (bytes)      : 473956352
+   max process count   : 9
+   states              : 10112
+   states saved        : 17717
+   state matches       : 70
+   transitions         : 71580
+   trace steps         : 10181
+   valid calls         : 187853
    provers             : cvc4, z3
    prover calls        : 12
 
@@ -3386,7 +3440,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB068-restrictpointer2-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB068-restrictpointer2-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -3394,18 +3448,18 @@ DRB068-restrictpointer2-orig-no.c  (DRB068-restrictpointer2-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB068-restrictpointer2-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB068-restrictpointer2-orig-no.c 
 
 === Stats ===
-   time (s)            : 2.8
-   memory (bytes)      : 404750336
-   max process count   : 6
-   states              : 3984
-   states saved        : 6848
-   state matches       : 40
-   transitions         : 25630
-   trace steps         : 4023
-   valid calls         : 70491
+   time (s)            : 5.2
+   memory (bytes)      : 570425344
+   max process count   : 9
+   states              : 10230
+   states saved        : 17866
+   state matches       : 70
+   transitions         : 70934
+   trace steps         : 10299
+   valid calls         : 195797
    provers             : cvc4, z3
    prover calls        : 12
 
@@ -3436,13 +3490,13 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB090-static-local-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB090-static-local-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 a[5]=5 b[10]=10
 Data-race detected: {tmp$0} read by thread 1 intersects {tmp$0} written by thread 0
 
 
-Violation 0 encountered at depth 67:
+Violation 0 encountered at depth 70:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -3457,7 +3511,7 @@ Assertion: $sef$16
 Input:
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -3479,24 +3533,24 @@ DRB090-static-local-orig-yes.c  (DRB090-static-local-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB090-static-local-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB090-static-local-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.67
+   time (s)            : 2.17
    memory (bytes)      : 272629760
-   max process count   : 6
-   states              : 538
-   states saved        : 883
-   state matches       : 4
-   transitions         : 3382
-   trace steps         : 541
-   valid calls         : 7687
+   max process count   : 9
+   states              : 1198
+   states saved        : 2031
+   state matches       : 7
+   transitions         : 8129
+   trace steps         : 1204
+   valid calls         : 20109
    provers             : cvc4, z3
    prover calls        : 44
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB090-static-local-orig-yes_log.txt
-Checking DRB093-doall2-collapse-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB093-doall2-collapse-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -3504,18 +3558,18 @@ DRB093-doall2-collapse-orig-no.c  (DRB093-doall2-collapse-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB093-doall2-collapse-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB093-doall2-collapse-orig-no.c 
 
 === Stats ===
-   time (s)            : 3.58
-   memory (bytes)      : 394264576
-   max process count   : 6
-   states              : 5473
-   states saved        : 8285
-   state matches       : 40
-   transitions         : 28871
-   trace steps         : 5512
-   valid calls         : 87205
+   time (s)            : 7.03
+   memory (bytes)      : 473956352
+   max process count   : 9
+   states              : 12709
+   states saved        : 20293
+   state matches       : 70
+   transitions         : 76338
+   trace steps         : 12778
+   valid calls         : 223602
    provers             : cvc4, z3
    prover calls        : 12
 
@@ -3546,15 +3600,18 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB104-nowait-barrier-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB104-nowait-barrier-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 error = 16
 error = 16
+17s: mem=786Mb trans=666832 traceSteps=68248 explored=65725 saved=132449 prove=34
 error = 16
 error = 16
 error = 16
+32s: mem=1048Mb trans=1384153 traceSteps=141794 explored=136545 saved=275090 prove=34
 error = 16
 error = 16
+47s: mem=1278Mb trans=2105825 traceSteps=215692 explored=207700 saved=418492 prove=34
 error = 16
 
 === Source files ===
@@ -3562,18 +3619,18 @@ DRB104-nowait-barrier-orig-no.c  (DRB104-nowait-barrier-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB104-nowait-barrier-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB104-nowait-barrier-orig-no.c 
 
 === Stats ===
-   time (s)            : 4.68
-   memory (bytes)      : 473956352
-   max process count   : 6
-   states              : 17898
-   states saved        : 34604
-   state matches       : 608
-   transitions         : 160505
-   trace steps         : 18505
-   valid calls         : 280112
+   time (s)            : 59.41
+   memory (bytes)      : 1753219072
+   max process count   : 9
+   states              : 269086
+   states saved        : 542632
+   state matches       : 10384
+   transitions         : 2734081
+   trace steps         : 279469
+   valid calls         : 4186620
    provers             : cvc4, z3
    prover calls        : 34
 
@@ -3604,27 +3661,33 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB110-ordered-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB110-ordered-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 x=100
+17s: mem=786Mb trans=981024 traceSteps=102747 explored=72696 saved=168189 prove=0
+32s: mem=786Mb trans=1945711 traceSteps=206741 explored=142843 saved=336703 prove=0
+47s: mem=1020Mb trans=2866835 traceSteps=306370 explored=210257 saved=498832 prove=0
+62s: mem=1174Mb trans=3736583 traceSteps=401543 explored=272549 saved=651706 prove=0
+77s: mem=1384Mb trans=4613975 traceSteps=497446 explored=335195 saved=805601 prove=0
+92s: mem=1384Mb trans=5495003 traceSteps=593942 explored=397988 saved=960173 prove=0
 
 === Source files ===
 DRB110-ordered-orig-no.c  (DRB110-ordered-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB110-ordered-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB110-ordered-orig-no.c 
 
 === Stats ===
-   time (s)            : 8.13
-   memory (bytes)      : 685768704
-   max process count   : 6
-   states              : 37773
-   states saved        : 85581
-   state matches       : 14254
-   transitions         : 505131
-   trace steps         : 52026
-   valid calls         : 647109
+   time (s)            : 101.01
+   memory (bytes)      : 1451229184
+   max process count   : 9
+   states              : 438853
+   states saved        : 1060658
+   state matches       : 217690
+   transitions         : 6067456
+   trace steps         : 656542
+   valid calls         : 7372486
    provers             : cvc4, z3
    prover calls        : 0
 
@@ -3655,13 +3718,13 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB111-linearmissing-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB111-linearmissing-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 c[5]=(205/42)
 Data-race detected: {j} read by thread 1 intersects {j} written by thread 0
 
 
-Violation 0 encountered at depth 77:
+Violation 0 encountered at depth 80:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -3676,7 +3739,7 @@ Assertion: $sef$14
 Input:
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -3698,24 +3761,24 @@ DRB111-linearmissing-orig-yes.c  (DRB111-linearmissing-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB111-linearmissing-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB111-linearmissing-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.44
+   time (s)            : 1.55
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 112
-   states saved        : 157
+   states              : 115
+   states saved        : 160
    state matches       : 0
-   transitions         : 491
-   trace steps         : 111
+   transitions         : 497
+   trace steps         : 114
    valid calls         : 1084
    provers             : cvc4, z3
    prover calls        : 44
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB111-linearmissing-orig-yes_log.txt
-Checking DRB113-default-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB113-default-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -3723,18 +3786,18 @@ DRB113-default-orig-no.c  (DRB113-default-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB113-default-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB113-default-orig-no.c 
 
 === Stats ===
-   time (s)            : 4.93
-   memory (bytes)      : 394264576
-   max process count   : 6
-   states              : 7958
-   states saved        : 13770
-   state matches       : 80
-   transitions         : 65677
-   trace steps         : 8037
-   valid calls         : 171815
+   time (s)            : 11.7
+   memory (bytes)      : 570425344
+   max process count   : 9
+   states              : 20639
+   states saved        : 36103
+   state matches       : 140
+   transitions         : 165111
+   trace steps         : 20778
+   valid calls         : 441816
    provers             : cvc4, z3
    prover calls        : 12
 
@@ -3765,13 +3828,13 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB169-missingsyncwrite-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB169-missingsyncwrite-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 32 32 32 32 32 32 32 32 32 32 
 Data-race detected: {r1[0 .. 10]} written by thread 1 intersects {r1[0 .. 10]} written by thread 0
 
 
-Violation 0 encountered at depth 2255:
+Violation 0 encountered at depth 2258:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:381.4-383.43
     $assert($mem_no_intersect(cur_mw, tmp_mw, &out_s0, &out_s1), 
@@ -3786,7 +3849,7 @@ Assertion: $sef$17
 Input:
   N=10
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -3808,24 +3871,24 @@ DRB169-missingsyncwrite-orig-yes.c  (DRB169-missingsyncwrite-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB169-missingsyncwrite-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB169-missingsyncwrite-orig-yes.c 
 
 === Stats ===
-   time (s)            : 2.73
-   memory (bytes)      : 394264576
+   time (s)            : 3.16
+   memory (bytes)      : 329252864
    max process count   : 3
-   states              : 2309
-   states saved        : 2354
+   states              : 2312
+   states saved        : 2357
    state matches       : 0
-   transitions         : 7033
-   trace steps         : 2308
+   transitions         : 7039
+   trace steps         : 2311
    valid calls         : 59681
    provers             : cvc4, z3
    prover calls        : 44
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB169-missingsyncwrite-orig-yes_log.txt
-Checking DRB170-nestedloops-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB170-nestedloops-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -3833,18 +3896,18 @@ DRB170-nestedloops-orig-no.c  (DRB170-nestedloops-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB170-nestedloops-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB170-nestedloops-orig-no.c 
 
 === Stats ===
-   time (s)            : 4.45
-   memory (bytes)      : 583008256
-   max process count   : 6
-   states              : 3824
-   states saved        : 6637
-   state matches       : 40
-   transitions         : 93942
-   trace steps         : 3863
-   valid calls         : 212245
+   time (s)            : 7.86
+   memory (bytes)      : 824180736
+   max process count   : 9
+   states              : 10070
+   states saved        : 17655
+   state matches       : 70
+   transitions         : 180331
+   trace steps         : 10139
+   valid calls         : 422991
    provers             : cvc4, z3
    prover calls        : 12
 
@@ -3875,7 +3938,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB005-indirectaccess1-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB005-indirectaccess1-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 x1[999]=(999/2) xa2[1285]=(1297/2)
 x1[999]=(999/2) xa2[1285]=(1297/2)
@@ -3890,7 +3953,7 @@ x1[999]=(999/2) xa2[1285]=(1297/2)
 Data-race detected: {Dyscope0_malloc_0[523], Dyscope0_malloc_0[527], Dyscope0_malloc_0[533], Dyscope0_malloc_0[535], Dyscope0_malloc_0[539], Dyscope0_malloc_0[545]} read by thread 1 intersects {Dyscope0_malloc_0[521], Dyscope0_malloc_0[525], Dyscope0_malloc_0[529], Dyscope0_malloc_0[533], Dyscope0_malloc_0[537], Dyscope0_malloc_0[541]} written by thread 0
 
 
-Violation 0 encountered at depth 3227:
+Violation 0 encountered at depth 3230:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -3905,7 +3968,7 @@ Assertion: $sef$14
 Input:
   N=6
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
   0<=(SIZEOF_REAL-1)
@@ -3928,24 +3991,24 @@ DRB005-indirectaccess1-orig-yes.c  (DRB005-indirectaccess1-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB005-indirectaccess1-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB005-indirectaccess1-orig-yes.c 
 
 === Stats ===
-   time (s)            : 2.13
+   time (s)            : 2.46
    memory (bytes)      : 327155712
    max process count   : 3
-   states              : 3728
-   states saved        : 4131
+   states              : 3731
+   states saved        : 4134
    state matches       : 5
-   transitions         : 6073
-   trace steps         : 3732
+   transitions         : 6079
+   trace steps         : 3735
    valid calls         : 22126
    provers             : cvc4, z3
    prover calls        : 14
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB005-indirectaccess1-orig-yes_log.txt
-Checking DRB006-indirectaccess2-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB006-indirectaccess2-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 x1[999]=(999/2) xa2[1285]=(1297/2)
 x1[999]=(999/2) xa2[1285]=(1297/2)
@@ -3960,7 +4023,7 @@ x1[999]=(999/2) xa2[1285]=(1297/2)
 Data-race detected: {Dyscope0_malloc_0[523], Dyscope0_malloc_0[527], Dyscope0_malloc_0[533], Dyscope0_malloc_0[535], Dyscope0_malloc_0[539], Dyscope0_malloc_0[545]} read by thread 1 intersects {Dyscope0_malloc_0[521], Dyscope0_malloc_0[525], Dyscope0_malloc_0[529], Dyscope0_malloc_0[533], Dyscope0_malloc_0[537], Dyscope0_malloc_0[541]} written by thread 0
 
 
-Violation 0 encountered at depth 3227:
+Violation 0 encountered at depth 3230:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -3975,7 +4038,7 @@ Assertion: $sef$14
 Input:
   N=6
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
   0<=(SIZEOF_REAL-1)
@@ -3998,24 +4061,24 @@ DRB006-indirectaccess2-orig-yes.c  (DRB006-indirectaccess2-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB006-indirectaccess2-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB006-indirectaccess2-orig-yes.c 
 
 === Stats ===
-   time (s)            : 2.19
+   time (s)            : 2.43
    memory (bytes)      : 327155712
    max process count   : 3
-   states              : 3728
-   states saved        : 4131
+   states              : 3731
+   states saved        : 4134
    state matches       : 5
-   transitions         : 6073
-   trace steps         : 3732
+   transitions         : 6079
+   trace steps         : 3735
    valid calls         : 22126
    provers             : cvc4, z3
    prover calls        : 14
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB006-indirectaccess2-orig-yes_log.txt
-Checking DRB007-indirectaccess3-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB007-indirectaccess3-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 x1[999]=(999/2) xa2[1285]=(1297/2)
 x1[999]=(999/2) xa2[1285]=(1297/2)
@@ -4030,7 +4093,7 @@ x1[999]=(999/2) xa2[1285]=(1297/2)
 Data-race detected: {Dyscope0_malloc_0[523], Dyscope0_malloc_0[533], Dyscope0_malloc_0[535], Dyscope0_malloc_0[545]} read by thread 1 intersects {Dyscope0_malloc_0[521], Dyscope0_malloc_0[525], Dyscope0_malloc_0[533], Dyscope0_malloc_0[537]} written by thread 0
 
 
-Violation 0 encountered at depth 3225:
+Violation 0 encountered at depth 3228:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -4045,7 +4108,7 @@ Assertion: $sef$14
 Input:
   N=4
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
   0<=(SIZEOF_REAL-1)
@@ -4068,24 +4131,24 @@ DRB007-indirectaccess3-orig-yes.c  (DRB007-indirectaccess3-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB007-indirectaccess3-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB007-indirectaccess3-orig-yes.c 
 
 === Stats ===
-   time (s)            : 2.1
+   time (s)            : 2.64
    memory (bytes)      : 327155712
    max process count   : 3
-   states              : 3635
-   states saved        : 3961
+   states              : 3638
+   states saved        : 3964
    state matches       : 3
-   transitions         : 5461
-   trace steps         : 3637
+   transitions         : 5467
+   trace steps         : 3640
    valid calls         : 20332
    provers             : cvc4, z3
    prover calls        : 14
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB007-indirectaccess3-orig-yes_log.txt
-Checking DRB008-indirectaccess4-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB008-indirectaccess4-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 x1[999]=(999/2) xa2[1285]=(1297/2)
 x1[999]=(999/2) xa2[1285]=(1297/2)
@@ -4100,7 +4163,7 @@ x1[999]=(999/2) xa2[1285]=(1297/2)
 Data-race detected: {Dyscope0_malloc_0[533], Dyscope0_malloc_0[545]} read by thread 1 intersects {Dyscope0_malloc_0[521], Dyscope0_malloc_0[533]} written by thread 0
 
 
-Violation 0 encountered at depth 3223:
+Violation 0 encountered at depth 3226:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -4115,7 +4178,7 @@ Assertion: $sef$14
 Input:
   N=2
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
   0<=(SIZEOF_REAL-1)
@@ -4138,29 +4201,29 @@ DRB008-indirectaccess4-orig-yes.c  (DRB008-indirectaccess4-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB008-indirectaccess4-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB008-indirectaccess4-orig-yes.c 
 
 === Stats ===
-   time (s)            : 2.12
+   time (s)            : 2.43
    memory (bytes)      : 327155712
    max process count   : 3
-   states              : 3546
-   states saved        : 3799
+   states              : 3549
+   states saved        : 3802
    state matches       : 1
-   transitions         : 4865
-   trace steps         : 3546
+   transitions         : 4871
+   trace steps         : 3549
    valid calls         : 18722
    provers             : cvc4, z3
    prover calls        : 14
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB008-indirectaccess4-orig-yes_log.txt
-Checking DRB009-lastprivatemissing-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB009-lastprivatemissing-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 x=0x=1x=2x=3x=4x=5x=6x=7x=8x=9Data-race detected: {x} written by thread 1 intersects {x} written by thread 0
 
 
-Violation 0 encountered at depth 28:
+Violation 0 encountered at depth 31:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:381.4-383.43
     $assert($mem_no_intersect(cur_mw, tmp_mw, &out_s0, &out_s1), 
@@ -4175,7 +4238,7 @@ Assertion: $sef$16
 Input:
   N=2
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -4197,29 +4260,29 @@ DRB009-lastprivatemissing-orig-yes.c  (DRB009-lastprivatemissing-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB009-lastprivatemissing-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB009-lastprivatemissing-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.26
+   time (s)            : 1.55
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 331
-   states saved        : 525
+   states              : 334
+   states saved        : 528
    state matches       : 1
-   transitions         : 1528
-   trace steps         : 331
+   transitions         : 1534
+   trace steps         : 334
    valid calls         : 3313
    provers             : cvc4, z3
    prover calls        : 14
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB009-lastprivatemissing-orig-yes_log.txt
-Checking DRB010-lastprivatemissing-var-yes with nthreads<=5, BOUND=10 ...
+Checking DRB010-lastprivatemissing-var-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 x=0x=1x=2x=3x=4x=5x=6x=7x=8x=9Data-race detected: {x} written by thread 1 intersects {x} written by thread 0
 
 
-Violation 0 encountered at depth 32:
+Violation 0 encountered at depth 35:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:381.4-383.43
     $assert($mem_no_intersect(cur_mw, tmp_mw, &out_s0, &out_s1), 
@@ -4236,7 +4299,7 @@ Input:
   _civl_argv=X__civl_argv
   N=2
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 2)
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
@@ -4260,29 +4323,29 @@ DRB010-lastprivatemissing-var-yes.c  (DRB010-lastprivatemissing-var-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB010-lastprivatemissing-var-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB010-lastprivatemissing-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.61
+   time (s)            : 1.86
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 335
-   states saved        : 532
+   states              : 338
+   states saved        : 535
    state matches       : 1
-   transitions         : 1550
-   trace steps         : 335
+   transitions         : 1556
+   trace steps         : 338
    valid calls         : 3326
    provers             : cvc4, z3
    prover calls        : 33
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB010-lastprivatemissing-var-yes_log.txt
-Checking DRB016-outputdep-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB016-outputdep-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 x=0x=1x=2x=3x=4x=5x=6x=7x=8x=9Data-race detected: {x} read by thread 1 intersects {x} written by thread 0
 
 
-Violation 0 encountered at depth 28:
+Violation 0 encountered at depth 31:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -4297,7 +4360,7 @@ Assertion: $sef$14
 Input:
   N=2
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -4319,24 +4382,24 @@ DRB016-outputdep-orig-yes.c  (DRB016-outputdep-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB016-outputdep-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB016-outputdep-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.28
+   time (s)            : 1.55
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 331
-   states saved        : 525
+   states              : 334
+   states saved        : 528
    state matches       : 1
-   transitions         : 1584
-   trace steps         : 331
+   transitions         : 1590
+   trace steps         : 334
    valid calls         : 3485
    provers             : cvc4, z3
    prover calls        : 14
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB016-outputdep-orig-yes_log.txt
-Checking DRB017-outputdep-var-yes with nthreads<=5, BOUND=10 ...
+Checking DRB017-outputdep-var-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 x=0, a[0]=10
 x=1, a[0]=10
@@ -4351,7 +4414,7 @@ x=9, a[0]=10
 Data-race detected: {x} read by thread 1 intersects {x} written by thread 0
 
 
-Violation 0 encountered at depth 32:
+Violation 0 encountered at depth 35:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -4368,7 +4431,7 @@ Input:
   _civl_argv=X__civl_argv
   N=2
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 2)
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
@@ -4392,24 +4455,24 @@ DRB017-outputdep-var-yes.c  (DRB017-outputdep-var-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB017-outputdep-var-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB017-outputdep-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.6
+   time (s)            : 1.82
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 335
-   states saved        : 533
+   states              : 338
+   states saved        : 536
    state matches       : 1
-   transitions         : 1606
-   trace steps         : 335
+   transitions         : 1612
+   trace steps         : 338
    valid calls         : 3508
    provers             : cvc4, z3
    prover calls        : 33
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB017-outputdep-var-yes_log.txt
-Checking DRB035-truedepscalar-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB035-truedepscalar-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 a[0]=10
 a[1]=10
@@ -4424,7 +4487,7 @@ a[5]=20
 Data-race detected: {tmp} read by thread 1 intersects {tmp} written by thread 0
 
 
-Violation 0 encountered at depth 29:
+Violation 0 encountered at depth 32:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -4439,7 +4502,7 @@ Assertion: $sef$14
 Input:
   N=2
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -4461,29 +4524,29 @@ DRB035-truedepscalar-orig-yes.c  (DRB035-truedepscalar-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB035-truedepscalar-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB035-truedepscalar-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.47
+   time (s)            : 1.78
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 332
-   states saved        : 527
+   states              : 335
+   states saved        : 530
    state matches       : 1
-   transitions         : 1584
-   trace steps         : 332
+   transitions         : 1590
+   trace steps         : 335
    valid calls         : 3689
    provers             : cvc4, z3
    prover calls        : 14
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB035-truedepscalar-orig-yes_log.txt
-Checking DRB036-truedepscalar-var-yes with nthreads<=5, BOUND=10 ...
+Checking DRB036-truedepscalar-var-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 Data-race detected: {tmp} read by thread 1 intersects {tmp} written by thread 0
 
 
-Violation 0 encountered at depth 33:
+Violation 0 encountered at depth 36:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -4500,7 +4563,7 @@ Input:
   _civl_argv=X__civl_argv
   N=2
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 2)
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
@@ -4524,24 +4587,24 @@ DRB036-truedepscalar-var-yes.c  (DRB036-truedepscalar-var-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB036-truedepscalar-var-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB036-truedepscalar-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.55
+   time (s)            : 1.81
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 326
-   states saved        : 514
+   states              : 329
+   states saved        : 517
    state matches       : 1
-   transitions         : 1598
-   trace steps         : 326
+   transitions         : 1604
+   trace steps         : 329
    valid calls         : 3652
    provers             : cvc4, z3
    prover calls        : 33
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB036-truedepscalar-var-yes_log.txt
-Checking DRB039-truedepsingleelement-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB039-truedepsingleelement-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 a[0]=4
 a[1]=Y1[1]+4
@@ -4556,7 +4619,7 @@ a[5]=Y1[5]+4
 Data-race detected: {a[0 .. 2]} read by thread 1 intersects {a[0]} written by thread 0
 
 
-Violation 0 encountered at depth 29:
+Violation 0 encountered at depth 32:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -4571,7 +4634,7 @@ Assertion: $sef$14
 Input:
   N=2
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -4593,29 +4656,29 @@ DRB039-truedepsingleelement-orig-yes.c  (DRB039-truedepsingleelement-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB039-truedepsingleelement-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB039-truedepsingleelement-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.47
+   time (s)            : 1.64
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 332
-   states saved        : 527
+   states              : 335
+   states saved        : 530
    state matches       : 1
-   transitions         : 1526
-   trace steps         : 332
+   transitions         : 1532
+   trace steps         : 335
    valid calls         : 3866
    provers             : cvc4, z3
    prover calls        : 14
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB039-truedepsingleelement-orig-yes_log.txt
-Checking DRB040-truedepsingleelement-var-yes with nthreads<=5, BOUND=10 ...
+Checking DRB040-truedepsingleelement-var-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 Data-race detected: {a[0 .. 2]} read by thread 1 intersects {a[0]} written by thread 0
 
 
-Violation 0 encountered at depth 33:
+Violation 0 encountered at depth 36:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -4632,7 +4695,7 @@ Input:
   _civl_argv=X__civl_argv
   N=2
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 2)
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
@@ -4656,24 +4719,24 @@ DRB040-truedepsingleelement-var-yes.c  (DRB040-truedepsingleelement-var-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB040-truedepsingleelement-var-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB040-truedepsingleelement-var-yes.c 
 
 === Stats ===
-   time (s)            : 1.63
+   time (s)            : 1.85
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 326
-   states saved        : 514
+   states              : 329
+   states saved        : 517
    state matches       : 1
-   transitions         : 1540
-   trace steps         : 326
+   transitions         : 1546
+   trace steps         : 329
    valid calls         : 3829
    provers             : cvc4, z3
    prover calls        : 33
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB040-truedepsingleelement-var-yes_log.txt
-Checking DRB045-doall1-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB045-doall1-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -4681,18 +4744,18 @@ DRB045-doall1-orig-no.c  (DRB045-doall1-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB045-doall1-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB045-doall1-orig-no.c 
 
 === Stats ===
-   time (s)            : 2.18
-   memory (bytes)      : 327155712
-   max process count   : 6
-   states              : 3823
-   states saved        : 6635
-   state matches       : 40
-   transitions         : 25466
-   trace steps         : 3862
-   valid calls         : 62645
+   time (s)            : 4.12
+   memory (bytes)      : 394264576
+   max process count   : 9
+   states              : 10069
+   states saved        : 17653
+   state matches       : 70
+   transitions         : 70770
+   trace steps         : 10138
+   valid calls         : 183631
    provers             : cvc4, z3
    prover calls        : 12
 
@@ -4723,7 +4786,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB046-doall2-orig-no with nthreads<=5, BOUND=10 ...
+Checking DRB046-doall2-orig-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 
 === Source files ===
@@ -4731,18 +4794,18 @@ DRB046-doall2-orig-no.c  (DRB046-doall2-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB046-doall2-orig-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB046-doall2-orig-no.c 
 
 === Stats ===
-   time (s)            : 2.83
-   memory (bytes)      : 327155712
-   max process count   : 6
-   states              : 3823
-   states saved        : 6635
-   state matches       : 40
-   transitions         : 31516
-   trace steps         : 3862
-   valid calls         : 84095
+   time (s)            : 5.55
+   memory (bytes)      : 473956352
+   max process count   : 9
+   states              : 10069
+   states saved        : 17653
+   state matches       : 70
+   transitions         : 80450
+   trace steps         : 10138
+   valid calls         : 217951
    provers             : cvc4, z3
    prover calls        : 12
 
@@ -4773,27 +4836,30 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB055-jacobi2d-parallel-no with nthreads<=5, BOUND=10 ...
+Checking DRB055-jacobi2d-parallel-no with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
-17s: mem=934Mb trans=475205 traceSteps=68412 explored=67748 saved=118446 prove=12
+17s: mem=944Mb trans=465430 traceSteps=65248 explored=64814 saved=114417 prove=12
+32s: mem=1072Mb trans=938468 traceSteps=130503 explored=129632 saved=228776 prove=12
+47s: mem=1194Mb trans=1361728 traceSteps=188323 explored=187068 saved=329646 prove=12
+62s: mem=1194Mb trans=1736908 traceSteps=238045 explored=236456 saved=416614 prove=12
 
 === Source files ===
 DRB055-jacobi2d-parallel-no.c  (DRB055-jacobi2d-parallel-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB055-jacobi2d-parallel-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB055-jacobi2d-parallel-no.c 
 
 === Stats ===
-   time (s)            : 26.37
-   memory (bytes)      : 979369984
-   max process count   : 6
-   states              : 102296
-   states saved        : 178524
-   state matches       : 1008
-   transitions         : 737248
-   trace steps         : 103303
-   valid calls         : 2414692
+   time (s)            : 69.67
+   memory (bytes)      : 1251999744
+   max process count   : 9
+   states              : 261149
+   states saved        : 460269
+   state matches       : 1764
+   transitions         : 1934110
+   trace steps         : 262912
+   valid calls         : 5954749
    provers             : cvc4, z3
    prover calls        : 12
 
@@ -4824,12 +4890,12 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB073-doall2-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB073-doall2-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 Data-race detected: {j} read by thread 1 intersects {j} written by thread 0
 
 
-Violation 0 encountered at depth 28:
+Violation 0 encountered at depth 31:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -4844,7 +4910,7 @@ Assertion: $sef$14
 Input:
   N=2
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -4866,24 +4932,24 @@ DRB073-doall2-orig-yes.c  (DRB073-doall2-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB073-doall2-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB073-doall2-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.4
+   time (s)            : 1.64
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 321
-   states saved        : 505
+   states              : 324
+   states saved        : 508
    state matches       : 1
-   transitions         : 2743
-   trace steps         : 321
+   transitions         : 2749
+   trace steps         : 324
    valid calls         : 7971
    provers             : cvc4, z3
    prover calls        : 14
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB073-doall2-orig-yes_log.txt
-Checking DRB109-orderedmissing-orig-yes with nthreads<=5, BOUND=10 ...
+Checking DRB109-orderedmissing-orig-yes with nthreads<=8, BOUND=10 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 x=1
 x=2
@@ -4898,7 +4964,7 @@ x=10
 Data-race detected: {x} read by thread 1 intersects {x} written by thread 0
 
 
-Violation 0 encountered at depth 28:
+Violation 0 encountered at depth 31:
 CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
 at civl-omp.cvl:375.4-377.43
     $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
@@ -4913,7 +4979,7 @@ Assertion: $sef$14
 Input:
   N=2
   BOUND=10
-  _omp_thread_max=5
+  _omp_thread_max=8
 Context:
   forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
 Call stacks:
@@ -4935,47 +5001,51 @@ DRB109-orderedmissing-orig-yes.c  (DRB109-orderedmissing-orig-yes.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=10 DRB109-orderedmissing-orig-yes.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB109-orderedmissing-orig-yes.c 
 
 === Stats ===
-   time (s)            : 1.29
+   time (s)            : 1.5
    memory (bytes)      : 272629760
    max process count   : 3
-   states              : 331
-   states saved        : 525
+   states              : 334
+   states saved        : 528
    state matches       : 1
-   transitions         : 1532
-   trace steps         : 331
+   transitions         : 1538
+   trace steps         : 334
    valid calls         : 3311
    provers             : cvc4, z3
    prover calls        : 14
 
 === Result ===
 The program MAY NOT be correct.  See CIVLREP/DRB109-orderedmissing-orig-yes_log.txt
-Checking DRB043-adi-parallel-no with nthreads<=5, BOUND=4 ...
+Checking DRB043-adi-parallel-no with nthreads<=8, BOUND=4 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
-17s: mem=848Mb trans=350297 traceSteps=49408 explored=48929 saved=85689 prove=6
-32s: mem=848Mb trans=353433 traceSteps=49872 explored=49390 saved=86462 prove=6
-47s: mem=848Mb trans=359169 traceSteps=50624 explored=50134 saved=87770 prove=6
-62s: mem=848Mb trans=374429 traceSteps=52609 explored=52098 saved=91221 prove=6
+17s: mem=1036Mb trans=416908 traceSteps=57839 explored=57453 saved=101454 prove=6
+32s: mem=1160Mb trans=829055 traceSteps=113956 explored=113189 saved=199800 prove=6
+47s: mem=1160Mb trans=916871 traceSteps=126044 explored=125205 saved=220632 prove=6
+62s: mem=1160Mb trans=922738 traceSteps=126849 explored=126004 saved=222046 prove=6
+77s: mem=1160Mb trans=929144 traceSteps=127649 explored=126798 saved=223445 prove=6
+92s: mem=1160Mb trans=941132 traceSteps=129250 explored=128388 saved=226246 prove=6
+107s: mem=1160Mb trans=957437 traceSteps=131390 explored=130513 saved=229995 prove=6
+122s: mem=1160Mb trans=992560 traceSteps=135984 explored=135076 saved=238048 prove=6
 
 === Source files ===
 DRB043-adi-parallel-no.c  (DRB043-adi-parallel-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputBOUND=4 DRB043-adi-parallel-no.c 
+civl verify -input_omp_thread_max=8 -inputBOUND=4 DRB043-adi-parallel-no.c 
 
 === Stats ===
-   time (s)            : 69.37
-   memory (bytes)      : 889192448
-   max process count   : 6
-   states              : 65373
-   states saved        : 114585
-   state matches       : 656
-   transitions         : 476438
-   trace steps         : 66028
-   valid calls         : 1578652
+   time (s)            : 136.51
+   memory (bytes)      : 1340080128
+   max process count   : 9
+   states              : 169368
+   states saved        : 298576
+   state matches       : 1148
+   transitions         : 1254280
+   trace steps         : 170515
+   valid calls         : 3894941
    provers             : cvc4, z3
    prover calls        : 6
 
@@ -5006,7 +5076,7 @@ All properties marked with '+' hold on all executions.
  +  Use of undefined values
  +  Union errors
 
-Checking DRB058-jacobikernel-orig-no with nthreads<=5, MSIZE_B=5, NITER_B=5 ...
+Checking DRB058-jacobikernel-orig-no with nthreads<=4, MSIZE_B=5, NITER_B=5 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
 Total Number of Iterations:6
 Residual:(1/25)*((186181610386699059200000000000000000000000000000000/11374013567425002342265208919527360658698373157549249)^(1/2))
@@ -5018,7 +5088,6 @@ Total Number of Iterations:3
 Residual:(1/25)*((92696539168000000000/664301903359260412801)^(1/2))
 Total Number of Iterations:2
 Residual:(1/25)*((220944308/696596077)^(1/2))
-17s: mem=672Mb trans=938880 traceSteps=88715 explored=82722 saved=169171 prove=37
 Total Number of Iterations:6
 Residual:(1/16)*((461852090804882812500000000000000000000000/627099209661291617982826752450079001010799801)^(1/2))
 Total Number of Iterations:5
@@ -5029,7 +5098,6 @@ Total Number of Iterations:3
 Residual:(1/16)*((40546685612500000/829725622042203121)^(1/2))
 Total Number of Iterations:2
 Residual:(1/16)*((814578283/2732678283)^(1/2))
-32s: mem=808Mb trans=2006916 traceSteps=189609 explored=176736 saved=361797 prove=37
 Total Number of Iterations:6
 Residual:0
 Total Number of Iterations:5
@@ -5040,7 +5108,6 @@ Total Number of Iterations:3
 Residual:0
 Total Number of Iterations:2
 Residual:0
-47s: mem=1080Mb trans=3113044 traceSteps=294035 explored=274037 saved=561260 prove=37
 Total Number of Iterations:6
 Residual:0
 Total Number of Iterations:5
@@ -5051,25 +5118,24 @@ Total Number of Iterations:3
 Residual:0
 Total Number of Iterations:2
 Residual:0
-62s: mem=1290Mb trans=4261434 traceSteps=402496 explored=375144 saved=768545 prove=37
 
 === Source files ===
 DRB058-jacobikernel-orig-no.c  (DRB058-jacobikernel-orig-no.c)
 
 
 === Command ===
-civl verify -input_omp_thread_max=5 -inputMSIZE_B=5 -inputNITER_B=5 DRB058-jacobikernel-orig-no.c 
+civl verify -input_omp_thread_max=4 -inputMSIZE_B=5 -inputNITER_B=5 DRB058-jacobikernel-orig-no.c 
 
 === Stats ===
-   time (s)            : 62.87
-   memory (bytes)      : 1352663040
-   max process count   : 6
-   states              : 385607
-   states saved        : 790123
-   state matches       : 28160
-   transitions         : 4381437
-   trace steps         : 413766
-   valid calls         : 6540951
+   time (s)            : 16.53
+   memory (bytes)      : 859832320
+   max process count   : 5
+   states              : 81687
+   states saved        : 165103
+   state matches       : 5980
+   transitions         : 918897
+   trace steps         : 87666
+   valid calls         : 1432201
    provers             : cvc4, z3
    prover calls        : 37
 
@@ -5102,16 +5168,16 @@ All properties marked with '+' hold on all executions.
 
 Checking DRB062-matrixvector2-orig-no with nthreads<=4, BOUND=5 ...
 CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
-16s: mem=260Mb trans=13024 traceSteps=1486 explored=1458 saved=2683 prove=7
-31s: mem=260Mb trans=27621 traceSteps=2945 explored=2877 saved=5413 prove=7
-46s: mem=260Mb trans=41480 traceSteps=4443 explored=4338 saved=8140 prove=7
-61s: mem=260Mb trans=55741 traceSteps=5898 explored=5754 saved=10852 prove=7
-76s: mem=260Mb trans=69440 traceSteps=7395 explored=7213 saved=13565 prove=7
-91s: mem=260Mb trans=83314 traceSteps=8844 explored=8627 saved=16243 prove=7
-106s: mem=260Mb trans=97753 traceSteps=10281 explored=10020 saved=18924 prove=7
-121s: mem=260Mb trans=110790 traceSteps=11719 explored=11426 saved=21542 prove=7
-136s: mem=260Mb trans=125381 traceSteps=13150 explored=12815 saved=24240 prove=7
-151s: mem=260Mb trans=140306 traceSteps=14584 explored=14202 saved=26960 prove=7
+16s: mem=260Mb trans=12391 traceSteps=1409 explored=1382 saved=2541 prove=7
+31s: mem=260Mb trans=25997 traceSteps=2803 explored=2740 saved=5138 prove=7
+46s: mem=260Mb trans=39710 traceSteps=4237 explored=4134 saved=7772 prove=7
+61s: mem=260Mb trans=52985 traceSteps=5631 explored=5494 saved=10340 prove=7
+76s: mem=260Mb trans=66134 traceSteps=7076 explored=6907 saved=12970 prove=7
+91s: mem=260Mb trans=79871 traceSteps=8475 explored=8266 saved=15558 prove=7
+106s: mem=260Mb trans=93579 traceSteps=9874 explored=9627 saved=18165 prove=7
+121s: mem=260Mb trans=106615 traceSteps=11281 explored=10999 saved=20741 prove=7
+137s: mem=260Mb trans=120556 traceSteps=12693 explored=12373 saved=23379 prove=7
+152s: mem=260Mb trans=135480 traceSteps=14107 explored=13738 saved=26062 prove=7
 
 === Source files ===
 DRB062-matrixvector2-orig-no.c  (DRB062-matrixvector2-orig-no.c)
@@ -5121,7 +5187,7 @@ DRB062-matrixvector2-orig-no.c  (DRB062-matrixvector2-orig-no.c)
 civl verify -input_omp_thread_max=4 -inputBOUND=5 DRB062-matrixvector2-orig-no.c 
 
 === Stats ===
-   time (s)            : 152.05
+   time (s)            : 157.24
    memory (bytes)      : 272629760
    max process count   : 5
    states              : 14304

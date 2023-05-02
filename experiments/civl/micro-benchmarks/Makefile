@@ -4,16 +4,20 @@
 # CIVL's output is sent to a file (see variable OUT).
 # A summary of results is printed to stdout.
 
+# upper bound on number of OpenMP threads...
+NTHREAD=8
+# upper bound on input parameter...
+BOUND=10
 VERIFY = civl verify  # CIVL's verify command, assuming civl is in the PATH
+VERIFYNT = $(VERIFY) -input_omp_thread_max=$(NTHREAD)
 OUT = civl_out.txt   # CIVL output appended to this file
 LOG = | tee -a $(OUT)  # copy stdout to OUT file
-VERIFY5 = $(VERIFY) -input_omp_thread_max=5
 CHECK_Y = $(LOG) | grep "Data-race detected"; \
   if [ $$? -eq 0 ]; then echo "PASS"; else echo "FAIL"; fi
 CHECK_N = $(LOG) | grep "All properties .* hold"; \
   if [ $$? -eq 0 ]; then echo "PASS"; else echo "FAIL"; fi
 
-# This group takes 1..5 threads (and no parameters)
+# This group takes no parameters
 GROUP1 = DRB023-sections1-orig-yes \
 DRB051-getthreadnum-orig-no \
 DRB059-lastprivate-orig-no \
@@ -39,7 +43,7 @@ DRB172-critical2-orig-no
 GROUP1_Y = $(filter %yes,$(GROUP1))
 GROUP1_N = $(filter %no,$(GROUP1))
 
-# This group takes 1..5 threads and BOUND=10
+# This group takes a bound on input parameter...
 GROUP2 = DRB001-antidep1-orig-yes \
 DRB002-antidep1-var-yes \
 DRB003-antidep2-orig-yes \
@@ -121,28 +125,31 @@ run: clean
 all: $(ALL)
 
 $(GROUP1_Y) : % : %.c
-	@echo "Checking $@ with nthreads<=5 ..." $(LOG)
-	@$(VERIFY5) $< $(CHECK_Y)
+	@echo "Checking $@ with nthreads<=$(NTHREAD) ..." $(LOG)
+	@$(VERIFYNT) $< $(CHECK_Y)
 
 $(GROUP1_N) : % : %.c
-	@echo "Checking $@ with nthreads<=5 ..." $(LOG)
-	@$(VERIFY5) $< $(CHECK_N)
+	@echo "Checking $@ with nthreads<=$(NTHREAD) ..." $(LOG)
+	@$(VERIFYNT) $< $(CHECK_N)
 
 $(GROUP2_Y) : % : %.c
-	@echo "Checking $@ with nthreads<=5, BOUND=10 ..." $(LOG)
-	@$(VERIFY5) -inputBOUND=10  $< $(CHECK_Y)
+	@echo "Checking $@ with nthreads<=$(NTHREAD), BOUND=$(BOUND) ..." $(LOG)
+	@$(VERIFYNT) -inputBOUND=$(BOUND)  $< $(CHECK_Y)
 
 $(GROUP2_N) : % : %.c
-	@echo "Checking $@ with nthreads<=5, BOUND=10 ..." $(LOG)
-	@$(VERIFY5) -inputBOUND=10  $< $(CHECK_N)
+	@echo "Checking $@ with nthreads<=$(NTHREAD), BOUND=$(BOUND) ..." $(LOG)
+	@$(VERIFYNT) -inputBOUND=$(BOUND)  $< $(CHECK_N)
+
+
+# Misc. benchmarks that have different bounds...
 
 DRB043-adi-parallel-no: DRB043-adi-parallel-no.c
-	@echo "Checking $@ with nthreads<=5, BOUND=4 ..." $(LOG)
-	@$(VERIFY5) -inputBOUND=4 $< $(CHECK_N)
+	@echo "Checking $@ with nthreads<=$(NTHREAD), BOUND=4 ..." $(LOG)
+	@$(VERIFYNT) -inputBOUND=4 $< $(CHECK_N)
 
 DRB058-jacobikernel-orig-no: DRB058-jacobikernel-orig-no.c
-	@echo "Checking $@ with nthreads<=5, MSIZE_B=5, NITER_B=5 ..." $(LOG)
-	@$(VERIFY5) -inputMSIZE_B=5 -inputNITER_B=5 $< $(CHECK_N)
+	@echo "Checking $@ with nthreads<=4, MSIZE_B=5, NITER_B=5 ..." $(LOG)
+	@$(VERIFY) -input_omp_thread_max=4 -inputMSIZE_B=5 -inputNITER_B=5 $< $(CHECK_N)
 
 DRB062-matrixvector2-orig-no: DRB062-matrixvector2-orig-no.c
 	@echo "Checking $@ with nthreads<=4, BOUND=5 ..." $(LOG)
