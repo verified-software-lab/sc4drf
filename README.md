@@ -129,14 +129,14 @@ available at http://vsl.cis.udel.edu/civl.
 
 To run CIVL on a C/OpenMP program, execute:
 
-  civl verify -input_omp_thread_max=N filename.c
+    civl verify -input_omp_thread_max=N filename.c
 
 where N is the upper bound on the default number of OpenMP threads to
 be used for an OpenMP parallel region.  Programs can also be
 instrumented to specify parameters and ranges; see
-sc4drf/experiments/civl/micro-benchmarks/DRB001-antidep1-orig-yes.c
-for an example.  To specify a particular value VAL for an input
-variable VAR, add -input_VAR=VAL to the command line after "verify", e.g.,
+`sc4drf/experiments/civl/micro-benchmarks/DRB001-antidep1-orig-yes.c`
+for an example.  To specify a particular value `VAL` for an input
+variable `VAR`, add `-input_VAR=VAL` to the command line after "verify", e.g.,
 
-  civl verify -input_omp_thread_max=5 -inputBOUND=10 filename.c
+    civl verify -input_omp_thread_max=5 -inputBOUND=10 filename.c
 
