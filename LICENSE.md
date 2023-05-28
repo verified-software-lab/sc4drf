@@ -40,8 +40,7 @@ CIVL depends on the following packages:
 ## LLOV
 
 The license for LLOV can be found in `/home/vboxuser/LLOV-v0.3/LICENSE.txt` and
-allows redistribution and reuse under certain restrictions.
-4. The LLOV tool in .... (4-clause BSD license).
+allows redistribution and reuse under a 4-clause BSD license.
 
 ## Ubuntu and other installed packages
 The Ubuntu operating system and its installed packages are governed by
