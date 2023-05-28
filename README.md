@@ -164,9 +164,9 @@ example.  To specify a particular value `VAL` for an input variable `VAR`, add
 
 The CIVL source code and documentation of each of its modules are located at
 
-    /home/vboxuser/civl
-    /home/vboxuser/civl/mods/dev.civl.abc/javadoc/index.html
-    /home/vboxuser/civl/mods/dev.civl.com/javadoc/index.html
-    /home/vboxuser/civl/mods/dev.civl.gmc/javadoc/index.html
-    /home/vboxuser/civl/mods/dev.civl.mc/javadoc/index.html
-    /home/vboxuser/civl/mods/dev.civl.sarl/javadoc/index.html
+    /home/vboxuser/CIVL
+    /home/vboxuser/CIVL/mods/dev.civl.abc/javadoc/index.html
+    /home/vboxuser/CIVL/mods/dev.civl.com/javadoc/index.html
+    /home/vboxuser/CIVL/mods/dev.civl.gmc/javadoc/index.html
+    /home/vboxuser/CIVL/mods/dev.civl.mc/javadoc/index.html
+    /home/vboxuser/CIVL/mods/dev.civl.sarl/javadoc/index.html
