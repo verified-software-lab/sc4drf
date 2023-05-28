@@ -162,10 +162,13 @@ example.  To specify a particular value `VAL` for an input variable `VAR`, add
 
 ## Finding the CIVL source code and documentation
 
-The CIVL source code and documentation of each of its modules are located at
+CIVL is a modular Java program comprising 4 modules:
 
-    /home/vboxuser/CIVL
-    /home/vboxuser/CIVL/mods/dev.civl.abc/javadoc/index.html
-    /home/vboxuser/CIVL/mods/dev.civl.gmc/javadoc/index.html
-    /home/vboxuser/CIVL/mods/dev.civl.mc/javadoc/index.html
-    /home/vboxuser/CIVL/mods/dev.civl.sarl/javadoc/index.html
+ - dev.civl.abc : front-end
+ - dev.civl.gmc : generic model checking utilities
+ - dev.civl.sarl: symbolic algebra and reasoning library
+ - dev.civl.mc  : CIVL model checker
+
+The modules are in `/home/vboxuser/CIVL/mods`.
+Within each module, the source code tree is in directory `src`;
+javadocs are in directory `javadoc`, with root file `index.html`.
