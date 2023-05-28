@@ -20,7 +20,7 @@ We release our own files under GPLv3 license. The files are located in
 
     experiments/civl/extras : all files
     experiments/llov/extras : all files
-    experiments/civl/micro-benchmarks: Makefile, civl_out.txt, results_m1mac, summary.txt, times.txt, CIVLREP
+    experiments/civl/micro-benchmarks: Makefile, civl_out.txt, results_m1mac, summary.txt, times.txt
     experiments/llov/micro-benchmarks: Makefile, llov_expected_output.txt
 
 ## CIVL
