@@ -160,3 +160,13 @@ example.  To specify a particular value `VAL` for an input variable `VAR`, add
 
     civl verify -input_omp_thread_max=5 -inputBOUND=10 filename.c
 
+## Finding the CIVL source code and documentation
+
+The CIVL source code and documentation of each of its modules are located at
+
+    /home/vboxuser/civl
+    /home/vboxuser/civl/mods/dev.civl.abc/javadoc/index.html
+    /home/vboxuser/civl/mods/dev.civl.com/javadoc/index.html
+    /home/vboxuser/civl/mods/dev.civl.gmc/javadoc/index.html
+    /home/vboxuser/civl/mods/dev.civl.mc/javadoc/index.html
+    /home/vboxuser/civl/mods/dev.civl.sarl/javadoc/index.html
