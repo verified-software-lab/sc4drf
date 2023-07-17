@@ -160,3 +160,15 @@ example.  To specify a particular value `VAL` for an input variable `VAR`, add
 
     civl verify -input_omp_thread_max=5 -inputBOUND=10 filename.c
 
+## Finding the CIVL source code and documentation
+
+CIVL is a modular Java program comprising 4 modules:
+
+ - dev.civl.abc : front-end
+ - dev.civl.gmc : generic model checking utilities
+ - dev.civl.sarl: symbolic algebra and reasoning library
+ - dev.civl.mc  : CIVL model checker
+
+The modules are in `/home/vboxuser/CIVL/mods`.
+Within each module, the source code tree is in directory `src`;
+javadocs are in directory `javadoc`, with root file `index.html`.
