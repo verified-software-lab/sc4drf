@@ -9,7 +9,7 @@ OUT = civl_out.txt
 LOG = | tee -a $(OUT)
 CHECK_Y = $(LOG) | grep "Data-race detected"; \
   if [ $$? -eq 0 ]; then echo "PASS"; else echo "FAIL"; fi
-CHECK_N = $(LOG) | grep "All properties .* hold"; \
+CHECK_N = $(LOG) | grep "All errors .* absent"; \
   if [ $$? -eq 0 ]; then echo "PASS"; else echo "FAIL"; fi
 ALL = sync1 critsec3 atomic3  diffusion1 diffusion2 critsec2 prodcons bar1 bar2 bar3
 
