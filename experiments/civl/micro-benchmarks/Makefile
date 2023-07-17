@@ -14,7 +14,7 @@ OUT = civl_out.txt   # CIVL output appended to this file
 LOG = | tee -a $(OUT)  # copy stdout to OUT file
 CHECK_Y = $(LOG) | grep "Data-race detected"; \
   if [ $$? -eq 0 ]; then echo "PASS"; else echo "FAIL"; fi
-CHECK_N = $(LOG) | grep "All properties .* hold"; \
+CHECK_N = $(LOG) | grep "All errors .* absent"; \
   if [ $$? -eq 0 ]; then echo "PASS"; else echo "FAIL"; fi
 
 # 20 programs: this group takes no parameters
