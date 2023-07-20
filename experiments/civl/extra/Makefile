@@ -51,4 +51,10 @@ prodcons : % : %_yes.c %_no.c
 clean:
 	rm -rf *~ CIVLREP $(OUT) *.tmp a.out
 
+summarize-time: results_m1mac/civl_out.txt
+	grep "time\|Checking" $^ | sed '$!N;s/\n/ /'
+
+summarize-time-v2: results_m1mac_v2/civl_out.txt
+	grep "time\|Checking" $^ | sed '$!N;s/\n/ /'
+
 .PHONY: $(ALL) all clean run
