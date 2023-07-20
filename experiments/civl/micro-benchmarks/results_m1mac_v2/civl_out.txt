@@ -1,0 +1,4216 @@
+Checking DRB023-sections1-orig-yes with nthreads<=8 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+i=2
+Data-race detected: {i} written by thread 1 intersects {i} written by thread 0
+
+
+Violation 0 encountered at depth 33:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:381.4-383.43
+    $assert($mem_no_intersect(cur_mw, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$16
+ -> false
+
+Input:
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@17 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB023-sections1-orig-yes.c:54.8 "0" before DRB023-sections1-orig-yes.c:58.4 "i"
+process 1:
+  $barrier_call@154 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@73 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@223 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB023-sections1-orig-yes.c:60.8 "2" before DRB023-sections1-orig-yes.c:62.2-7 "printf"
+process 2:
+  $omp_barrier@71 civl-omp.cvl:381.4-10 "$assert" called from
+  _par_proc0@223 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB023-sections1-orig-yes.c:60.8 "2" before DRB023-sections1-orig-yes.c:62.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB023-sections1-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB023-sections1-orig-yes.c  (DRB023-sections1-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 DRB023-sections1-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.28         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 63
+   states saved        : 99           state matches       : 0
+   transitions         : 417          trace steps         : 62
+   valid calls         : 653          provers             : cvc4, z3
+   prover calls        : 2         
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB023-sections1-orig-yes_log.txt
+Checking DRB051-getthreadnum-orig-no with nthreads<=8 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+numThreads=1
+numThreads=2
+numThreads=3
+numThreads=4
+numThreads=5
+numThreads=6
+numThreads=7
+numThreads=8
+
+=== Source files ===
+DRB051-getthreadnum-orig-no.c  (DRB051-getthreadnum-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 DRB051-getthreadnum-orig-no.c 
+
+=== Stats ===
+   time (s)            : 1.78         memory (bytes)      : 2.7262976E8
+   max process count   : 9            states              : 1052
+   states saved        : 1962         state matches       : 7
+   transitions         : 7684         trace steps         : 1058
+   valid calls         : 17624        provers             : cvc4, z3
+   prover calls        : 0         
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB069-sectionslock1-orig-no with nthreads<=8 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB069-sectionslock1-orig-no.c  (DRB069-sectionslock1-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 DRB069-sectionslock1-orig-no.c 
+
+=== Stats ===
+   time (s)            : 1.99         memory (bytes)      : 2.7262976E8
+   max process count   : 9            states              : 1699
+   states saved        : 3110         state matches       : 14
+   transitions         : 14708        trace steps         : 1712
+   valid calls         : 27349        provers             : cvc4, z3
+   prover calls        : 0         
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB075-getthreadnum-orig-yes with nthreads<=8 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+numThreads=2
+Data-race detected: {numThreads} read by thread 1 intersects {numThreads} written by thread 0
+
+
+Violation 0 encountered at depth 24:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$13
+ -> false
+
+Input:
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@17 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB075-getthreadnum-orig-yes.c:56.17 "0" before DRB075-getthreadnum-orig-yes.c:59.31 "0"
+process 1:
+  $barrier_call@120 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@72 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@144 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB075-getthreadnum-orig-yes.c:64.32-41 "numThreads" before DRB075-getthreadnum-orig-yes.c:67.9 "0"
+process 2:
+  $omp_barrier@66 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@144 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB075-getthreadnum-orig-yes.c:64.32-41 "numThreads" before DRB075-getthreadnum-orig-yes.c:67.9 "0"
+
+Logging new entry 0, writing trace to CIVLREP/DRB075-getthreadnum-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB075-getthreadnum-orig-yes.c  (DRB075-getthreadnum-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 DRB075-getthreadnum-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.18         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 49
+   states saved        : 80           state matches       : 0
+   transitions         : 285          trace steps         : 48
+   valid calls         : 512          provers             : cvc4, z3
+   prover calls        : 2         
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB075-getthreadnum-orig-yes_log.txt
+Checking DRB076-flush-orig-no with nthreads<=8 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+sum=10
+17s: mem=786Mb trans=655925 traceSteps=58395 explored=56595 saved=114939 prove=0
+32s: mem=920Mb trans=1282286 traceSteps=114118 explored=110511 saved=224155 prove=0
+
+=== Source files ===
+DRB076-flush-orig-no.c  (DRB076-flush-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 DRB076-flush-orig-no.c 
+
+=== Stats ===
+   time (s)            : 35.0         memory (bytes)      : 1.098907648E9
+   max process count   : 11           states              : 124244
+   states saved        : 252030       state matches       : 4097
+   transitions         : 1442106      trace steps         : 128340
+   valid calls         : 2302807      provers             : cvc4, z3
+   prover calls        : 0         
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB077-single-orig-no with nthreads<=8 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+count= 1
+
+=== Source files ===
+DRB077-single-orig-no.c  (DRB077-single-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 DRB077-single-orig-no.c 
+
+=== Stats ===
+   time (s)            : 1.62         memory (bytes)      : 2.7262976E8
+   max process count   : 9            states              : 1255
+   states saved        : 2284         state matches       : 7
+   transitions         : 9552         trace steps         : 1261
+   valid calls         : 20694        provers             : cvc4, z3
+   prover calls        : 0         
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB088-dynamic-storage-orig-yes with nthreads<=8 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+1 
+Data-race detected: {Dyscope0_malloc_0[0]} read by thread 1 intersects {Dyscope0_malloc_0[0]} written by thread 0
+
+
+Violation 0 encountered at depth 29:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$13
+ -> false
+
+Input:
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+  0<=(SIZEOF_INT-1)
+Call stacks:
+process 0:
+  main@36 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB088-dynamic-storage-orig-yes.c:74.13 "0" before DRB088-dynamic-storage-orig-yes.c:77.5-7 "foo"
+process 1:
+  $barrier_call@158 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@110 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@182 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB088-dynamic-storage-orig-yes.c:77.9 ")" before DRB088-dynamic-storage-orig-yes.c:79.2-7 "printf"
+process 2:
+  $omp_barrier@104 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@182 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB088-dynamic-storage-orig-yes.c:77.9 ")" before DRB088-dynamic-storage-orig-yes.c:79.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB088-dynamic-storage-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB088-dynamic-storage-orig-yes.c  (DRB088-dynamic-storage-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 DRB088-dynamic-storage-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.27         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 65
+   states saved        : 97           state matches       : 0
+   transitions         : 306          trace steps         : 64
+   valid calls         : 598          provers             : cvc4, z3
+   prover calls        : 2         
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB088-dynamic-storage-orig-yes_log.txt
+Checking DRB089-dynamic-storage2-orig-yes with nthreads<=8 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+1 
+Data-race detected: {Dyscope0_malloc_0[0]} read by thread 1 intersects {Dyscope0_malloc_0[0]} written by thread 0
+
+
+Violation 0 encountered at depth 29:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$13
+ -> false
+
+Input:
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+  0<=(SIZEOF_INT-1)
+Call stacks:
+process 0:
+  main@36 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB089-dynamic-storage2-orig-yes.c:70.13 "0" before DRB089-dynamic-storage2-orig-yes.c:73.6-12 "counter"
+process 1:
+  $barrier_call@158 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@110 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@180 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB089-dynamic-storage2-orig-yes.c:73.6-12 "counter" before DRB089-dynamic-storage2-orig-yes.c:75.2-7 "printf"
+process 2:
+  $omp_barrier@104 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@180 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB089-dynamic-storage2-orig-yes.c:73.6-12 "counter" before DRB089-dynamic-storage2-orig-yes.c:75.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB089-dynamic-storage2-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB089-dynamic-storage2-orig-yes.c  (DRB089-dynamic-storage2-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 DRB089-dynamic-storage2-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.22         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 65
+   states saved        : 97           state matches       : 0
+   transitions         : 300          trace steps         : 64
+   valid calls         : 598          provers             : cvc4, z3
+   prover calls        : 2         
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB089-dynamic-storage2-orig-yes_log.txt
+Checking DRB074-flush-orig-yes with nthreads<=8 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+sum=10
+Data-race detected: {i} read by thread 0 intersects {i} written by thread 1
+
+
+Violation 0 encountered at depth 527:
+CIVL execution violation in p1 [Library: civl-omp.cvh, Function: $omp_atomic_execution_lock_release] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:351.4-353.43
+    $assert($mem_no_intersect(cur_mw, tmp_mr, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$10
+ -> false
+
+Input:
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@17 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after civlc.cvh:7.0 "\n" included from civl-stdio.cvh:3 before DRB074-flush-orig-yes.c:57.5-6 "f1"
+process 1:
+  $check_data_race@106 civl-omp.cvl:351.4-10 "$assert" called from
+  $omp_atomic_execution_lock_release@143 civl-omp.cvl:646.2-17 "$check_data_race" called from
+  f1@180 OpenMPTransformer "_omp_team, &(_omp_cr" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.wrapProtectedStmts after DRB074-flush-orig-yes.c:60.7 "1" before DRB074-flush-orig-yes.c:66.2-4 "int" called from
+  _par_proc0@188 DRB074-flush-orig-yes.c:70.5-6 "f1"
+process 2:
+  $omp_helper_signal_wait@115 civl-omp.cvl:597.2-7 "$yield" called from
+  $omp_atomic_execution_lock_acquire@138 civl-omp.cvl:634.2-24 "$omp_helper_signal_wait" called from
+  _par_proc0@190 OpenMPTransformer "_omp_team, &(_omp_re" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.wrapProtectedStmts after DRB074-flush-orig-yes.c:71.10 "i" before DRB074-flush-orig-yes.c:73.2-7 "assert"
+process 3:
+  $barrier_call@161 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@78 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@193 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB074-flush-orig-yes.c:71.10 "i" before DRB074-flush-orig-yes.c:73.2-7 "assert"
+process 4:
+  $barrier_call@161 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@78 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@193 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB074-flush-orig-yes.c:71.10 "i" before DRB074-flush-orig-yes.c:73.2-7 "assert"
+process 5:
+  $barrier_call@161 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@78 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@193 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB074-flush-orig-yes.c:71.10 "i" before DRB074-flush-orig-yes.c:73.2-7 "assert"
+process 6:
+  $barrier_call@161 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@78 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@193 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB074-flush-orig-yes.c:71.10 "i" before DRB074-flush-orig-yes.c:73.2-7 "assert"
+process 7:
+  $barrier_call@161 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@78 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@193 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB074-flush-orig-yes.c:71.10 "i" before DRB074-flush-orig-yes.c:73.2-7 "assert"
+process 8:
+  $barrier_call@161 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@78 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@193 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB074-flush-orig-yes.c:71.10 "i" before DRB074-flush-orig-yes.c:73.2-7 "assert"
+process 9:
+  $barrier_call@161 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@78 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@193 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB074-flush-orig-yes.c:71.10 "i" before DRB074-flush-orig-yes.c:73.2-7 "assert"
+process 10:
+  $barrier_call@161 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@78 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@193 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB074-flush-orig-yes.c:71.10 "i" before DRB074-flush-orig-yes.c:73.2-7 "assert"
+
+Logging new entry 0, writing trace to CIVLREP/DRB074-flush-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB074-flush-orig-yes.c  (DRB074-flush-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 DRB074-flush-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.58         memory (bytes)      : 2.7262976E8
+   max process count   : 11           states              : 861
+   states saved        : 1680         state matches       : 2
+   transitions         : 9278         trace steps         : 862
+   valid calls         : 15401        provers             : cvc4, z3
+   prover calls        : 2         
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB074-flush-orig-yes_log.txt
+Checking DRB103-master-orig-no with nthreads<=8 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+Number of Threads requested = 1
+Number of Threads requested = 2
+Number of Threads requested = 3
+Number of Threads requested = 4
+Number of Threads requested = 5
+Number of Threads requested = 6
+Number of Threads requested = 7
+Number of Threads requested = 8
+
+=== Source files ===
+DRB103-master-orig-no.c  (DRB103-master-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 DRB103-master-orig-no.c 
+
+=== Stats ===
+   time (s)            : 1.5          memory (bytes)      : 2.7262976E8
+   max process count   : 9            states              : 1044
+   states saved        : 1946         state matches       : 7
+   transitions         : 7647         trace steps         : 1050
+   valid calls         : 17632        provers             : cvc4, z3
+   prover calls        : 0         
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB108-atomic-orig-no with nthreads<=8 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+a=1
+a=2
+a=3
+a=4
+a=5
+a=6
+a=7
+a=8
+
+=== Source files ===
+DRB108-atomic-orig-no.c  (DRB108-atomic-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 DRB108-atomic-orig-no.c 
+
+=== Stats ===
+   time (s)            : 8.66         memory (bytes)      : 6.85768704E8
+   max process count   : 9            states              : 34689
+   states saved        : 70279        state matches       : 1298
+   transitions         : 401149       trace steps         : 35986
+   valid calls         : 639469       provers             : cvc4, z3
+   prover calls        : 0         
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB120-barrier-orig-no with nthreads<=8 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB120-barrier-orig-no.c  (DRB120-barrier-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 DRB120-barrier-orig-no.c 
+
+=== Stats ===
+   time (s)            : 2.09         memory (bytes)      : 3.27155712E8
+   max process count   : 9            states              : 2790
+   states saved        : 5021         state matches       : 7
+   transitions         : 19426        trace steps         : 2796
+   valid calls         : 50424        provers             : cvc4, z3
+   prover calls        : 0         
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB121-reduction-orig-no with nthreads<=8 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+20 160
+40 160
+60 160
+80 160
+100 160
+120 160
+140 160
+17s: mem=798Mb trans=804781 traceSteps=71694 explored=69132 saved=139679 prove=0
+
+=== Source files ===
+DRB121-reduction-orig-no.c  (DRB121-reduction-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 DRB121-reduction-orig-no.c 
+
+=== Stats ===
+   time (s)            : 23.44        memory (bytes)      : 9.7517568E8
+   max process count   : 9            states              : 103838
+   states saved        : 210154       state matches       : 3880
+   transitions         : 1211495      trace steps         : 107717
+   valid calls         : 1948369      provers             : cvc4, z3
+   prover calls        : 0         
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB124-master-orig-yes with nthreads<=8 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+Data-race detected: {init} read by thread 1 intersects {init} written by thread 0
+
+
+Violation 0 encountered at depth 24:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$13
+ -> false
+
+Input:
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@16 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB124-master-orig-yes.c:27.2-4 "int" before DRB124-master-orig-yes.c:27.2-4 "int"
+process 1:
+  $barrier_call@119 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@71 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@143 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB124-master-orig-yes.c:36.12-15 "init" before DRB124-master-orig-yes.c:39.9 "0"
+process 2:
+  $omp_barrier@65 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@143 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB124-master-orig-yes.c:36.12-15 "init" before DRB124-master-orig-yes.c:39.9 "0"
+
+Logging new entry 0, writing trace to CIVLREP/DRB124-master-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB124-master-orig-yes.c  (DRB124-master-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 DRB124-master-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.17         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 49
+   states saved        : 80           state matches       : 0
+   transitions         : 283          trace steps         : 48
+   valid calls         : 509          provers             : cvc4, z3
+   prover calls        : 2         
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB124-master-orig-yes_log.txt
+Checking DRB125-single-orig-no with nthreads<=8 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB125-single-orig-no.c  (DRB125-single-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 DRB125-single-orig-no.c 
+
+=== Stats ===
+   time (s)            : 1.82         memory (bytes)      : 3.27155712E8
+   max process count   : 9            states              : 1898
+   states saved        : 3446         state matches       : 7
+   transitions         : 13549        trace steps         : 1904
+   valid calls         : 34016        provers             : cvc4, z3
+   prover calls        : 0         
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB126-firstprivatesections-orig-no with nthreads<=8 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+1
+2
+
+=== Source files ===
+DRB126-firstprivatesections-orig-no.c  (DRB126-firstprivatesections-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 DRB126-firstprivatesections-orig-no.c 
+
+=== Stats ===
+   time (s)            : 1.06         memory (bytes)      : 2.7262976E8
+   max process count   : 2            states              : 32
+   states saved        : 52           state matches       : 0
+   transitions         : 174          trace steps         : 31
+   valid calls         : 319          provers             : cvc4, z3
+   prover calls        : 0         
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB139-worksharingcritical-orig-no with nthreads<=8 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+Violation 0 encountered at depth 23:
+CIVL execution violation (property violated: DEADLOCK, certainty: PROVEABLE)
+at OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB139-worksharingcritical-orig-no.c:24.10 "1" before DRB139-worksharingcritical-orig-no.c:36.12 "i"
+A deadlock is possible:
+  Path condition: forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+  Enabling predicate: false
+process p1 (id=1): false
+
+Call stacks:
+process 0:
+  main@18 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB139-worksharingcritical-orig-no.c:24.10 "1" before DRB139-worksharingcritical-orig-no.c:36.12 "i"
+process 1:
+  _par_proc0@294 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB139-worksharingcritical-orig-no.c:24.10 "1" before DRB139-worksharingcritical-orig-no.c:36.12 "i"
+process 2:
+  _par_proc1@305 OpenMPTransformer "" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB139-worksharingcritical-orig-no.c:24.10 "1" before DRB139-worksharingcritical-orig-no.c:36.12 "i"
+
+Logging new entry 0, writing trace to CIVLREP/DRB139-worksharingcritical-orig-no_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB139-worksharingcritical-orig-no.c  (DRB139-worksharingcritical-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 DRB139-worksharingcritical-orig-no.c 
+
+=== Stats ===
+   time (s)            : 1.14         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 23
+   states saved        : 33           state matches       : 0
+   transitions         : 184          trace steps         : 22
+   valid calls         : 181          provers             : cvc4, z3
+   prover calls        : 0         
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB139-worksharingcritical-orig-no_log.txt
+Checking DRB140-reduction-barrier-orig-yes with nthreads<=8 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+Sum is 45
+Data-race detected: {a} written by thread 1 intersects {a} written by thread 0
+
+
+Violation 0 encountered at depth 42:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_atomic_execution_lock_release] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:354.4-356.43
+    $assert($mem_no_intersect(cur_mw, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$14
+ -> false
+
+Input:
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@16 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB140-reduction-barrier-orig-yes.c:20.2-4 "int" before DRB140-reduction-barrier-orig-yes.c:20.2-4 "int"
+process 1:
+  $omp_helper_signal_wait@168 civl-omp.cvl:597.2-7 "$yield" called from
+  $omp_atomic_execution_lock_acquire@191 civl-omp.cvl:634.2-24 "$omp_helper_signal_wait" called from
+  _par_proc0@286 OpenMPTransformer "_omp_team, &(_omp_re" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.wrapProtectedStmts after DRB140-reduction-barrier-orig-yes.c:29.14 "i" before DRB140-reduction-barrier-orig-yes.c:33.4-9 "printf"
+process 2:
+  $check_data_race@161 civl-omp.cvl:354.4-10 "$assert" called from
+  $omp_atomic_execution_lock_release@196 civl-omp.cvl:646.2-17 "$check_data_race" called from
+  _par_proc0@288 OpenMPTransformer "_omp_team, &(_omp_re" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.wrapProtectedStmts after DRB140-reduction-barrier-orig-yes.c:29.14 "i" before DRB140-reduction-barrier-orig-yes.c:33.4-9 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB140-reduction-barrier-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB140-reduction-barrier-orig-yes.c  (DRB140-reduction-barrier-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 DRB140-reduction-barrier-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.36         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 97
+   states saved        : 149          state matches       : 0
+   transitions         : 678          trace steps         : 96
+   valid calls         : 1029         provers             : cvc4, z3
+   prover calls        : 2         
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB140-reduction-barrier-orig-yes_log.txt
+Checking DRB141-reduction-barrier-orig-no with nthreads<=8 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+Sum is 45
+Sum is 45
+Sum is 45
+Sum is 45
+Sum is 45
+Sum is 45
+Sum is 45
+Sum is 45
+
+=== Source files ===
+DRB141-reduction-barrier-orig-no.c  (DRB141-reduction-barrier-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 DRB141-reduction-barrier-orig-no.c 
+
+=== Stats ===
+   time (s)            : 9.89         memory (bytes)      : 6.85768704E8
+   max process count   : 9            states              : 36542
+   states saved        : 73489        state matches       : 1298
+   transitions         : 416974       trace steps         : 37839
+   valid calls         : 683147       provers             : cvc4, z3
+   prover calls        : 0         
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB172-critical2-orig-no with nthreads<=8 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+0 0
+1 2
+2 4
+3 6
+4 8
+5 10
+6 12
+7 14
+8 16
+9 18
+0 0
+1 2
+2 4
+3 6
+4 8
+5 10
+6 12
+7 14
+8 16
+9 19
+0 0
+1 2
+2 4
+3 6
+4 8
+5 10
+6 12
+7 14
+8 16
+9 20
+0 0
+1 2
+2 4
+3 6
+4 8
+5 10
+6 12
+7 14
+8 16
+9 21
+0 0
+1 2
+2 4
+3 6
+4 8
+5 10
+6 12
+7 14
+8 16
+9 22
+0 0
+1 2
+2 4
+3 6
+4 8
+5 10
+6 12
+7 14
+8 16
+9 23
+0 0
+1 2
+2 4
+3 6
+4 8
+5 10
+6 12
+7 14
+8 16
+9 24
+0 0
+1 2
+2 4
+3 6
+4 8
+5 10
+6 12
+7 14
+8 16
+9 25
+
+=== Source files ===
+DRB172-critical2-orig-no.c  (DRB172-critical2-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 DRB172-critical2-orig-no.c 
+
+=== Stats ===
+   time (s)            : 9.09         memory (bytes)      : 8.2837504E8
+   max process count   : 9            states              : 36716
+   states saved        : 73636        state matches       : 1298
+   transitions         : 413488       trace steps         : 38013
+   valid calls         : 684271       provers             : cvc4, z3
+   prover calls        : 0         
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB001-antidep1-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+a[5]=7
+Data-race detected: {a[2], a[4], a[6], a[8]} read by thread 1 intersects {a[2], a[4], a[6], a[8], a[0]} written by thread 0
+
+
+Violation 0 encountered at depth 59:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$14
+ -> false
+
+Input:
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@25 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB001-antidep1-orig-yes.c:67.19 "i" before DRB001-antidep1-orig-yes.c:71.9 "0"
+process 1:
+  $barrier_call@163 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@81 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@231 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB001-antidep1-orig-yes.c:72.16 "1" before DRB001-antidep1-orig-yes.c:74.2-7 "printf"
+process 2:
+  $omp_barrier@75 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@231 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB001-antidep1-orig-yes.c:72.16 "1" before DRB001-antidep1-orig-yes.c:74.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB001-antidep1-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB001-antidep1-orig-yes.c  (DRB001-antidep1-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB001-antidep1-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.44         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 94
+   states saved        : 140          state matches       : 0
+   transitions         : 463          trace steps         : 93
+   valid calls         : 876          provers             : cvc4, z3
+   prover calls        : 44        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB001-antidep1-orig-yes_log.txt
+Checking DRB002-antidep1-var-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+Data-race detected: {a[2], a[4], a[6], a[8]} read by thread 1 intersects {a[2], a[4], a[6], a[8], a[0]} written by thread 0
+
+
+Violation 0 encountered at depth 63:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$15
+ -> false
+
+Input:
+  _civl_argc=2
+  _civl_argv=X__civl_argv
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 10)
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  _civl_main@187 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB002-antidep1-var-yes.c:77.19 "i" before DRB002-antidep1-var-yes.c:81.9 "0" called from
+  main@10 GeneralTransformer "_civl_argc, ((char*[" inserted by GeneralTransformer.new main function after DRB002-antidep1-var-yes.c:85.0 "}"
+process 1:
+  $barrier_call@146 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@64 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@242 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB002-antidep1-var-yes.c:82.16 "1" before DRB002-antidep1-var-yes.c:84.9 "0"
+process 2:
+  $omp_barrier@58 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@242 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB002-antidep1-var-yes.c:82.16 "1" before DRB002-antidep1-var-yes.c:84.9 "0"
+
+Logging new entry 0, writing trace to CIVLREP/DRB002-antidep1-var-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB002-antidep1-var-yes.c  (DRB002-antidep1-var-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB002-antidep1-var-yes.c 
+
+=== Stats ===
+   time (s)            : 1.53         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 97
+   states saved        : 145          state matches       : 0
+   transitions         : 475          trace steps         : 96
+   valid calls         : 884          provers             : cvc4, z3
+   prover calls        : 48        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB002-antidep1-var-yes_log.txt
+Checking DRB003-antidep2-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+a[5][5]=1
+Data-race detected: {a[1 .. 9][0 .. 10]} read by thread 1 intersects {a[2][0 .. 10], a[4][0 .. 10], a[6][0 .. 10], a[8][0 .. 10], a[0][0 .. 10]} written by thread 0
+
+
+Violation 0 encountered at depth 259:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$14
+ -> false
+
+Input:
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@28 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB003-antidep2-orig-yes.c:68.20 "i" before DRB003-antidep2-orig-yes.c:63.2-4 "int"
+process 1:
+  $barrier_call@166 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@84 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@237 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB003-antidep2-orig-yes.c:74.31 "1" before DRB003-antidep2-orig-yes.c:79.2-7 "printf"
+process 2:
+  $omp_barrier@78 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@237 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB003-antidep2-orig-yes.c:74.31 "1" before DRB003-antidep2-orig-yes.c:79.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB003-antidep2-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB003-antidep2-orig-yes.c  (DRB003-antidep2-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB003-antidep2-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.51         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 294
+   states saved        : 340          state matches       : 0
+   transitions         : 1221         trace steps         : 293
+   valid calls         : 4586         provers             : cvc4, z3
+   prover calls        : 44        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB003-antidep2-orig-yes_log.txt
+Checking DRB004-antidep2-var-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+Data-race detected: {a[1 .. 9][0 .. 10]} read by thread 1 intersects {a[2][0 .. 10], a[4][0 .. 10], a[6][0 .. 10], a[8][0 .. 10], a[0][0 .. 10]} written by thread 0
+
+
+Violation 0 encountered at depth 263:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$15
+ -> false
+
+Input:
+  _civl_argc=2
+  _civl_argv=X__civl_argv
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 10)
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  _civl_main@190 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB004-antidep2-var-yes.c:76.20 "i" before DRB004-antidep2-var-yes.c:68.2-4 "int" called from
+  main@10 GeneralTransformer "_civl_argc, ((char*[" inserted by GeneralTransformer.new main function after DRB004-antidep2-var-yes.c:87.0 "}"
+process 1:
+  $barrier_call@146 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@64 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@248 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB004-antidep2-var-yes.c:82.31 "1" before DRB004-antidep2-var-yes.c:86.9 "0"
+process 2:
+  $omp_barrier@58 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@248 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB004-antidep2-var-yes.c:82.31 "1" before DRB004-antidep2-var-yes.c:86.9 "0"
+
+Logging new entry 0, writing trace to CIVLREP/DRB004-antidep2-var-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB004-antidep2-var-yes.c  (DRB004-antidep2-var-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB004-antidep2-var-yes.c 
+
+=== Stats ===
+   time (s)            : 1.69         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 297
+   states saved        : 345          state matches       : 0
+   transitions         : 1233         trace steps         : 296
+   valid calls         : 4591         provers             : cvc4, z3
+   prover calls        : 48        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB004-antidep2-var-yes_log.txt
+Checking DRB011-minusminus-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+numNodes2 = -5
+Data-race detected: {numNodes2} read by thread 1 intersects {numNodes2} written by thread 0
+
+
+Violation 0 encountered at depth 68:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$14
+ -> false
+
+Input:
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@29 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB011-minusminus-orig-yes.c:71.20 "i" before DRB011-minusminus-orig-yes.c:80.25 "1"
+process 1:
+  $barrier_call@167 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@85 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@237 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB011-minusminus-orig-yes.c:82.6-14 "numNodes2" before DRB011-minusminus-orig-yes.c:85.2-7 "printf"
+process 2:
+  $omp_barrier@79 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@237 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB011-minusminus-orig-yes.c:82.6-14 "numNodes2" before DRB011-minusminus-orig-yes.c:85.2-7 "printf"
+process 3:
+  _par_proc0@219 OpenMPTransformer "" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB011-minusminus-orig-yes.c:71.20 "i" before DRB011-minusminus-orig-yes.c:80.25 "1"
+
+Logging new entry 0, writing trace to CIVLREP/DRB011-minusminus-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB011-minusminus-orig-yes.c  (DRB011-minusminus-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB011-minusminus-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.57         memory (bytes)      : 2.7262976E8
+   max process count   : 4            states              : 165
+   states saved        : 253          state matches       : 1
+   transitions         : 918          trace steps         : 165
+   valid calls         : 1746         provers             : cvc4, z3
+   prover calls        : 44        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB011-minusminus-orig-yes_log.txt
+Checking DRB012-minusminus-var-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+Data-race detected: {numNodes2} read by thread 1 intersects {numNodes2} written by thread 0
+
+
+Violation 0 encountered at depth 72:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$15
+ -> false
+
+Input:
+  _civl_argc=2
+  _civl_argv=X__civl_argv
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 10)
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  _civl_main@191 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB012-minusminus-var-yes.c:76.20 "i" before DRB012-minusminus-var-yes.c:85.25 "1" called from
+  main@10 GeneralTransformer "_civl_argc, ((char*[" inserted by GeneralTransformer.new main function after DRB012-minusminus-var-yes.c:91.0 "}"
+process 1:
+  $barrier_call@146 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@64 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@248 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB012-minusminus-var-yes.c:87.6-14 "numNodes2" before DRB012-minusminus-var-yes.c:90.9 "0"
+process 2:
+  $omp_barrier@58 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@248 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB012-minusminus-var-yes.c:87.6-14 "numNodes2" before DRB012-minusminus-var-yes.c:90.9 "0"
+process 3:
+  _par_proc0@230 OpenMPTransformer "" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB012-minusminus-var-yes.c:76.20 "i" before DRB012-minusminus-var-yes.c:85.25 "1"
+
+Logging new entry 0, writing trace to CIVLREP/DRB012-minusminus-var-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB012-minusminus-var-yes.c  (DRB012-minusminus-var-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB012-minusminus-var-yes.c 
+
+=== Stats ===
+   time (s)            : 1.57         memory (bytes)      : 2.7262976E8
+   max process count   : 4            states              : 168
+   states saved        : 258          state matches       : 1
+   transitions         : 932          trace steps         : 168
+   valid calls         : 1757         provers             : cvc4, z3
+   prover calls        : 48        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB012-minusminus-var-yes_log.txt
+Checking DRB013-nowait-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+error = 51
+Data-race detected: {a[1], a[3], a[5], a[7], a[9]} read by thread 1 intersects {a[2], a[4], a[6], a[0], a[8 .. 10]} written by thread 0
+
+
+Violation 0 encountered at depth 70:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:378.4-380.43
+    $assert($mem_no_intersect(cur_mw, tmp_mr, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$15
+ -> false
+
+Input:
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@26 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB013-nowait-orig-yes.c:73.19 "i" before DRB013-nowait-orig-yes.c:79.12 "0"
+process 1:
+  $barrier_call@188 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@82 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@263 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB013-nowait-orig-yes.c:83.19 "1" before DRB013-nowait-orig-yes.c:86.2-7 "printf"
+process 2:
+  $omp_barrier@78 civl-omp.cvl:378.4-10 "$assert" called from
+  _par_proc0@263 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB013-nowait-orig-yes.c:83.19 "1" before DRB013-nowait-orig-yes.c:86.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB013-nowait-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB013-nowait-orig-yes.c  (DRB013-nowait-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB013-nowait-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.39         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 107
+   states saved        : 163          state matches       : 0
+   transitions         : 588          trace steps         : 106
+   valid calls         : 1014         provers             : cvc4, z3
+   prover calls        : 44        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB013-nowait-orig-yes_log.txt
+Checking DRB014-outofbounds-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+Violation 0 encountered at depth 18:
+CIVL execution violation in p1 (property violated: OUT_OF_BOUNDS, certainty: PROVEABLE)
+at DRB014-outofbounds-orig-yes.c:83.19-21
+      b[i][j]=b[i][j-1];
+                   ^^^
+
+
+Possible negative array index:
+Array expression: b
+Array type: real[1]
+Index exprssion: j
+Index value: -1
+
+
+Input:
+  N=1
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@22 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB014-outofbounds-orig-yes.c:79.11 "n" before DRB014-outofbounds-orig-yes.c:77.2-4 "int"
+process 1:
+  _par_proc0@229 DRB014-outofbounds-orig-yes.c:83.6-12 "b[i][j]"
+
+Logging new entry 0, writing trace to CIVLREP/DRB014-outofbounds-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB014-outofbounds-orig-yes.c  (DRB014-outofbounds-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB014-outofbounds-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.15         memory (bytes)      : 2.7262976E8
+   max process count   : 2            states              : 18
+   states saved        : 24           state matches       : 0
+   transitions         : 94           trace steps         : 17
+   valid calls         : 111          provers             : cvc4, z3
+   prover calls        : 14        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB014-outofbounds-orig-yes_log.txt
+Checking DRB015-outofbounds-var-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+Violation 0 encountered at depth 22:
+CIVL execution violation in p1 (property violated: OUT_OF_BOUNDS, certainty: PROVEABLE)
+at DRB015-outofbounds-var-yes.c:93.19-21
+      b[i][j]=b[i][j-1];
+                   ^^^
+
+
+Possible negative array index:
+Array expression: b
+Array type: real[2]
+Index exprssion: j
+Index value: -1
+
+
+Input:
+  _civl_argc=2
+  _civl_argv=X__civl_argv
+  N=2
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 2)
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  _civl_main@185 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB015-outofbounds-var-yes.c:89.11 "n" before DRB015-outofbounds-var-yes.c:83.2-4 "int" called from
+  main@10 GeneralTransformer "_civl_argc, ((char*[" inserted by GeneralTransformer.new main function after DRB015-outofbounds-var-yes.c:96.0 "}"
+process 1:
+  _par_proc0@241 DRB015-outofbounds-var-yes.c:93.6-12 "b[i][j]"
+
+Logging new entry 0, writing trace to CIVLREP/DRB015-outofbounds-var-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB015-outofbounds-var-yes.c  (DRB015-outofbounds-var-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB015-outofbounds-var-yes.c 
+
+=== Stats ===
+   time (s)            : 1.44         memory (bytes)      : 2.7262976E8
+   max process count   : 2            states              : 42
+   states saved        : 66           state matches       : 0
+   transitions         : 202          trace steps         : 41
+   valid calls         : 358          provers             : cvc4, z3
+   prover calls        : 17        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB015-outofbounds-var-yes_log.txt
+Checking DRB018-plusplus-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+output[5]=5
+Data-race detected: {outLen} read by thread 1 intersects {outLen} written by thread 0
+
+
+Violation 0 encountered at depth 60:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$15
+ -> false
+
+Input:
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@27 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB018-plusplus-orig-yes.c:74.23 "i" before DRB018-plusplus-orig-yes.c:78.9 "0"
+process 1:
+  $barrier_call@165 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@83 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@235 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB018-plusplus-orig-yes.c:80.29 "i" before DRB018-plusplus-orig-yes.c:83.2-7 "printf"
+process 2:
+  $omp_barrier@77 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@235 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB018-plusplus-orig-yes.c:80.29 "i" before DRB018-plusplus-orig-yes.c:83.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB018-plusplus-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB018-plusplus-orig-yes.c  (DRB018-plusplus-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB018-plusplus-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.55         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 96
+   states saved        : 162          state matches       : 0
+   transitions         : 509          trace steps         : 95
+   valid calls         : 889          provers             : cvc4, z3
+   prover calls        : 44        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB018-plusplus-orig-yes_log.txt
+Checking DRB019-plusplus-var-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+output[0]=0
+Data-race detected: {outLen} read by thread 1 intersects {outLen} written by thread 0
+
+
+Violation 0 encountered at depth 64:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$16
+ -> false
+
+Input:
+  _civl_argc=2
+  _civl_argv=X__civl_argv
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 10)
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  _civl_main@189 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB019-plusplus-var-yes.c:81.23 "i" before DRB019-plusplus-var-yes.c:85.9 "0" called from
+  main@10 GeneralTransformer "_civl_argc, ((char*[" inserted by GeneralTransformer.new main function after DRB019-plusplus-var-yes.c:91.0 "}"
+process 1:
+  $barrier_call@146 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@64 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@247 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB019-plusplus-var-yes.c:86.29 "i" before DRB019-plusplus-var-yes.c:89.2-7 "printf"
+process 2:
+  $omp_barrier@58 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@247 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB019-plusplus-var-yes.c:86.29 "i" before DRB019-plusplus-var-yes.c:89.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB019-plusplus-var-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB019-plusplus-var-yes.c  (DRB019-plusplus-var-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB019-plusplus-var-yes.c 
+
+=== Stats ===
+   time (s)            : 1.84         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 100
+   states saved        : 169          state matches       : 0
+   transitions         : 522          trace steps         : 99
+   valid calls         : 900          provers             : cvc4, z3
+   prover calls        : 48        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB019-plusplus-var-yes_log.txt
+Checking DRB020-privatemissing-var-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+Data-race detected: {tmp} read by thread 1 intersects {tmp} written by thread 0
+
+
+Violation 0 encountered at depth 64:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$15
+ -> false
+
+Input:
+  _civl_argc=2
+  _civl_argv=X__civl_argv
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 10)
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  _civl_main@187 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB020-privatemissing-var-yes.c:73.17 "i" before DRB020-privatemissing-var-yes.c:77.9 "0" called from
+  main@10 GeneralTransformer "_civl_argc, ((char*[" inserted by GeneralTransformer.new main function after DRB020-privatemissing-var-yes.c:83.0 "}"
+process 1:
+  $barrier_call@146 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@64 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@243 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB020-privatemissing-var-yes.c:80.11-13 "tmp" before DRB020-privatemissing-var-yes.c:82.9 "0"
+process 2:
+  $omp_barrier@58 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@243 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB020-privatemissing-var-yes.c:80.11-13 "tmp" before DRB020-privatemissing-var-yes.c:82.9 "0"
+
+Logging new entry 0, writing trace to CIVLREP/DRB020-privatemissing-var-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB020-privatemissing-var-yes.c  (DRB020-privatemissing-var-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB020-privatemissing-var-yes.c 
+
+=== Stats ===
+   time (s)            : 1.69         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 99
+   states saved        : 147          state matches       : 0
+   transitions         : 499          trace steps         : 98
+   valid calls         : 897          provers             : cvc4, z3
+   prover calls        : 48        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB020-privatemissing-var-yes_log.txt
+Checking DRB021-reductionmissing-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+sum = 25
+Data-race detected: {sum} read by thread 1 intersects {sum} written by thread 0
+
+
+Violation 0 encountered at depth 260:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$14
+ -> false
+
+Input:
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@29 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB021-reductionmissing-orig-yes.c:70.23 "i" before DRB021-reductionmissing-orig-yes.c:66.2-6 "float"
+process 1:
+  $barrier_call@167 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@85 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@239 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB021-reductionmissing-orig-yes.c:76.25 "j" before DRB021-reductionmissing-orig-yes.c:82.2-7 "printf"
+process 2:
+  $omp_barrier@79 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@239 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB021-reductionmissing-orig-yes.c:76.25 "j" before DRB021-reductionmissing-orig-yes.c:82.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB021-reductionmissing-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB021-reductionmissing-orig-yes.c  (DRB021-reductionmissing-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB021-reductionmissing-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.46         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 296
+   states saved        : 342          state matches       : 0
+   transitions         : 1488         trace steps         : 295
+   valid calls         : 2541         provers             : cvc4, z3
+   prover calls        : 44        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB021-reductionmissing-orig-yes_log.txt
+Checking DRB022-reductionmissing-var-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+sum = 25
+Data-race detected: {sum} read by thread 1 intersects {sum} written by thread 0
+
+
+Violation 0 encountered at depth 264:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$15
+ -> false
+
+Input:
+  _civl_argc=2
+  _civl_argv=X__civl_argv
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 10)
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  _civl_main@191 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB022-reductionmissing-var-yes.c:77.23 "i" before DRB022-reductionmissing-var-yes.c:72.2-6 "float" called from
+  main@10 GeneralTransformer "_civl_argc, ((char*[" inserted by GeneralTransformer.new main function after DRB022-reductionmissing-var-yes.c:90.0 "}"
+process 1:
+  $barrier_call@146 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@64 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@251 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB022-reductionmissing-var-yes.c:83.25 "j" before DRB022-reductionmissing-var-yes.c:88.2-7 "printf"
+process 2:
+  $omp_barrier@58 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@251 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB022-reductionmissing-var-yes.c:83.25 "j" before DRB022-reductionmissing-var-yes.c:88.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB022-reductionmissing-var-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB022-reductionmissing-var-yes.c  (DRB022-reductionmissing-var-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB022-reductionmissing-var-yes.c 
+
+=== Stats ===
+   time (s)            : 1.65         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 300
+   states saved        : 349          state matches       : 0
+   transitions         : 1501         trace steps         : 299
+   valid calls         : 2554         provers             : cvc4, z3
+   prover calls        : 48        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB022-reductionmissing-var-yes_log.txt
+Checking DRB028-privatemissing-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+a[5]=10
+Data-race detected: {tmp} read by thread 1 intersects {tmp} written by thread 0
+
+
+Violation 0 encountered at depth 60:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$14
+ -> false
+
+Input:
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@25 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB028-privatemissing-orig-yes.c:68.17 "i" before DRB028-privatemissing-orig-yes.c:72.9 "0"
+process 1:
+  $barrier_call@163 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@81 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@232 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB028-privatemissing-orig-yes.c:75.11-13 "tmp" before DRB028-privatemissing-orig-yes.c:78.2-7 "printf"
+process 2:
+  $omp_barrier@75 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@232 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB028-privatemissing-orig-yes.c:75.11-13 "tmp" before DRB028-privatemissing-orig-yes.c:78.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB028-privatemissing-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB028-privatemissing-orig-yes.c  (DRB028-privatemissing-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB028-privatemissing-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.47         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 96
+   states saved        : 142          state matches       : 0
+   transitions         : 487          trace steps         : 95
+   valid calls         : 889          provers             : cvc4, z3
+   prover calls        : 44        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB028-privatemissing-orig-yes_log.txt
+Checking DRB029-truedep1-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+a[5]=5
+Data-race detected: {a[1], a[3], a[5], a[7]} read by thread 1 intersects {a[1], a[3], a[5], a[7], a[9]} written by thread 0
+
+
+Violation 0 encountered at depth 59:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$14
+ -> false
+
+Input:
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@25 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB029-truedep1-orig-yes.c:67.17 "i" before DRB029-truedep1-orig-yes.c:71.9 "0"
+process 1:
+  $barrier_call@163 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@81 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@231 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB029-truedep1-orig-yes.c:72.16 "1" before DRB029-truedep1-orig-yes.c:74.2-7 "printf"
+process 2:
+  $omp_barrier@75 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@231 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB029-truedep1-orig-yes.c:72.16 "1" before DRB029-truedep1-orig-yes.c:74.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB029-truedep1-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB029-truedep1-orig-yes.c  (DRB029-truedep1-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB029-truedep1-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.51         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 94
+   states saved        : 140          state matches       : 0
+   transitions         : 463          trace steps         : 93
+   valid calls         : 876          provers             : cvc4, z3
+   prover calls        : 44        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB029-truedep1-orig-yes_log.txt
+Checking DRB030-truedep1-var-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+Data-race detected: {a[1], a[3], a[5], a[7]} read by thread 1 intersects {a[1], a[3], a[5], a[7], a[9]} written by thread 0
+
+
+Violation 0 encountered at depth 63:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$15
+ -> false
+
+Input:
+  _civl_argc=2
+  _civl_argv=X__civl_argv
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 10)
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  _civl_main@187 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB030-truedep1-var-yes.c:76.17 "i" before DRB030-truedep1-var-yes.c:80.9 "0" called from
+  main@10 GeneralTransformer "_civl_argc, ((char*[" inserted by GeneralTransformer.new main function after DRB030-truedep1-var-yes.c:84.0 "}"
+process 1:
+  $barrier_call@146 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@64 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@242 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB030-truedep1-var-yes.c:81.16 "1" before DRB030-truedep1-var-yes.c:83.9 "0"
+process 2:
+  $omp_barrier@58 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@242 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB030-truedep1-var-yes.c:81.16 "1" before DRB030-truedep1-var-yes.c:83.9 "0"
+
+Logging new entry 0, writing trace to CIVLREP/DRB030-truedep1-var-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB030-truedep1-var-yes.c  (DRB030-truedep1-var-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB030-truedep1-var-yes.c 
+
+=== Stats ===
+   time (s)            : 1.59         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 97
+   states saved        : 145          state matches       : 0
+   transitions         : 475          trace steps         : 96
+   valid calls         : 884          provers             : cvc4, z3
+   prover calls        : 48        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB030-truedep1-var-yes_log.txt
+Checking DRB031-truedepfirstdimension-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+b[5][5]=(1/2)
+Data-race detected: {b[1][0 .. 9], b[3][0 .. 9], b[5][0 .. 9], b[7][0 .. 9]} read by thread 1 intersects {b[1][1 .. 10], b[3][1 .. 10], b[5][1 .. 10], b[7][1 .. 10], b[9][1 .. 10]} written by thread 0
+
+
+Violation 0 encountered at depth 259:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$14
+ -> false
+
+Input:
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@29 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB031-truedepfirstdimension-orig-yes.c:67.17 "i" before DRB031-truedepfirstdimension-orig-yes.c:63.2-4 "int"
+process 1:
+  $barrier_call@167 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@85 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@238 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB031-truedepfirstdimension-orig-yes.c:73.17 "j" before DRB031-truedepfirstdimension-orig-yes.c:76.2-7 "printf"
+process 2:
+  $omp_barrier@79 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@238 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB031-truedepfirstdimension-orig-yes.c:73.17 "j" before DRB031-truedepfirstdimension-orig-yes.c:76.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB031-truedepfirstdimension-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB031-truedepfirstdimension-orig-yes.c  (DRB031-truedepfirstdimension-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB031-truedepfirstdimension-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.69         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 294
+   states saved        : 340          state matches       : 0
+   transitions         : 1168         trace steps         : 293
+   valid calls         : 3290         provers             : cvc4, z3
+   prover calls        : 44        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB031-truedepfirstdimension-orig-yes_log.txt
+Checking DRB032-truedepfirstdimension-var-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+Data-race detected: {b[1][0 .. 9], b[3][0 .. 9], b[5][0 .. 9], b[7][0 .. 9]} read by thread 1 intersects {b[1][1 .. 10], b[3][1 .. 10], b[5][1 .. 10], b[7][1 .. 10], b[9][1 .. 10]} written by thread 0
+
+
+Violation 0 encountered at depth 263:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$15
+ -> false
+
+Input:
+  _civl_argc=2
+  _civl_argv=X__civl_argv
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 10)
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  _civl_main@192 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB032-truedepfirstdimension-var-yes.c:75.17 "i" before DRB032-truedepfirstdimension-var-yes.c:67.2-4 "int" called from
+  main@10 GeneralTransformer "_civl_argc, ((char*[" inserted by GeneralTransformer.new main function after DRB032-truedepfirstdimension-var-yes.c:85.0 "}"
+process 1:
+  $barrier_call@146 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@64 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@250 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB032-truedepfirstdimension-var-yes.c:81.17 "j" before DRB032-truedepfirstdimension-var-yes.c:84.9 "0"
+process 2:
+  $omp_barrier@58 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@250 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB032-truedepfirstdimension-var-yes.c:81.17 "j" before DRB032-truedepfirstdimension-var-yes.c:84.9 "0"
+
+Logging new entry 0, writing trace to CIVLREP/DRB032-truedepfirstdimension-var-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB032-truedepfirstdimension-var-yes.c  (DRB032-truedepfirstdimension-var-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB032-truedepfirstdimension-var-yes.c 
+
+=== Stats ===
+   time (s)            : 2.15         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 297
+   states saved        : 345          state matches       : 0
+   transitions         : 1181         trace steps         : 296
+   valid calls         : 3295         provers             : cvc4, z3
+   prover calls        : 48        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB032-truedepfirstdimension-var-yes_log.txt
+Checking DRB033-truedeplinear-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+a[5]=3
+Data-race detected: {a[1], a[3]} read by thread 1 intersects {a[1], a[5], a[9]} written by thread 0
+
+
+Violation 0 encountered at depth 55:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$14
+ -> false
+
+Input:
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@24 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB033-truedeplinear-orig-yes.c:67.17 "i" before DRB033-truedeplinear-orig-yes.c:71.9 "0"
+process 1:
+  $barrier_call@162 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@80 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@230 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB033-truedeplinear-orig-yes.c:72.18 "1" before DRB033-truedeplinear-orig-yes.c:74.2-7 "printf"
+process 2:
+  $omp_barrier@74 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@230 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB033-truedeplinear-orig-yes.c:72.18 "1" before DRB033-truedeplinear-orig-yes.c:74.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB033-truedeplinear-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB033-truedeplinear-orig-yes.c  (DRB033-truedeplinear-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB033-truedeplinear-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.49         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 86
+   states saved        : 132          state matches       : 0
+   transitions         : 446          trace steps         : 85
+   valid calls         : 827          provers             : cvc4, z3
+   prover calls        : 44        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB033-truedeplinear-orig-yes_log.txt
+Checking DRB034-truedeplinear-var-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+Data-race detected: {a[1], a[3]} read by thread 1 intersects {a[1], a[5], a[9]} written by thread 0
+
+
+Violation 0 encountered at depth 59:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$15
+ -> false
+
+Input:
+  _civl_argc=2
+  _civl_argv=X__civl_argv
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 10)
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  _civl_main@187 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB034-truedeplinear-var-yes.c:74.19 "i" before DRB034-truedeplinear-var-yes.c:78.9 "0" called from
+  main@10 GeneralTransformer "_civl_argc, ((char*[" inserted by GeneralTransformer.new main function after DRB034-truedeplinear-var-yes.c:82.0 "}"
+process 1:
+  $barrier_call@146 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@64 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@242 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB034-truedeplinear-var-yes.c:79.18 "1" before DRB034-truedeplinear-var-yes.c:81.9 "0"
+process 2:
+  $omp_barrier@58 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@242 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB034-truedeplinear-var-yes.c:79.18 "1" before DRB034-truedeplinear-var-yes.c:81.9 "0"
+
+Logging new entry 0, writing trace to CIVLREP/DRB034-truedeplinear-var-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB034-truedeplinear-var-yes.c  (DRB034-truedeplinear-var-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB034-truedeplinear-var-yes.c 
+
+=== Stats ===
+   time (s)            : 1.58         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 89
+   states saved        : 137          state matches       : 0
+   transitions         : 459          trace steps         : 88
+   valid calls         : 835          provers             : cvc4, z3
+   prover calls        : 48        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB034-truedeplinear-var-yes_log.txt
+Checking DRB037-truedepseconddimension-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+b[0][0]=0
+b[1][1]=0
+b[1][1]=0
+Data-race detected: {b[2][1]} read by thread 1 intersects {b[2][1]} written by thread 0
+
+
+Violation 0 encountered at depth 110:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$14
+ -> false
+
+Input:
+  N=3
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@24 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB037-truedepseconddimension-orig-yes.c:68.13 "n" before DRB037-truedepseconddimension-orig-yes.c:70.11 "1"
+process 1:
+  $barrier_call@163 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@81 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@231 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB037-truedepseconddimension-orig-yes.c:71.21 "1" before DRB037-truedepseconddimension-orig-yes.c:68.7 "i"
+process 2:
+  $omp_barrier@75 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@231 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB037-truedepseconddimension-orig-yes.c:71.21 "1" before DRB037-truedepseconddimension-orig-yes.c:68.7 "i"
+
+Logging new entry 0, writing trace to CIVLREP/DRB037-truedepseconddimension-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB037-truedepseconddimension-orig-yes.c  (DRB037-truedepseconddimension-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB037-truedepseconddimension-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 15.89        memory (bytes)      : 2.7262976E8
+   max process count   : 9            states              : 1414
+   states saved        : 2514         state matches       : 7
+   transitions         : 10699        trace steps         : 1420
+   valid calls         : 23397        provers             : cvc4, z3
+   prover calls        : 14        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB037-truedepseconddimension-orig-yes_log.txt
+Checking DRB038-truedepseconddimension-var-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+Data-race detected: {b[2][1]} read by thread 1 intersects {b[2][1]} written by thread 0
+
+
+Violation 0 encountered at depth 114:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$15
+ -> false
+
+Input:
+  _civl_argc=2
+  _civl_argv=X__civl_argv
+  N=3
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 3)
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  _civl_main@187 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB038-truedepseconddimension-var-yes.c:75.13 "n" before DRB038-truedepseconddimension-var-yes.c:77.11 "1" called from
+  main@10 GeneralTransformer "_civl_argc, ((char*[" inserted by GeneralTransformer.new main function after DRB038-truedepseconddimension-var-yes.c:81.0 "}"
+process 1:
+  $barrier_call@146 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@64 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@243 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB038-truedepseconddimension-var-yes.c:78.21 "1" before DRB038-truedepseconddimension-var-yes.c:75.7 "i"
+process 2:
+  $omp_barrier@58 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@243 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB038-truedepseconddimension-var-yes.c:78.21 "1" before DRB038-truedepseconddimension-var-yes.c:75.7 "i"
+
+Logging new entry 0, writing trace to CIVLREP/DRB038-truedepseconddimension-var-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB038-truedepseconddimension-var-yes.c  (DRB038-truedepseconddimension-var-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB038-truedepseconddimension-var-yes.c 
+
+=== Stats ===
+   time (s)            : 2.05         memory (bytes)      : 3.27155712E8
+   max process count   : 9            states              : 1415
+   states saved        : 2518         state matches       : 7
+   transitions         : 10712        trace steps         : 1421
+   valid calls         : 23386        provers             : cvc4, z3
+   prover calls        : 19        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB038-truedepseconddimension-var-yes_log.txt
+Checking DRB041-3mm-parallel-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+18s: mem=1072Mb trans=542462 traceSteps=67847 explored=67465 saved=122021 prove=12
+33s: mem=1194Mb trans=1058991 traceSteps=128444 explored=127718 saved=231081 prove=12
+48s: mem=1312Mb trans=1411754 traceSteps=163522 explored=162600 saved=293894 prove=12
+63s: mem=1312Mb trans=1743153 traceSteps=197290 explored=196174 saved=354663 prove=12
+78s: mem=1312Mb trans=1908058 traceSteps=207557 explored=206387 saved=372817 prove=12
+
+=== Source files ===
+DRB041-3mm-parallel-no.c  (DRB041-3mm-parallel-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB041-3mm-parallel-no.c 
+
+=== Stats ===
+   time (s)            : 85.1         memory (bytes)      : 1.375731712E9
+   max process count   : 9            states              : 233365
+   states saved        : 421731       state matches       : 1330
+   transitions         : 2150342      trace steps         : 234694
+   valid calls         : 7301845      provers             : cvc4, z3
+   prover calls        : 12        
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB047-doallchar-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB047-doallchar-orig-no.c  (DRB047-doallchar-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB047-doallchar-orig-no.c 
+
+=== Stats ===
+   time (s)            : 2.17         memory (bytes)      : 3.27155712E8
+   max process count   : 9            states              : 2019
+   states saved        : 3012         state matches       : 7
+   transitions         : 11337        trace steps         : 2025
+   valid calls         : 26806        provers             : cvc4, z3
+   prover calls        : 0         
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB048-firstprivate-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB048-firstprivate-orig-no.c  (DRB048-firstprivate-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB048-firstprivate-orig-no.c 
+
+=== Stats ===
+   time (s)            : 4.09         memory (bytes)      : 4.73956352E8
+   max process count   : 9            states              : 12110
+   states saved        : 21735        state matches       : 70
+   transitions         : 94307        trace steps         : 12179
+   valid calls         : 213913       provers             : cvc4, z3
+   prover calls        : 12        
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB050-functionparameter-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB050-functionparameter-orig-no.c  (DRB050-functionparameter-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB050-functionparameter-orig-no.c 
+
+=== Stats ===
+   time (s)            : 3.97         memory (bytes)      : 4.73956352E8
+   max process count   : 9            states              : 12110
+   states saved        : 22175        state matches       : 70
+   transitions         : 94452        trace steps         : 12179
+   valid calls         : 213915       provers             : cvc4, z3
+   prover calls        : 12        
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB052-indirectaccesssharebase-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB052-indirectaccesssharebase-orig-no.c  (DRB052-indirectaccesssharebase-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB052-indirectaccesssharebase-orig-no.c 
+
+=== Stats ===
+   time (s)            : 2.83         memory (bytes)      : 3.27155712E8
+   max process count   : 9            states              : 7507
+   states saved        : 10087        state matches       : 7
+   transitions         : 19276        trace steps         : 7513
+   valid calls         : 70755        provers             : cvc4, z3
+   prover calls        : 0         
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB053-inneronly1-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB053-inneronly1-orig-no.c  (DRB053-inneronly1-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB053-inneronly1-orig-no.c 
+
+=== Stats ===
+   time (s)            : 4.2          memory (bytes)      : 5.0331648E8
+   max process count   : 9            states              : 11696
+   states saved        : 20635        state matches       : 63
+   transitions         : 88933        trace steps         : 11758
+   valid calls         : 205990       provers             : cvc4, z3
+   prover calls        : 0         
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB054-inneronly2-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB054-inneronly2-orig-no.c  (DRB054-inneronly2-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB054-inneronly2-orig-no.c 
+
+=== Stats ===
+   time (s)            : 12.78        memory (bytes)      : 1.015021568E9
+   max process count   : 9            states              : 58004
+   states saved        : 102718       state matches       : 315
+   transitions         : 442774       trace steps         : 58318
+   valid calls         : 993388       provers             : cvc4, z3
+   prover calls        : 42        
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB057-jacobiinitialize-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB057-jacobiinitialize-orig-no.c  (DRB057-jacobiinitialize-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB057-jacobiinitialize-orig-no.c 
+
+=== Stats ===
+   time (s)            : 14.5         memory (bytes)      : 3.37641472E8
+   max process count   : 9            states              : 10942
+   states saved        : 19608        state matches       : 63
+   transitions         : 103602       trace steps         : 11004
+   valid calls         : 224373       provers             : cvc4, z3
+   prover calls        : 12        
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB059-lastprivate-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+x=0x=1x=2x=3x=4x=5x=6x=7x=8x=9x=1x=3x=5x=7x=9x=2x=4x=5x=8x=3x=6x=7x=4x=6x=7x=8x=9x=5x=9x=6x=8x=9x=7
+=== Source files ===
+DRB059-lastprivate-orig-no.c  (DRB059-lastprivate-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB059-lastprivate-orig-no.c 
+
+=== Stats ===
+   time (s)            : 4.41         memory (bytes)      : 4.73956352E8
+   max process count   : 9            states              : 12973
+   states saved        : 23870        state matches       : 47
+   transitions         : 100799       trace steps         : 13019
+   valid calls         : 220617       provers             : cvc4, z3
+   prover calls        : 12        
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB060-matrixmultiply-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB060-matrixmultiply-orig-no.c  (DRB060-matrixmultiply-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB060-matrixmultiply-orig-no.c 
+
+=== Stats ===
+   time (s)            : 13.98        memory (bytes)      : 7.17225984E8
+   max process count   : 9            states              : 12109
+   states saved        : 21733        state matches       : 70
+   transitions         : 179373       trace steps         : 12178
+   valid calls         : 789031       provers             : cvc4, z3
+   prover calls        : 12        
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB061-matrixvector1-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB061-matrixvector1-orig-no.c  (DRB061-matrixvector1-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB061-matrixvector1-orig-no.c 
+
+=== Stats ===
+   time (s)            : 5.75         memory (bytes)      : 4.73956352E8
+   max process count   : 9            states              : 12109
+   states saved        : 22173        state matches       : 70
+   transitions         : 104573       trace steps         : 12178
+   valid calls         : 237271       provers             : cvc4, z3
+   prover calls        : 12        
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB063-outeronly1-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB063-outeronly1-orig-no.c  (DRB063-outeronly1-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB063-outeronly1-orig-no.c 
+
+=== Stats ===
+   time (s)            : 5.36         memory (bytes)      : 4.73956352E8
+   max process count   : 9            states              : 12109
+   states saved        : 21733        state matches       : 70
+   transitions         : 102373       trace steps         : 12178
+   valid calls         : 239911       provers             : cvc4, z3
+   prover calls        : 12        
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB064-outeronly2-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB064-outeronly2-orig-no.c  (DRB064-outeronly2-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB064-outeronly2-orig-no.c 
+
+=== Stats ===
+   time (s)            : 1.92         memory (bytes)      : 2.7262976E8
+   max process count   : 9            states              : 1299
+   states saved        : 2292         state matches       : 7
+   transitions         : 12148        trace steps         : 1305
+   valid calls         : 30087        provers             : cvc4, z3
+   prover calls        : 0         
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB065-pireduction-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+PI=(16/5)
+PI=(1344/425)
+PI=(106672/33855)
+PI=(150166784/47720465)
+PI=(23343347536/7422543025)
+PI=(66984845632/21306239825)
+PI=(1258801354553712/400472125058915)
+PI=(1466009848053965824/466452100431764525)
+PI=(72640890590065993744/23114744042267150325)
+PI=(2828092472189664178265408/899971068750144634608625)
+17s: mem=786Mb trans=956646 traceSteps=87715 explored=84669 saved=169124 prove=13
+32s: mem=920Mb trans=1901142 traceSteps=172062 explored=165991 saved=333613 prove=13
+47s: mem=920Mb trans=2810122 traceSteps=252929 explored=244017 saved=491795 prove=13
+62s: mem=1274Mb trans=3731929 traceSteps=335062 explored=323278 saved=652395 prove=13
+
+=== Source files ===
+DRB065-pireduction-orig-no.c  (DRB065-pireduction-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB065-pireduction-orig-no.c 
+
+=== Stats ===
+   time (s)            : 67.06        memory (bytes)      : 1.335885824E9
+   max process count   : 9            states              : 355291
+   states saved        : 717286       state matches       : 12980
+   transitions         : 4105367      trace steps         : 368270
+   valid calls         : 6662082      provers             : cvc4, z3
+   prover calls        : 13        
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB066-pointernoaliasing-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB066-pointernoaliasing-orig-no.c  (DRB066-pointernoaliasing-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB066-pointernoaliasing-orig-no.c 
+
+=== Stats ===
+   time (s)            : 4.45         memory (bytes)      : 4.73956352E8
+   max process count   : 9            states              : 12151
+   states saved        : 21796        state matches       : 70
+   transitions         : 94374        trace steps         : 12220
+   valid calls         : 215093       provers             : cvc4, z3
+   prover calls        : 12        
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB067-restrictpointer1-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB067-restrictpointer1-orig-no.c  (DRB067-restrictpointer1-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB067-restrictpointer1-orig-no.c 
+
+=== Stats ===
+   time (s)            : 4.45         memory (bytes)      : 4.86539264E8
+   max process count   : 9            states              : 12152
+   states saved        : 21797        state matches       : 70
+   transitions         : 94740        trace steps         : 12221
+   valid calls         : 215093       provers             : cvc4, z3
+   prover calls        : 12        
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB068-restrictpointer2-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB068-restrictpointer2-orig-no.c  (DRB068-restrictpointer2-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB068-restrictpointer2-orig-no.c 
+
+=== Stats ===
+   time (s)            : 5.15         memory (bytes)      : 5.70425344E8
+   max process count   : 9            states              : 12270
+   states saved        : 21946        state matches       : 70
+   transitions         : 94094        trace steps         : 12339
+   valid calls         : 223037       provers             : cvc4, z3
+   prover calls        : 12        
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB090-static-local-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+a[5]=5 b[10]=10
+Data-race detected: {tmp$0} read by thread 1 intersects {tmp$0} written by thread 0
+
+
+Violation 0 encountered at depth 70:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$16
+ -> false
+
+Input:
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@28 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB090-static-local-orig-yes.c:72.17 "i" before DRB090-static-local-orig-yes.c:79.11 "0"
+process 1:
+  $barrier_call@182 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@100 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@251 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB090-static-local-orig-yes.c:82.13-15 "tmp" before DRB090-static-local-orig-yes.c:89.8-10 "tmp"
+process 2:
+  $omp_barrier@94 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@251 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB090-static-local-orig-yes.c:82.13-15 "tmp" before DRB090-static-local-orig-yes.c:89.8-10 "tmp"
+
+Logging new entry 0, writing trace to CIVLREP/DRB090-static-local-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB090-static-local-orig-yes.c  (DRB090-static-local-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB090-static-local-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 2.09         memory (bytes)      : 2.7262976E8
+   max process count   : 9            states              : 1403
+   states saved        : 2441         state matches       : 7
+   transitions         : 10458        trace steps         : 1409
+   valid calls         : 22848        provers             : cvc4, z3
+   prover calls        : 44        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB090-static-local-orig-yes_log.txt
+Checking DRB093-doall2-collapse-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB093-doall2-collapse-orig-no.c  (DRB093-doall2-collapse-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB093-doall2-collapse-orig-no.c 
+
+=== Stats ===
+   time (s)            : 6.92         memory (bytes)      : 5.70425344E8
+   max process count   : 9            states              : 14749
+   states saved        : 24373        state matches       : 70
+   transitions         : 99498        trace steps         : 14818
+   valid calls         : 250842       provers             : cvc4, z3
+   prover calls        : 12        
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB104-nowait-barrier-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+error = 16
+error = 16
+error = 16
+error = 16
+error = 16
+error = 16
+error = 16
+error = 16
+
+=== Source files ===
+DRB104-nowait-barrier-orig-no.c  (DRB104-nowait-barrier-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB104-nowait-barrier-orig-no.c 
+
+=== Stats ===
+   time (s)            : 5.26         memory (bytes)      : 6.0817408E8
+   max process count   : 9            states              : 17318
+   states saved        : 30744        state matches       : 56
+   transitions         : 126001       trace steps         : 17373
+   valid calls         : 305444       provers             : cvc4, z3
+   prover calls        : 34        
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB110-ordered-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+x=100
+16s: mem=786Mb trans=1083722 traceSteps=113664 explored=80133 saved=185991 prove=0
+32s: mem=786Mb trans=2122400 traceSteps=225758 explored=155634 saved=367612 prove=0
+47s: mem=1040Mb trans=3093257 traceSteps=330974 explored=226698 saved=539116 prove=0
+62s: mem=1238Mb trans=4053858 traceSteps=436248 explored=295177 saved=707258 prove=0
+77s: mem=1238Mb trans=5009521 traceSteps=540275 explored=363602 saved=875024 prove=0
+92s: mem=1238Mb trans=5952222 traceSteps=643541 explored=430937 saved=1040994 prove=0
+
+=== Source files ===
+DRB110-ordered-orig-no.c  (DRB110-ordered-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB110-ordered-orig-no.c 
+
+=== Stats ===
+   time (s)            : 92.89        memory (bytes)      : 1.298137088E9
+   max process count   : 9            states              : 439057
+   states saved        : 1061066      state matches       : 217690
+   transitions         : 6069772      trace steps         : 656746
+   valid calls         : 7375210      provers             : cvc4, z3
+   prover calls        : 0         
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB111-linearmissing-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+c[5]=(205/42)
+Data-race detected: {j} read by thread 1 intersects {j} written by thread 0
+
+
+Violation 0 encountered at depth 80:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$14
+ -> false
+
+Input:
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@30 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB111-linearmissing-orig-yes.c:66.17 "i" before DRB111-linearmissing-orig-yes.c:74.9 "0"
+process 1:
+  $barrier_call@168 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@86 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@237 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB111-linearmissing-orig-yes.c:77.4 "j" before DRB111-linearmissing-orig-yes.c:80.2-7 "printf"
+process 2:
+  $omp_barrier@80 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@237 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB111-linearmissing-orig-yes.c:77.4 "j" before DRB111-linearmissing-orig-yes.c:80.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB111-linearmissing-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB111-linearmissing-orig-yes.c  (DRB111-linearmissing-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB111-linearmissing-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.34         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 116
+   states saved        : 162          state matches       : 0
+   transitions         : 510          trace steps         : 115
+   valid calls         : 1099         provers             : cvc4, z3
+   prover calls        : 44        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB111-linearmissing-orig-yes_log.txt
+Checking DRB113-default-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB113-default-orig-no.c  (DRB113-default-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB113-default-orig-no.c 
+
+=== Stats ===
+   time (s)            : 12.01        memory (bytes)      : 5.70425344E8
+   max process count   : 9            states              : 24719
+   states saved        : 44263        state matches       : 140
+   transitions         : 211431       trace steps         : 24858
+   valid calls         : 496296       provers             : cvc4, z3
+   prover calls        : 12        
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB169-missingsyncwrite-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+32 32 32 32 32 32 32 32 32 32 
+Data-race detected: {r1[0 .. 10]} written by thread 1 intersects {r1[0 .. 10]} written by thread 0
+
+
+Violation 0 encountered at depth 2258:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:381.4-383.43
+    $assert($mem_no_intersect(cur_mw, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$17
+ -> false
+
+Input:
+  N=10
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@31 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB169-missingsyncwrite-orig-yes.c:31.21 "i" before DRB169-missingsyncwrite-orig-yes.c:28.2-4 "int"
+process 1:
+  $barrier_call@173 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@91 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@247 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB169-missingsyncwrite-orig-yes.c:42.25 "j" before DRB169-missingsyncwrite-orig-yes.c:49.14 "k"
+process 2:
+  $omp_barrier@89 civl-omp.cvl:381.4-10 "$assert" called from
+  _par_proc0@247 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB169-missingsyncwrite-orig-yes.c:42.25 "j" before DRB169-missingsyncwrite-orig-yes.c:49.14 "k"
+
+Logging new entry 0, writing trace to CIVLREP/DRB169-missingsyncwrite-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB169-missingsyncwrite-orig-yes.c  (DRB169-missingsyncwrite-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB169-missingsyncwrite-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 2.8          memory (bytes)      : 3.29252864E8
+   max process count   : 3            states              : 2313
+   states saved        : 2359         state matches       : 0
+   transitions         : 7052         trace steps         : 2312
+   valid calls         : 59696        provers             : cvc4, z3
+   prover calls        : 44        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB169-missingsyncwrite-orig-yes_log.txt
+Checking DRB170-nestedloops-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB170-nestedloops-orig-no.c  (DRB170-nestedloops-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB170-nestedloops-orig-no.c 
+
+=== Stats ===
+   time (s)            : 7.28         memory (bytes)      : 8.5983232E8
+   max process count   : 9            states              : 12110
+   states saved        : 21735        state matches       : 70
+   transitions         : 203491       trace steps         : 12179
+   valid calls         : 450231       provers             : cvc4, z3
+   prover calls        : 12        
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB005-indirectaccess1-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+Data-race detected: {Dyscope0_malloc_0[523], Dyscope0_malloc_0[527], Dyscope0_malloc_0[533], Dyscope0_malloc_0[535], Dyscope0_malloc_0[539], Dyscope0_malloc_0[545]} read by thread 1 intersects {Dyscope0_malloc_0[521], Dyscope0_malloc_0[525], Dyscope0_malloc_0[529], Dyscope0_malloc_0[533], Dyscope0_malloc_0[537], Dyscope0_malloc_0[541]} written by thread 0
+
+
+Violation 0 encountered at depth 3230:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$14
+ -> false
+
+Input:
+  N=6
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+  0<=(SIZEOF_REAL-1)
+Call stacks:
+process 0:
+  main@211 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB005-indirectaccess1-orig-yes.c:128.27 "i" before DRB005-indirectaccess1-orig-yes.c:134.10 "0"
+process 1:
+  $barrier_call@352 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@270 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@422 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB005-indirectaccess1-orig-yes.c:138.21 "i" before DRB005-indirectaccess1-orig-yes.c:141.2-7 "printf"
+process 2:
+  $omp_barrier@264 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@422 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB005-indirectaccess1-orig-yes.c:138.21 "i" before DRB005-indirectaccess1-orig-yes.c:141.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB005-indirectaccess1-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB005-indirectaccess1-orig-yes.c  (DRB005-indirectaccess1-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB005-indirectaccess1-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 2.19         memory (bytes)      : 3.27155712E8
+   max process count   : 3            states              : 3761
+   states saved        : 4194         state matches       : 5
+   transitions         : 6449         trace steps         : 3765
+   valid calls         : 22556        provers             : cvc4, z3
+   prover calls        : 14        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB005-indirectaccess1-orig-yes_log.txt
+Checking DRB006-indirectaccess2-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+Data-race detected: {Dyscope0_malloc_0[523], Dyscope0_malloc_0[527], Dyscope0_malloc_0[533], Dyscope0_malloc_0[535], Dyscope0_malloc_0[539], Dyscope0_malloc_0[545]} read by thread 1 intersects {Dyscope0_malloc_0[521], Dyscope0_malloc_0[525], Dyscope0_malloc_0[529], Dyscope0_malloc_0[533], Dyscope0_malloc_0[537], Dyscope0_malloc_0[541]} written by thread 0
+
+
+Violation 0 encountered at depth 3230:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$14
+ -> false
+
+Input:
+  N=6
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+  0<=(SIZEOF_REAL-1)
+Call stacks:
+process 0:
+  main@211 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB006-indirectaccess2-orig-yes.c:128.27 "i" before DRB006-indirectaccess2-orig-yes.c:134.10 "0"
+process 1:
+  $barrier_call@352 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@270 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@422 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB006-indirectaccess2-orig-yes.c:138.15-17 "3.0" before DRB006-indirectaccess2-orig-yes.c:140.2-7 "printf"
+process 2:
+  $omp_barrier@264 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@422 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB006-indirectaccess2-orig-yes.c:138.15-17 "3.0" before DRB006-indirectaccess2-orig-yes.c:140.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB006-indirectaccess2-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB006-indirectaccess2-orig-yes.c  (DRB006-indirectaccess2-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB006-indirectaccess2-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 2.35         memory (bytes)      : 3.27155712E8
+   max process count   : 3            states              : 3761
+   states saved        : 4194         state matches       : 5
+   transitions         : 6449         trace steps         : 3765
+   valid calls         : 22556        provers             : cvc4, z3
+   prover calls        : 14        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB006-indirectaccess2-orig-yes_log.txt
+Checking DRB007-indirectaccess3-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+Data-race detected: {Dyscope0_malloc_0[523], Dyscope0_malloc_0[533], Dyscope0_malloc_0[535], Dyscope0_malloc_0[545]} read by thread 1 intersects {Dyscope0_malloc_0[521], Dyscope0_malloc_0[525], Dyscope0_malloc_0[533], Dyscope0_malloc_0[537]} written by thread 0
+
+
+Violation 0 encountered at depth 3228:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$14
+ -> false
+
+Input:
+  N=4
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+  0<=(SIZEOF_REAL-1)
+Call stacks:
+process 0:
+  main@211 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB007-indirectaccess3-orig-yes.c:128.27 "i" before DRB007-indirectaccess3-orig-yes.c:134.10 "0"
+process 1:
+  $barrier_call@352 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@270 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@422 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB007-indirectaccess3-orig-yes.c:138.15-17 "3.0" before DRB007-indirectaccess3-orig-yes.c:140.2-7 "printf"
+process 2:
+  $omp_barrier@264 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@422 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB007-indirectaccess3-orig-yes.c:138.15-17 "3.0" before DRB007-indirectaccess3-orig-yes.c:140.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB007-indirectaccess3-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB007-indirectaccess3-orig-yes.c  (DRB007-indirectaccess3-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB007-indirectaccess3-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 2.34         memory (bytes)      : 3.27155712E8
+   max process count   : 3            states              : 3660
+   states saved        : 4008         state matches       : 3
+   transitions         : 5741         trace steps         : 3662
+   valid calls         : 20650        provers             : cvc4, z3
+   prover calls        : 14        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB007-indirectaccess3-orig-yes_log.txt
+Checking DRB008-indirectaccess4-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+x1[999]=(999/2) xa2[1285]=(1297/2)
+Data-race detected: {Dyscope0_malloc_0[533], Dyscope0_malloc_0[545]} read by thread 1 intersects {Dyscope0_malloc_0[521], Dyscope0_malloc_0[533]} written by thread 0
+
+
+Violation 0 encountered at depth 3226:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$14
+ -> false
+
+Input:
+  N=2
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+  0<=(SIZEOF_REAL-1)
+Call stacks:
+process 0:
+  main@211 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB008-indirectaccess4-orig-yes.c:128.27 "i" before DRB008-indirectaccess4-orig-yes.c:134.10 "0"
+process 1:
+  $barrier_call@352 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@270 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@422 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB008-indirectaccess4-orig-yes.c:138.15-17 "3.0" before DRB008-indirectaccess4-orig-yes.c:140.2-7 "printf"
+process 2:
+  $omp_barrier@264 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@422 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB008-indirectaccess4-orig-yes.c:138.15-17 "3.0" before DRB008-indirectaccess4-orig-yes.c:140.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB008-indirectaccess4-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB008-indirectaccess4-orig-yes.c  (DRB008-indirectaccess4-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB008-indirectaccess4-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 2.11         memory (bytes)      : 3.27155712E8
+   max process count   : 3            states              : 3563
+   states saved        : 3830         state matches       : 1
+   transitions         : 5049         trace steps         : 3563
+   valid calls         : 18928        provers             : cvc4, z3
+   prover calls        : 14        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB008-indirectaccess4-orig-yes_log.txt
+Checking DRB009-lastprivatemissing-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+x=0x=1x=2x=3x=4x=5x=6x=7x=8x=9Data-race detected: {x} written by thread 1 intersects {x} written by thread 0
+
+
+Violation 0 encountered at depth 31:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:381.4-383.43
+    $assert($mem_no_intersect(cur_mw, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$16
+ -> false
+
+Input:
+  N=2
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@20 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB009-lastprivatemissing-orig-yes.c:64.12 "N" before DRB009-lastprivatemissing-orig-yes.c:63.2-4 "int"
+process 1:
+  $barrier_call@158 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@76 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@226 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB009-lastprivatemissing-orig-yes.c:68.6 "i" before DRB009-lastprivatemissing-orig-yes.c:70.2-7 "printf"
+process 2:
+  $omp_barrier@74 civl-omp.cvl:381.4-10 "$assert" called from
+  _par_proc0@226 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB009-lastprivatemissing-orig-yes.c:68.6 "i" before DRB009-lastprivatemissing-orig-yes.c:70.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB009-lastprivatemissing-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB009-lastprivatemissing-orig-yes.c  (DRB009-lastprivatemissing-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB009-lastprivatemissing-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.31         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 348
+   states saved        : 556          state matches       : 1
+   transitions         : 1712         trace steps         : 348
+   valid calls         : 3519         provers             : cvc4, z3
+   prover calls        : 14        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB009-lastprivatemissing-orig-yes_log.txt
+Checking DRB010-lastprivatemissing-var-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+x=0x=1x=2x=3x=4x=5x=6x=7x=8x=9Data-race detected: {x} written by thread 1 intersects {x} written by thread 0
+
+
+Violation 0 encountered at depth 35:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:381.4-383.43
+    $assert($mem_no_intersect(cur_mw, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$17
+ -> false
+
+Input:
+  _civl_argc=2
+  _civl_argv=X__civl_argv
+  N=2
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 2)
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  _civl_main@182 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB010-lastprivatemissing-var-yes.c:71.20 "1" before DRB010-lastprivatemissing-var-yes.c:68.2-4 "int" called from
+  main@10 GeneralTransformer "_civl_argc, ((char*[" inserted by GeneralTransformer.new main function after DRB010-lastprivatemissing-var-yes.c:78.0 "}"
+process 1:
+  $barrier_call@146 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@64 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@238 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB010-lastprivatemissing-var-yes.c:75.6 "i" before DRB010-lastprivatemissing-var-yes.c:76.2-7 "printf"
+process 2:
+  $omp_barrier@62 civl-omp.cvl:381.4-10 "$assert" called from
+  _par_proc0@238 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB010-lastprivatemissing-var-yes.c:75.6 "i" before DRB010-lastprivatemissing-var-yes.c:76.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB010-lastprivatemissing-var-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB010-lastprivatemissing-var-yes.c  (DRB010-lastprivatemissing-var-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB010-lastprivatemissing-var-yes.c 
+
+=== Stats ===
+   time (s)            : 1.6          memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 352
+   states saved        : 563          state matches       : 1
+   transitions         : 1734         trace steps         : 352
+   valid calls         : 3532         provers             : cvc4, z3
+   prover calls        : 33        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB010-lastprivatemissing-var-yes_log.txt
+Checking DRB016-outputdep-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+x=0x=1x=2x=3x=4x=5x=6x=7x=8x=9Data-race detected: {x} read by thread 1 intersects {x} written by thread 0
+
+
+Violation 0 encountered at depth 31:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$14
+ -> false
+
+Input:
+  N=2
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@22 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB016-outputdep-orig-yes.c:76.10-11 "10" before DRB016-outputdep-orig-yes.c:79.9 "0"
+process 1:
+  $barrier_call@160 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@78 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@229 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB016-outputdep-orig-yes.c:82.6 "i" before DRB016-outputdep-orig-yes.c:84.2-7 "printf"
+process 2:
+  $omp_barrier@72 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@229 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB016-outputdep-orig-yes.c:82.6 "i" before DRB016-outputdep-orig-yes.c:84.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB016-outputdep-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB016-outputdep-orig-yes.c  (DRB016-outputdep-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB016-outputdep-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.3          memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 348
+   states saved        : 556          state matches       : 1
+   transitions         : 1768         trace steps         : 348
+   valid calls         : 3691         provers             : cvc4, z3
+   prover calls        : 14        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB016-outputdep-orig-yes_log.txt
+Checking DRB017-outputdep-var-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+x=0, a[0]=10
+x=1, a[0]=10
+x=2, a[0]=10
+x=3, a[0]=10
+x=4, a[0]=10
+x=5, a[0]=10
+x=6, a[0]=10
+x=7, a[0]=10
+x=8, a[0]=10
+x=9, a[0]=10
+Data-race detected: {x} read by thread 1 intersects {x} written by thread 0
+
+
+Violation 0 encountered at depth 35:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$15
+ -> false
+
+Input:
+  _civl_argc=2
+  _civl_argv=X__civl_argv
+  N=2
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 2)
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  _civl_main@184 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB017-outputdep-var-yes.c:79.10-11 "10" before DRB017-outputdep-var-yes.c:82.9 "0" called from
+  main@10 GeneralTransformer "_civl_argc, ((char*[" inserted by GeneralTransformer.new main function after DRB017-outputdep-var-yes.c:89.0 "}"
+process 1:
+  $barrier_call@146 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@64 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@241 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB017-outputdep-var-yes.c:85.6 "i" before DRB017-outputdep-var-yes.c:87.2-7 "printf"
+process 2:
+  $omp_barrier@58 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@241 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB017-outputdep-var-yes.c:85.6 "i" before DRB017-outputdep-var-yes.c:87.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB017-outputdep-var-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB017-outputdep-var-yes.c  (DRB017-outputdep-var-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB017-outputdep-var-yes.c 
+
+=== Stats ===
+   time (s)            : 1.66         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 352
+   states saved        : 564          state matches       : 1
+   transitions         : 1790         trace steps         : 352
+   valid calls         : 3714         provers             : cvc4, z3
+   prover calls        : 33        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB017-outputdep-var-yes_log.txt
+Checking DRB035-truedepscalar-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+a[0]=10
+a[1]=10
+a[1]=10
+a[2]=11
+a[2]=11
+a[3]=13
+a[3]=13
+a[4]=16
+a[4]=16
+a[5]=20
+Data-race detected: {tmp} read by thread 1 intersects {tmp} written by thread 0
+
+
+Violation 0 encountered at depth 32:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$14
+ -> false
+
+Input:
+  N=2
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@22 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB035-truedepscalar-orig-yes.c:69.8 "N" before DRB035-truedepscalar-orig-yes.c:72.9 "0"
+process 1:
+  $barrier_call@160 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@78 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@229 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB035-truedepscalar-orig-yes.c:75.14 "i" before DRB035-truedepscalar-orig-yes.c:78.2-7 "printf"
+process 2:
+  $omp_barrier@72 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@229 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB035-truedepscalar-orig-yes.c:75.14 "i" before DRB035-truedepscalar-orig-yes.c:78.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB035-truedepscalar-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB035-truedepscalar-orig-yes.c  (DRB035-truedepscalar-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB035-truedepscalar-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.45         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 349
+   states saved        : 558          state matches       : 1
+   transitions         : 1768         trace steps         : 349
+   valid calls         : 3895         provers             : cvc4, z3
+   prover calls        : 14        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB035-truedepscalar-orig-yes_log.txt
+Checking DRB036-truedepscalar-var-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+Data-race detected: {tmp} read by thread 1 intersects {tmp} written by thread 0
+
+
+Violation 0 encountered at depth 36:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$15
+ -> false
+
+Input:
+  _civl_argc=2
+  _civl_argv=X__civl_argv
+  N=2
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 2)
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  _civl_main@184 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB036-truedepscalar-var-yes.c:75.8-10 "len" before DRB036-truedepscalar-var-yes.c:77.9 "0" called from
+  main@10 GeneralTransformer "_civl_argc, ((char*[" inserted by GeneralTransformer.new main function after DRB036-truedepscalar-var-yes.c:83.0 "}"
+process 1:
+  $barrier_call@146 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@64 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@240 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB036-truedepscalar-var-yes.c:80.14 "i" before DRB036-truedepscalar-var-yes.c:82.9 "0"
+process 2:
+  $omp_barrier@58 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@240 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB036-truedepscalar-var-yes.c:80.14 "i" before DRB036-truedepscalar-var-yes.c:82.9 "0"
+
+Logging new entry 0, writing trace to CIVLREP/DRB036-truedepscalar-var-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB036-truedepscalar-var-yes.c  (DRB036-truedepscalar-var-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB036-truedepscalar-var-yes.c 
+
+=== Stats ===
+   time (s)            : 1.6          memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 343
+   states saved        : 545          state matches       : 1
+   transitions         : 1782         trace steps         : 343
+   valid calls         : 3858         provers             : cvc4, z3
+   prover calls        : 33        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB036-truedepscalar-var-yes_log.txt
+Checking DRB039-truedepsingleelement-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+a[0]=4
+a[1]=Y1[1]+4
+a[1]=Y1[1]+4
+a[2]=Y1[2]+4
+a[2]=Y1[2]+4
+a[3]=Y1[3]+4
+a[3]=Y1[3]+4
+a[4]=Y1[4]+4
+a[4]=Y1[4]+4
+a[5]=Y1[5]+4
+Data-race detected: {a[0 .. 2]} read by thread 1 intersects {a[0]} written by thread 0
+
+
+Violation 0 encountered at depth 32:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$14
+ -> false
+
+Input:
+  N=2
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@22 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB039-truedepsingleelement-orig-yes.c:66.9 "2" before DRB039-truedepsingleelement-orig-yes.c:69.9 "0"
+process 1:
+  $barrier_call@160 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@78 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@228 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB039-truedepsingleelement-orig-yes.c:70.16 "0" before DRB039-truedepsingleelement-orig-yes.c:72.2-7 "printf"
+process 2:
+  $omp_barrier@72 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@228 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB039-truedepsingleelement-orig-yes.c:70.16 "0" before DRB039-truedepsingleelement-orig-yes.c:72.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB039-truedepsingleelement-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB039-truedepsingleelement-orig-yes.c  (DRB039-truedepsingleelement-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB039-truedepsingleelement-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.49         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 349
+   states saved        : 558          state matches       : 1
+   transitions         : 1710         trace steps         : 349
+   valid calls         : 4072         provers             : cvc4, z3
+   prover calls        : 14        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB039-truedepsingleelement-orig-yes_log.txt
+Checking DRB040-truedepsingleelement-var-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+Data-race detected: {a[0 .. 2]} read by thread 1 intersects {a[0]} written by thread 0
+
+
+Violation 0 encountered at depth 36:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$15
+ -> false
+
+Input:
+  _civl_argc=2
+  _civl_argv=X__civl_argv
+  N=2
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  0==(AF__atoi(<(scope_t(0)),3,ArrayElementRef(ArrayElementRef(<1>,1),0)>) - 2)
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  _civl_main@184 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB040-truedepsingleelement-var-yes.c:72.9 "2" before DRB040-truedepsingleelement-var-yes.c:75.9 "0" called from
+  main@10 GeneralTransformer "_civl_argc, ((char*[" inserted by GeneralTransformer.new main function after DRB040-truedepsingleelement-var-yes.c:79.0 "}"
+process 1:
+  $barrier_call@146 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@64 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@239 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB040-truedepsingleelement-var-yes.c:76.16 "0" before DRB040-truedepsingleelement-var-yes.c:78.9 "0"
+process 2:
+  $omp_barrier@58 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@239 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB040-truedepsingleelement-var-yes.c:76.16 "0" before DRB040-truedepsingleelement-var-yes.c:78.9 "0"
+
+Logging new entry 0, writing trace to CIVLREP/DRB040-truedepsingleelement-var-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB040-truedepsingleelement-var-yes.c  (DRB040-truedepsingleelement-var-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB040-truedepsingleelement-var-yes.c 
+
+=== Stats ===
+   time (s)            : 1.58         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 343
+   states saved        : 545          state matches       : 1
+   transitions         : 1724         trace steps         : 343
+   valid calls         : 4035         provers             : cvc4, z3
+   prover calls        : 33        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB040-truedepsingleelement-var-yes_log.txt
+Checking DRB045-doall1-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB045-doall1-orig-no.c  (DRB045-doall1-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB045-doall1-orig-no.c 
+
+=== Stats ===
+   time (s)            : 3.88         memory (bytes)      : 4.73956352E8
+   max process count   : 9            states              : 12109
+   states saved        : 21733        state matches       : 70
+   transitions         : 93930        trace steps         : 12178
+   valid calls         : 210871       provers             : cvc4, z3
+   prover calls        : 12        
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB046-doall2-orig-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+
+=== Source files ===
+DRB046-doall2-orig-no.c  (DRB046-doall2-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB046-doall2-orig-no.c 
+
+=== Stats ===
+   time (s)            : 5.66         memory (bytes)      : 4.73956352E8
+   max process count   : 9            states              : 12109
+   states saved        : 21733        state matches       : 70
+   transitions         : 103610       trace steps         : 12178
+   valid calls         : 245191       provers             : cvc4, z3
+   prover calls        : 12        
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB055-jacobi2d-parallel-no with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+17s: mem=944Mb trans=587487 traceSteps=75191 explored=74773 saved=134828 prove=12
+32s: mem=1072Mb trans=1176986 traceSteps=149784 explored=148947 saved=268535 prove=12
+47s: mem=1194Mb trans=1713331 traceSteps=216306 explored=215091 saved=387961 prove=12
+62s: mem=1194Mb trans=2198057 traceSteps=276613 explored=275069 saved=495285 prove=12
+
+=== Source files ===
+DRB055-jacobi2d-parallel-no.c  (DRB055-jacobi2d-parallel-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB055-jacobi2d-parallel-no.c 
+
+=== Stats ===
+   time (s)            : 71.78        memory (bytes)      : 1.518338048E9
+   max process count   : 9            states              : 312557
+   states saved        : 563085       state matches       : 1764
+   transitions         : 2517742      trace steps         : 314320
+   valid calls         : 6641197      provers             : cvc4, z3
+   prover calls        : 12        
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB073-doall2-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+Data-race detected: {j} read by thread 1 intersects {j} written by thread 0
+
+
+Violation 0 encountered at depth 31:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$14
+ -> false
+
+Input:
+  N=2
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@20 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB073-doall2-orig-yes.c:67.2-4 "int" before DRB073-doall2-orig-yes.c:69.9 "0"
+process 1:
+  $barrier_call@157 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@75 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@228 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB073-doall2-orig-yes.c:70.17 "j" before DRB073-doall2-orig-yes.c:72.9 "0"
+process 2:
+  $omp_barrier@69 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@228 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB073-doall2-orig-yes.c:70.17 "j" before DRB073-doall2-orig-yes.c:72.9 "0"
+
+Logging new entry 0, writing trace to CIVLREP/DRB073-doall2-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB073-doall2-orig-yes.c  (DRB073-doall2-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB073-doall2-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.46         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 338
+   states saved        : 536          state matches       : 1
+   transitions         : 2927         trace steps         : 338
+   valid calls         : 8177         provers             : cvc4, z3
+   prover calls        : 14        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB073-doall2-orig-yes_log.txt
+Checking DRB109-orderedmissing-orig-yes with nthreads<=8, BOUND=10 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+x=1
+x=2
+x=3
+x=4
+x=5
+x=6
+x=7
+x=8
+x=9
+x=10
+Data-race detected: {x} read by thread 1 intersects {x} written by thread 0
+
+
+Violation 0 encountered at depth 31:
+CIVL execution violation in p2 [Library: civl-omp.cvh, Function: $omp_barrier] (property violated: ASSERTION_VIOLATION, certainty: PROVEABLE)
+at civl-omp.cvl:375.4-377.43
+    $assert($mem_no_intersect(cur_mr, tmp_mw, &out_s0, &out_s1), 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	...
+           out_s0, cur_tid, out_s1, tmp_tid);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assertion: $sef$14
+ -> false
+
+Input:
+  N=2
+  BOUND=10
+  _omp_thread_max=8
+Context:
+  forall _t : dynamicType . (0 <= CIVL_SIZEOF(_t) - 1)
+Call stacks:
+process 0:
+  main@21 OpenMPTransformer "$parfor (int _omp_ti" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB109-orderedmissing-orig-yes.c:64.15 "0" before DRB109-orderedmissing-orig-yes.c:64.15 "0"
+process 1:
+  $barrier_call@159 concurrency.cvl:83.2-14 "$barrier_exit" called from
+  $omp_barrier@77 civl-omp.cvl:386.2-14 "$barrier_call" called from
+  _par_proc0@227 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB109-orderedmissing-orig-yes.c:65.4 "x" before DRB109-orderedmissing-orig-yes.c:67.2-7 "printf"
+process 2:
+  $omp_barrier@71 civl-omp.cvl:375.4-10 "$assert" called from
+  _par_proc0@227 OpenMPTransformer "_omp_team" inserted by OpenMPTransformer.OpenMP2CIVLWorker2.procOmpParallelNode after DRB109-orderedmissing-orig-yes.c:65.4 "x" before DRB109-orderedmissing-orig-yes.c:67.2-7 "printf"
+
+Logging new entry 0, writing trace to CIVLREP/DRB109-orderedmissing-orig-yes_0.trace
+Terminating search after finding 1 violation.
+
+=== Source files ===
+DRB109-orderedmissing-orig-yes.c  (DRB109-orderedmissing-orig-yes.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=10 DRB109-orderedmissing-orig-yes.c 
+
+=== Stats ===
+   time (s)            : 1.38         memory (bytes)      : 2.7262976E8
+   max process count   : 3            states              : 348
+   states saved        : 556          state matches       : 1
+   transitions         : 1716         trace steps         : 348
+   valid calls         : 3517         provers             : cvc4, z3
+   prover calls        : 14        
+
+=== Result ===
+The program MAY NOT be correct.  See CIVLREP/DRB109-orderedmissing-orig-yes_log.txt
+Checking DRB043-adi-parallel-no with nthreads<=8, BOUND=4 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+17s: mem=890Mb trans=553433 traceSteps=70177 explored=69785 saved=125918 prove=6
+32s: mem=1020Mb trans=1089012 traceSteps=137070 explored=136299 saved=245870 prove=6
+47s: mem=1144Mb trans=1195363 traceSteps=150568 explored=149729 saved=269680 prove=6
+62s: mem=1144Mb trans=1205080 traceSteps=151786 explored=150940 saved=271864 prove=6
+77s: mem=1144Mb trans=1213226 traceSteps=152730 explored=151878 saved=273556 prove=6
+92s: mem=1144Mb trans=1229181 traceSteps=154689 explored=153825 saved=277063 prove=6
+107s: mem=1144Mb trans=1253294 traceSteps=157602 explored=156722 saved=282292 prove=6
+122s: mem=1144Mb trans=1327917 traceSteps=166702 explored=165769 saved=298603 prove=6
+
+=== Source files ===
+DRB043-adi-parallel-no.c  (DRB043-adi-parallel-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=8 -inputBOUND=4 DRB043-adi-parallel-no.c 
+
+=== Stats ===
+   time (s)            : 132.75       memory (bytes)      : 1.325400064E9
+   max process count   : 9            states              : 202824
+   states saved        : 365488       state matches       : 1148
+   transitions         : 1634104      trace steps         : 203971
+   valid calls         : 4341677      provers             : cvc4, z3
+   prover calls        : 6         
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB058-jacobikernel-orig-no with nthreads<=4, MSIZE_B=5, NITER_B=5 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+Total Number of Iterations:6
+Residual:(1/25)*((186181610386699059200000000000000000000000000000000/11374013567425002342265208919527360658698373157549249)^(1/2))
+Total Number of Iterations:5
+Residual:(1/25)*((14576007962214400000000000000000000000000/441297018806736160921607764811944924665601)^(1/2))
+Total Number of Iterations:4
+Residual:(1/25)*((1148303637908480000000000000000/17121753693476675231607355722049)^(1/2))
+Total Number of Iterations:3
+Residual:(1/25)*((92696539168000000000/664301903359260412801)^(1/2))
+Total Number of Iterations:2
+Residual:(1/25)*((220944308/696596077)^(1/2))
+Total Number of Iterations:6
+Residual:(1/16)*((461852090804882812500000000000000000000000/627099209661291617982826752450079001010799801)^(1/2))
+Total Number of Iterations:5
+Residual:(1/16)*((2052675959132812500000000000000000/688444607873320905645913627422140641)^(1/2))
+Total Number of Iterations:4
+Residual:(1/16)*((9123004262812500000000000/755791062734464859410507081)^(1/2))
+Total Number of Iterations:3
+Residual:(1/16)*((40546685612500000/829725622042203121)^(1/2))
+Total Number of Iterations:2
+Residual:(1/16)*((814578283/2732678283)^(1/2))
+Total Number of Iterations:6
+Residual:0
+Total Number of Iterations:5
+Residual:0
+Total Number of Iterations:4
+Residual:0
+Total Number of Iterations:3
+Residual:0
+Total Number of Iterations:2
+Residual:0
+Total Number of Iterations:6
+Residual:0
+Total Number of Iterations:5
+Residual:0
+Total Number of Iterations:4
+Residual:0
+Total Number of Iterations:3
+Residual:0
+Total Number of Iterations:2
+Residual:0
+
+=== Source files ===
+DRB058-jacobikernel-orig-no.c  (DRB058-jacobikernel-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=4 -inputMSIZE_B=5 -inputNITER_B=5 DRB058-jacobikernel-orig-no.c 
+
+=== Stats ===
+   time (s)            : 6.31         memory (bytes)      : 6.89963008E8
+   max process count   : 5            states              : 21127
+   states saved        : 39703        state matches       : 520
+   transitions         : 213237       trace steps         : 21646
+   valid calls         : 392661       provers             : cvc4, z3
+   prover calls        : 37        
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
+Checking DRB062-matrixvector2-orig-no with nthreads<=4, BOUND=5 ...
+CIVL v1.22 of 2023-02-21 -- http://vsl.cis.udel.edu/civl
+16s: mem=260Mb trans=13208 traceSteps=1477 explored=1450 saved=2676 prove=7
+31s: mem=260Mb trans=27315 traceSteps=2914 explored=2851 saved=5360 prove=7
+46s: mem=260Mb trans=41368 traceSteps=4386 explored=4283 saved=8063 prove=7
+61s: mem=260Mb trans=55409 traceSteps=5837 explored=5700 saved=10751 prove=7
+76s: mem=260Mb trans=69063 traceSteps=7326 explored=7155 saved=13467 prove=7
+91s: mem=260Mb trans=83262 traceSteps=8776 explored=8566 saved=16158 prove=7
+106s: mem=260Mb trans=97653 traceSteps=10222 explored=9973 saved=18857 prove=7
+121s: mem=260Mb trans=111316 traceSteps=11680 explored=11395 saved=21534 prove=7
+136s: mem=260Mb trans=125649 traceSteps=13128 explored=12806 saved=24247 prove=7
+151s: mem=260Mb trans=140918 traceSteps=14578 explored=14207 saved=26998 prove=7
+
+=== Source files ===
+DRB062-matrixvector2-orig-no.c  (DRB062-matrixvector2-orig-no.c)
+
+=== Command ===
+civl verify -input_omp_thread_max=4 -inputBOUND=5 DRB062-matrixvector2-orig-no.c 
+
+=== Stats ===
+   time (s)            : 156.76       memory (bytes)      : 2.7262976E8
+   max process count   : 5            states              : 14754
+   states saved        : 28068        state matches       : 390
+   transitions         : 146761       trace steps         : 15143
+   valid calls         : 262655       provers             : cvc4, z3
+   prover calls        : 7         
+
+=== Result ===
+All errors marked with '+' are absent on all executions.
+ + Dereference errors                  + Functional equivalence violations
+ + Internal errors                     + Library loading errors
+ + Other errors                        + Assertion violations
+ + Communication errors                + Writes to constant variables
+ + Absolute deadlocks                  + Division by zero
+ + Writes to $input variables          + Invalid casts
+ + Malloc errors                       + Memory leaks
+ + Memory management errors            + MPI usage errors
+ + Out of bounds errors                + Reads from $output variables
+ + Pointer errors                      + Process leaks
+ + Sequence errors                     - Non-termination
+ + Use of undefined values             + Union errors
+
