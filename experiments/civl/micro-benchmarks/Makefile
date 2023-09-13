@@ -158,4 +158,10 @@ DRB062-matrixvector2-orig-no: DRB062-matrixvector2-orig-no.c
 clean:
 	rm -rf *~ *.tmp a.out $(OUT) CIVLREP
 
+summarize-time: results_m1mac/civl_out.txt
+	grep "time\|Checking" $^ | sed '$!N;s/\n/ /'
+
+summarize-time-v2: results_m1mac_v2/civl_out.txt
+	grep "time\|Checking" $^ | sed '$!N;s/\n/ /'
+
 .PHONY: all clean $(ALL) run
